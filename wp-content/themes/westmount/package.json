@@ -1,0 +1,24 @@
+{
+  "name": "vite-tailwind-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@barba/prefetch": "^2.1.10",
+    "cross-env": "^7.0.3",
+    "prettier": "3.1.0",
+    "scss": "^0.2.4",
+    "vite": "^5.0.2",
+    "vite-plugin-live-reload": "^3.0.2"
+  },
+  "dependencies": {
+    "@barba/core": "^2.9.7",
+    "@dogstudio/highway": "^2.2.1",
+    "gsap": "^3.12.2",
+    "jquery": "^3.7.1",
+    "swiper": "^11.0.5"
+  }
+}
