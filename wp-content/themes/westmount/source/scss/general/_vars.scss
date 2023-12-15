@@ -1,0 +1,61 @@
+// --------------- hex to rgba mixin ---------------
+@function HexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+:root {
+// --------------- default global variable ---------------
+  --error-bg: #d01f1f;
+  --body-bg: #21242B;
+  --body-font-size: 0.875rem;
+  --content-width: 86%;
+  --container-offset: 0;
+
+  --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
+
+// --------------- default JS variable ---------------
+ --header-height: 142px;
+ --team-slider-offset: clamp(15px, 3.90625vw, 40px);
+
+
+
+// --------------- default scroll variable ---------------
+  --scrollbar-thumb: #EDE6D1;
+  // --scrollbar-thumb-hover: #00aff0;
+  --scrollbar-track:  #ffffff;
+  --scrollbar-track-hover: #ffffff;
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+
+// --------------- default slect variable ---------------
+  --select-inner-bg: #404040;
+  --select-inner-border: #FDFDFD;
+  --select-focus-border: #FDFDFD;
+
+// --------------- default font-family variable ---------------
+  --font-family: 'Popins', system-ui, sans-serif; // var(--font-family);
+  --font-family2: 'Montserrat', sans-serif; // var(--font-family2);
+
+// --------------- default text color variable ---------------
+  // --burger-color: #{HexToRGB(#00d655)};
+
+  --cl-a: #{HexToRGB(#ffffff)}; // rgba(var(--cl-a),1.0);
+  --cl-b: #{HexToRGB(#000000)}; // rgba(var(--cl-b),1.0);
+
+
+
+// --------------- default background color variable ---------------
+  --bg-a: #{HexToRGB(#ffffff)}; // rgba(var(--bg-a),1.0);
+  --bg-b: #{HexToRGB(#000000)}; // rgba(var(--bg-b),1.0);
+
+
+// --------------- default border color color variable ---------------
+  --br-a: #EE6C3D; // var(--br-a);
+
+
+// -------------
+
+
+}
+
+
+

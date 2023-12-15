@@ -1,0 +1,193 @@
+
+/******************** footer *******************/
+
+footer {
+    overflow: hidden;
+    min-height: toRem(480);
+    height: auto;
+    width: 100%;
+    background: $black;
+    background-image: url('../img/bg_footer.png');
+    background-repeat: no-repeat;
+    background-position: top top;
+    background-size: contain;
+}
+
+.grid_footer {
+    display: grid;
+    grid-template-columns: 2fr 0.8fr 1fr 1.3fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas: '. . . .';
+    color: #fff;
+    margin-top: toRem(64);
+
+    .flexmid {
+        display: flex;
+        margin-left: 30%;
+        flex-direction: column;
+    }
+    @media (max-width: 1100px) {
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-areas: '. . .';
+        .mob_hide {
+            display: none;
+        }
+    }
+}
+
+.footer_logo_wrap {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    .line {
+        position: relative;
+        right: 0%;
+        top: 0;
+        width: toRem(2);
+        height: toRem(56);
+        background: #fff;
+        opacity: 0.2;
+    }
+}
+
+.logo_westmount {
+    width: toRem(284);
+    height: toRem(37);
+    position: relative;
+    padding-right: toRem(20);
+}
+
+.logo_navacord {
+    width: toRem(178);
+    height: toRem(37);
+    padding-left: toRem(20);
+}
+
+.footer_col {
+    font-family: var(--font-family3);
+
+    .title {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        text-transform: uppercase;
+        margin-bottom: toRem(20);
+        white-space: nowrap;
+    }
+}
+.footer_col_menu {
+    li {
+        line-height: 170%;
+        margin-bottom: toRem(6);
+    }
+    .li125 {
+        line-height: 125%;
+    }
+    @media (max-width: 1350px) {
+        .li125m {
+            line-height: 125%;
+        }
+    }
+}
+
+.footer_line_w {
+    width: 100%;
+    height: 1px;
+    background: #fff;
+    opacity: 0.2;
+    margin-top: toRem(150);
+}
+
+.footer_social_wrap {
+    color: #fff;
+    position: absolute;
+    bottom: toRem(-105);
+    left: 0;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.footer_btn_in {
+    width: toRem(111);
+    height: toRem(62);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    img {
+        width: toRem(20);
+        position: absolute;
+        left: 40%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.footer_btn_insta {
+    width: toRem(111);
+    height: toRem(62);
+    display: flex;
+    position: relative;
+    margin-left: toRem(-30);
+
+    svg {
+        transform: scale(-1);
+    }
+
+    img {
+        width: toRem(20);
+        position: absolute;
+        left: 60%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.footer_contacts {
+    margin-left: toRem(35);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    p {
+        white-space: nowrap;
+    }
+    p:first-child {
+        margin-bottom: toRem(10);
+    }
+}
+
+.footer_copyright_wrap {
+    color: #fff;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    .devby {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.footer_copyright {
+    height: toRem(70);
+    display: flex;
+    align-items: center;
+}
+
+.footer_left_text {
+    display: flex;
+    flex-wrap: nowrap;
+
+    p:first-child {
+        margin-right: toRem(60);
+    }
+}

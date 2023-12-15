@@ -6,49 +6,49 @@ if( have_rows('blocks_repeater', $page_id) ):
 
         if( get_row_layout() == 'hero_section_with_slider' ):
 
-          include get_template_directory() . '/common/hero_section_with_slider.php' ;
+          include get_template_directory() . '/template_parts/hero_section_with_slider.php';
 
         endif;
 
         if( get_row_layout() == 'block_with_4_crossing_images' ):
 
-          include get_template_directory() . '/common/block_with_4_crossing_images.php' ;
+          include get_template_directory() . '/template_parts/block_with_4_crossing_images.php';
 
         endif;
 
         if( get_row_layout() == 'simple_block_with_action' ):
 
-          include get_template_directory() . '/common/simple_block_with_action.php' ;
+          include get_template_directory() . '/template_parts/simple_block_with_action.php';
 
         endif;
 
         if( get_row_layout() == 'block_with_cards' ):
 
-          include get_template_directory() . '/common/block_with_cards.php' ;
+          include get_template_directory() . '/template_parts/block_with_cards.php';
 
         endif;
 
         if( get_row_layout() == 'slider_with_many_blocks_in_a_row' ):
 
-          include get_template_directory() . '/common/slider_with_many_blocks_in_a_row.php' ;
+          include get_template_directory() . '/template_parts/slider_with_many_blocks_in_a_row.php';
 
         endif;
         
         if( get_row_layout() == 'block_with_static_figure_image' ):
 
-          include get_template_directory() . '/common/block_with_static_figure_image.php' ;
+          include get_template_directory() . '/template_parts/block_with_static_figure_image.php';
 
         endif;
 
         if( get_row_layout() == 'hero_section_with_image_and_title' ):
 
-          include get_template_directory() . '/common/hero_section_with_image_and_title.php' ;
+          include get_template_directory() . '/template_parts/hero_section_with_image_and_title.php';
 
         endif;
 
         if( get_row_layout() == 'section_with_w' ):
 
-          include get_template_directory() . '/common/section_with_w.php' ;
+          include get_template_directory() . '/template_parts/section_with_w.php';
 
         endif;
 

@@ -127,11 +127,11 @@ function remove_page_fields() {
 
 function add_westmount_scripts() {
     // Подключаем JavaScript
-    wp_enqueue_script('westmount-script', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), '1.0.0', true);
+    wp_enqueue_script('westmount-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
     // wp_enqueue_script('westmount-script-main', get_template_directory_uri() . '/main.js', array('jquery'), '1.0.0', true);
 
     // Подключаем стили CSS
-    wp_enqueue_style('westmount-style', get_template_directory_uri() . '/assets/css/styles.css', array(), '1.0.0', 'all');
+    wp_enqueue_style('westmount-style', get_template_directory_uri() . '/assets/css/style.css', array(), '1.0.0', 'all');
 }
 add_action('wp_enqueue_scripts', 'add_westmount_scripts');
 

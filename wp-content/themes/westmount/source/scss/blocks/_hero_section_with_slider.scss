@@ -1,0 +1,168 @@
+.section_hero_slider{
+  position: relative;
+}
+
+.gradient_bg {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100%;
+}
+
+.hero_bg_logo {
+  object-fit: contain;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+.hero_bg_building {
+  position: absolute;
+  object-fit: contain;
+  max-width: toRem(688);
+  width: 48vw;
+  bottom: 0%;
+  right: 0%;
+}
+
+.h2hero_wrap {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+}
+
+.h2hero_bottom_wrap {
+  display: flex;
+}
+
+.h2hero {
+  display: flex;
+  width: fit-content;
+  flex-wrap: nowrap;
+  font-size: toRem(47);
+  color: #fff;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.09rem;
+  margin: 0;
+  position: relative;
+}
+
+.quot_left {
+  font-family: var(--font-family2);
+  font-size: 4rem;
+  color: $blue;
+  position: absolute;
+  left: 0;
+  top: toRem(-45);
+  transform: scale(-1);
+}
+
+.quot_right {
+  font-family: var(--font-family2);
+  color: $blue;
+  font-size: 4rem;
+  transform: scaleY(-1);
+  position: absolute;
+  right: toRem(-30);
+  top: toRem(-45);
+}
+
+.buttons_wrap {
+  display: flex;
+}
+
+/* buttons */
+.btn {
+  display: flex;
+  transition: 0.5s all ease-in-out;
+  text-transform: uppercase;
+  display: flex;
+}
+
+.contact_us {
+  clip-path: polygon(0% 0%, 90% 0%, 100% 25%, 100% 100%, 0% 100%);
+  color: #fff;
+  width: toRem(165);
+  height: toRem(66);
+  background: $blue;
+  align-items: center;
+  padding-left: toRem(20);
+  padding-right: toRem(20);
+  justify-content: space-between;
+  margin-right: toRem(10);
+
+  i {
+    width: toRem(14);
+    height: toRem(11);
+    display: flex;
+  }
+}
+
+
+
+.position_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h2hero_overflow {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.h2hero_bottom_menu_wrap {
+  width: 100%;
+  display: flex;
+  height: fit-content;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: toRem(78);
+  margin-left: 0;
+}
+
+.h2hero_bottom_line {
+  height: toRem(0.5);
+  width: 100%;
+  background: #fff;
+  opacity: 0.7;
+  position: absolute;
+  bottom: toRem(43);
+}
+
+.slider_controls {
+  position: absolute;
+  bottom: toRem(77);
+  right: 7%;
+  display: flex;
+  z-index: 99;
+}
+
+.button_slider {
+  width: toRem(60);
+  height: toRem(62);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.btn_next {
+  margin-left: toRem(10);
+  transform: scaleX(-1);
+  cursor: pointer;
+}
+.btn_prev{
+  cursor: pointer;
+}
