@@ -21,6 +21,8 @@ $page_id = get_queried_object_id();
     </div>
   </div>
 
+</div>
+
 <?php
   get_footer();
   wp_footer();
