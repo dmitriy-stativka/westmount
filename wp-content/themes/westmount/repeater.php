@@ -52,6 +52,28 @@ if( have_rows('blocks_repeater', $page_id) ):
 
         endif;
 
+	    if( get_row_layout() == 'solution_section' ):
+
+		    include get_template_directory() . '/template_parts/solution_section.php';
+
+	    endif;
+		if( get_row_layout() == 'contact_section' ):
+
+		    include get_template_directory() . '/template_parts/contact_section.php';
+
+	    endif;
+
+	    if( get_row_layout() == 'article_hero_section' ):
+
+		    include get_template_directory() . '/template_parts/article_hero_section.php';
+
+	    endif;
+		if( get_row_layout() == 'article_content_section' ):
+
+		    include get_template_directory() . '/template_parts/article_content_section.php';
+
+	    endif;
+
         // if( get_row_layout() == 'block_service_two' ):
 
         //   include get_template_directory() . '/common/service_two.php' ;

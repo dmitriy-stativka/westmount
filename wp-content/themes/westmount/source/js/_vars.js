@@ -6,12 +6,13 @@ export default {
   htmlEl: document.documentElement,
   bodyEl: document.body,
   section_hero_slider: document.querySelectorAll(".section_hero_slider"),
-  section_home_solutions: document.querySelectorAll(".section_home_solutions")
+  section_home_solutions: document.querySelectorAll(".section_home_solutions"),
 
 
-  // header: document.querySelector("header"),
+  header: document.querySelector("header"),
   // overlay: document.querySelector('[data-overlay]'),
-  // tabsParrents: [...document.querySelectorAll("[data-tabs-parrent]")],
+  tabsParrents: [...document.querySelectorAll("[data-tabs-init]")],
+  accParrents: [...document.querySelectorAll("[data-accordion]")],
   // modals: [...document.querySelectorAll('[data-popup]')],
   // modalsButton: [...document.querySelectorAll("[data-btn-modal]")],
   // accParrent: document.querySelectorAll('[data-accordion]'),

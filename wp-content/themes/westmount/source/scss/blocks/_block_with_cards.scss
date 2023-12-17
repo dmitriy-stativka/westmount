@@ -7,7 +7,7 @@
 
 
 .section_title_max_w {
-  max-width: toRem(570);
+  max-width: 100%;
 }
 
 .section_home_cards_wrap {
@@ -20,12 +20,13 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   justify-items: stretch;
-  gap: toRem(70);
+  gap: toRem(70) toRem(127);
 }
 
 .section_home_card_item_wrap {
   background: radial-gradient(59.53% 53.31% at 78.15% 42.3%, #29343a 15.62%, #1e1e1e 100%);
-  width: toRem(556);
+  width: 100%;
+  //width: toRem(556);
   height: toRem(318);
   position: relative;
 
@@ -55,7 +56,8 @@
 }
 
 .section_home_card_item {
-  width: toRem(557);
+  width: 100%;
+  //width: toRem(557);
 
   svg {
     position: absolute;

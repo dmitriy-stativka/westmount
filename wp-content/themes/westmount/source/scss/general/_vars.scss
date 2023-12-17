@@ -6,9 +6,10 @@
 :root {
 // --------------- default global variable ---------------
   --error-bg: #d01f1f;
-  --body-bg: #21242B;
-  --body-font-size: 0.875rem;
-  --content-width: 86%;
+  --body-bg: #1f1f1f;
+  --body-font-size: 1rem;
+
+  --content-width: 95%;
   --container-offset: 0;
 
   --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
@@ -17,6 +18,14 @@
  --header-height: 142px;
  --team-slider-offset: clamp(15px, 3.90625vw, 40px);
 
+  //@include for-laptop {
+  //  --content-width: 86%;
+  //  --body-font-size: Max(1.1111vw,14px);
+  //}
+  //
+  //@include laptop {
+  //  --body-font-size: 1rem;
+  //}
 
 
 // --------------- default scroll variable ---------------
@@ -40,16 +49,32 @@
 
   --cl-a: #{HexToRGB(#ffffff)}; // rgba(var(--cl-a),1.0);
   --cl-b: #{HexToRGB(#000000)}; // rgba(var(--cl-b),1.0);
+  --cl-c: #{HexToRGB(#F9FAFE)}; // rgba(var(--cl-c),1.0);
+  --cl-d: #{HexToRGB(#0f0f0f)}; // rgba(var(--cl-d),1.0);
+  --cl-e: #{HexToRGB(#1B1B1B)}; // rgba(var(--cl-e),1.0);
+  --cl-f: #{HexToRGB(#00A9EF)}; // rgba(var(--cl-f),1.0);
+  --cl-g: #{HexToRGB(#F2F3F5)}; // rgba(var(--cl-g),1.0);
+  --cl-h: #{HexToRGB(#232729)}; // rgba(var(--cl-h),1.0);
 
 
 
 // --------------- default background color variable ---------------
   --bg-a: #{HexToRGB(#ffffff)}; // rgba(var(--bg-a),1.0);
   --bg-b: #{HexToRGB(#000000)}; // rgba(var(--bg-b),1.0);
+  --bg-c: #{HexToRGB(#F9FAFE)}; // rgba(var(--bg-c),1.0);
+  --bg-d: #{HexToRGB(#0f0f0f)}; // rgba(var(--bg-d),1.0);
+  --bg-e: #{HexToRGB(#1B1B1B)}; // rgba(var(--bg-e),1.0);
+  --bg-f: #{HexToRGB(#00A9EF)}; // rgba(var(--bg-f),1.0);
+  --bg-g: #{HexToRGB(#F2F3F5)}; // rgba(var(--bg-g),1.0);
+  --bg-h: #{HexToRGB(#232729)}; // rgba(var(--bg-h),1.0);
 
 
 // --------------- default border color color variable ---------------
   --br-a: #EE6C3D; // var(--br-a);
+  --br-b: rgba(255, 255, 255, 0.5); // var(--br-b);
+  --br-c: #fff; // var(--br-c);
+
+  --polly-button:polygon(0% 0%, 75% 0%, 100% 25%, 100% 100%, 0% 100%);
 
 
 // -------------

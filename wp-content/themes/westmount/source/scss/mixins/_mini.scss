@@ -78,6 +78,22 @@
   }
 }
 
+@mixin gradient-corner($size) {
+  &:before {
+    width: $size;
+    height: $size;
+    position: absolute;
+    content: '';
+    background-image: var(--article-border);
+    background-size: 100% 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+}
+
 // @mixin fix-offset($offset-value-top, $offset-value-bottom,  $offset-value){
 //   padding: $offset-value-top $offset-value $offset-value-bottom;
 //   margin: $offset-value-top  calc($offset-value * -1) $offset-value-bottom;

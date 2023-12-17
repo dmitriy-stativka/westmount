@@ -224,7 +224,24 @@ const scriptsBackend = () => {
         fallback: {
           "path": require.resolve("path-browserify")
         }
-      } 
+      },
+      // optimization: {
+      //   splitChunks: {
+      //     cacheGroups: {
+      //       vendor: {
+      //         test: /[\\/]node_modules[\\/]/, // Выбирает модули из node_modules
+      //         name(module) {
+      //           // Получает имя библиотеки
+      //           const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+      //           return `vendor.${packageName.replace('@', '')}`; // Создает имя файла
+      //         },
+      //         chunks: 'all'
+      //       }
+      //     }
+      //   }
+      // }
+
+
     }))
     .on('error', function (err) {
       console.error('WEBPACK ERROR', err);

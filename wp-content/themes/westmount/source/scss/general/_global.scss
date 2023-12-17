@@ -7,6 +7,7 @@ html {
   box-sizing: border-box;
   width: 100%;
   max-width: 100dvw;
+  font-size: var(--body-font-size);
 }
 
 body {
@@ -17,7 +18,7 @@ body {
   margin: 0;
 
   font-weight: 400;
-  font-size: var(--body-font-size);
+
   line-height: normal;
   font-family: var(--font-family);
   color: rgba(var(--cl-a),1.0);
@@ -115,7 +116,7 @@ p {
 p {
   color: rgba(var(--cl-a),1.0);
   font-family: var(--font-family);
-  font-size: 16px;
+  //font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 168.52%;
@@ -199,6 +200,10 @@ fieldset {
   //max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 var(--container-offset);
+
+  @include laptop {
+    max-width: var(--content-width);
+  }
 }
 
 .panel,
@@ -295,5 +300,16 @@ fieldset {
   .close svg {
     pointer-events: none;
   }
+}
+
+.section-bg {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: contain;
+  opacity: 0.02;
 }
 

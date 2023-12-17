@@ -13,7 +13,7 @@ $logo         = get_field( 'logo', 'options' );
     <?php load_template(get_template_directory() . '/helpers/fonts.php', true); ?>
 	<?php wp_head() ?>
 </head>
-<body>
+<body <?php body_class(); ?>>
 <header>
 
     <div class="menu_open">

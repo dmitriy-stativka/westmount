@@ -35,9 +35,17 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_barba__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/barba */ "./source/js/components/barba.js");
 /* harmony import */ var _components_sliders__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/sliders */ "./source/js/components/sliders.js");
+/* harmony import */ var _components_dinamicHeight__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/dinamicHeight */ "./source/js/components/dinamicHeight.js");
+/* harmony import */ var _components_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/form */ "./source/js/components/form.js");
+/* harmony import */ var _components_form__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_components_form__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_tabs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/tabs */ "./source/js/components/tabs.js");
+/* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/accordion */ "./source/js/components/accordion.js");
 
 
-// import './components/anchor';
+
+
+
+
 
 /***/ }),
 
@@ -57,11 +65,11 @@ __webpack_require__.r(__webpack_exports__);
   htmlEl: document.documentElement,
   bodyEl: document.body,
   section_hero_slider: document.querySelectorAll(".section_hero_slider"),
-  section_home_solutions: document.querySelectorAll(".section_home_solutions")
-
-  // header: document.querySelector("header"),
+  section_home_solutions: document.querySelectorAll(".section_home_solutions"),
+  header: document.querySelector("header"),
   // overlay: document.querySelector('[data-overlay]'),
-  // tabsParrents: [...document.querySelectorAll("[data-tabs-parrent]")],
+  tabsParrents: [...document.querySelectorAll("[data-tabs-init]")],
+  accParrents: [...document.querySelectorAll("[data-accordion]")]
   // modals: [...document.querySelectorAll('[data-popup]')],
   // modalsButton: [...document.querySelectorAll("[data-btn-modal]")],
   // accParrent: document.querySelectorAll('[data-accordion]'),
@@ -83,6 +91,104 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _vendor_picturefill_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vendor_picturefill_js__WEBPACK_IMPORTED_MODULE_0__);
 // import './vendor/focus-visible.js';
 
+
+/***/ }),
+
+/***/ "./source/js/components/accordion.js":
+/*!*******************************************!*\
+  !*** ./source/js/components/accordion.js ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vars__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_vars */ "./source/js/_vars.js");
+/* harmony import */ var _functions_customFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/customFunctions */ "./source/js/functions/customFunctions.js");
+
+
+const {
+  accParrents
+} = _vars__WEBPACK_IMPORTED_MODULE_0__["default"];
+window.addEventListener('DOMContentLoaded', () => {
+  accParrents && accParrents.map(function (accordionParrent) {
+    if (accordionParrent) {
+      let multipleSetting = false;
+      let breakpoinSetting = false;
+      let defaultOpenSetting;
+      if (accordionParrent.dataset.single && accordionParrent.dataset.breakpoint) {
+        multipleSetting = accordionParrent.dataset.single; // true - включает сингл аккордион
+        breakpoinSetting = accordionParrent.dataset.breakpoint; // брейкпоинт сингл режима (если он true)
+      }
+      const getAccordions = function () {
+        let dataName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "[data-id]";
+        return accordionParrent.querySelectorAll(dataName);
+      };
+      const accordions = getAccordions();
+      let openedAccordion = null;
+      const closeAccordion = function (accordion) {
+        let className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "active";
+        accordion.style.maxHeight = 0;
+        (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_1__.removeCustomClass)(accordion, className);
+      };
+      const openAccordion = function (accordion) {
+        let className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "active";
+        accordion.style.maxHeight = accordion.scrollHeight + "px";
+        (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_1__.addCustomClass)(accordion, className);
+      };
+      const toggleAccordionButton = function (button) {
+        let className = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "active";
+        (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_1__.toggleCustomClass)(button, className);
+      };
+      const checkIsAccordionOpen = function (accordion) {
+        return accordion.classList.contains('active');
+      };
+      const accordionClickHandler = function (e) {
+        e.preventDefault();
+        let curentDataNumber = this.dataset.id;
+        toggleAccordionButton(this);
+        const accordionContent = accordionParrent.querySelector(`[data-content="${curentDataNumber}"]`);
+        const isAccordionOpen = checkIsAccordionOpen(accordionContent);
+        if (isAccordionOpen) {
+          closeAccordion(accordionContent);
+          openedAccordion = null;
+        } else {
+          if (openedAccordion != null) {
+            const mobileSettings = () => {
+              let containerWidth = document.documentElement.clientWidth;
+              if (containerWidth <= breakpoinSetting && multipleSetting === 'true') {
+                closeAccordion(openedAccordion);
+                toggleAccordionButton(accordionParrent.querySelector(`[data-id="${openedAccordion.dataset.content}"]`));
+              }
+            };
+            window.addEventListener('resize', () => {
+              mobileSettings();
+            });
+            mobileSettings();
+          }
+          openAccordion(accordionContent);
+          openedAccordion = accordionContent;
+        }
+      };
+      const activateAccordion = function (accordions, handler) {
+        for (const accordion of accordions) {
+          accordion.addEventListener('click', handler);
+        }
+      };
+      const accordionDefaultOpen = currentId => {
+        const defaultOpenContent = accordionParrent.querySelector(`[data-content="${currentId}"]`);
+        const defaultOpenButton = accordionParrent.querySelector(`[data-id="${currentId}"]`);
+        openedAccordion = defaultOpenContent;
+        toggleAccordionButton(defaultOpenButton);
+        openAccordion(defaultOpenContent);
+      };
+      if (accordionParrent.dataset.default) {
+        defaultOpenSetting = accordionParrent.dataset.default; // получает id аккордиона который будет открыт по умолчанию
+        accordionDefaultOpen(defaultOpenSetting);
+      }
+      activateAccordion(accordions, accordionClickHandler);
+    }
+  });
+});
 
 /***/ }),
 
@@ -297,6 +403,51 @@ function barbaInit() {
 
 /***/ }),
 
+/***/ "./source/js/components/dinamicHeight.js":
+/*!***********************************************!*\
+  !*** ./source/js/components/dinamicHeight.js ***!
+  \***********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vars__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_vars */ "./source/js/_vars.js");
+/* harmony import */ var _functions_customFunctions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../functions/customFunctions */ "./source/js/functions/customFunctions.js");
+
+
+const {
+  header
+} = _vars__WEBPACK_IMPORTED_MODULE_0__["default"];
+(0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_1__.elementHeight)(header, 'header-height');
+(0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_1__.stickyHeader)(header, 600, 150, 'linear');
+
+/***/ }),
+
+/***/ "./source/js/components/form.js":
+/*!**************************************!*\
+  !*** ./source/js/components/form.js ***!
+  \**************************************/
+/***/ (function() {
+
+const wpcf7Els = document.querySelectorAll('.wpcf7');
+wpcf7Els.forEach(form => {
+  form.addEventListener('wpcf7submit', function (event) {
+    alert("Fire!");
+  }, false);
+});
+
+// wpcf7invalid — Fires when an Ajax form submission has completed successfully, but mail hasn’t been sent because there are fields with invalid input.
+//
+// wpcf7spam — Fires when an Ajax form submission has completed successfully, but mail hasn’t been sent because a possible spam activity has been detected.
+//
+// wpcf7mailsent — Fires when an Ajax form submission has completed successfully, and mail has been sent.
+//
+// wpcf7mailfailed — Fires when an Ajax form submission has completed successfully, but it has failed in sending mail.
+//
+// wpcf7submit — Fires when an Ajax form submission has completed successfully, regardless of other incidents.
+
+/***/ }),
+
 /***/ "./source/js/components/sliders.js":
 /*!*****************************************!*\
   !*** ./source/js/components/sliders.js ***!
@@ -400,6 +551,215 @@ function slider_with_many_blocks_in_a_row() {
     }
   });
 }
+
+/***/ }),
+
+/***/ "./source/js/components/tabs.js":
+/*!**************************************!*\
+  !*** ./source/js/components/tabs.js ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _functions_customFunctions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../functions/customFunctions */ "./source/js/functions/customFunctions.js");
+/* harmony import */ var _vars__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_vars */ "./source/js/_vars.js");
+/* harmony import */ var _accordion__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./accordion */ "./source/js/components/accordion.js");
+
+
+
+const {
+  tabsParrents,
+  accParrents
+} = _vars__WEBPACK_IMPORTED_MODULE_1__["default"];
+
+// --------------- tabs custom function --------------- //
+const tabsFunction = function (tabsDataInitArray, tabsNavAttr, tabsContentAttr) {
+  let active = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "active";
+  tabsDataInitArray && tabsDataInitArray.forEach(tabParent => {
+    if (tabParent) {
+      const tabNav = [...tabParent.querySelectorAll(`[${tabsNavAttr}]`)];
+      const tabContent = [...tabParent.querySelectorAll(`[${tabsContentAttr}]`)];
+      tabNav.map(nav => {
+        nav.addEventListener("click", e => {
+          e.preventDefault();
+
+          // accInit(accParrents, "data-id", "data-content");
+
+          const activeTabAttr = e.target.getAttribute(`${tabsNavAttr}`);
+          (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_0__.removeClassInArray)(tabNav, active);
+          (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_0__.removeClassInArray)(tabContent, active);
+          (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_0__.addCustomClass)(tabParent.querySelector(`[${tabsNavAttr}="${activeTabAttr}"]`), active);
+          (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_0__.addCustomClass)(tabParent.querySelector(`[${tabsContentAttr}="${activeTabAttr}"]`), active);
+        });
+      });
+    }
+  });
+};
+tabsFunction(tabsParrents, "data-tab", "data-tab-content");
+
+// adaptiveInit('576');
+//
+// function adaptiveInit(breakpoint)  {
+//     let containerWidth = document.documentElement.clientWidth;
+//
+//     if (containerWidth > `${breakpoint}`) {
+//         const tabsDescktop= document.querySelectorAll('[data-tabs-parrent-desktop]')
+//         !isMobile() ? tabsFunction(tabsDescktop, "data-tab", "data-tab-content") : null;
+//     }
+// };
+
+/***/ }),
+
+/***/ "./source/js/functions/customFunctions.js":
+/*!************************************************!*\
+  !*** ./source/js/functions/customFunctions.js ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   addClassInArray: function() { return /* binding */ addClassInArray; },
+/* harmony export */   addCustomClass: function() { return /* binding */ addCustomClass; },
+/* harmony export */   addMultiListener: function() { return /* binding */ addMultiListener; },
+/* harmony export */   elementHeight: function() { return /* binding */ elementHeight; },
+/* harmony export */   even: function() { return /* binding */ even; },
+/* harmony export */   fadeIn: function() { return /* binding */ fadeIn; },
+/* harmony export */   fadeOut: function() { return /* binding */ fadeOut; },
+/* harmony export */   removeClassInArray: function() { return /* binding */ removeClassInArray; },
+/* harmony export */   removeCustomClass: function() { return /* binding */ removeCustomClass; },
+/* harmony export */   stickyHeader: function() { return /* binding */ stickyHeader; },
+/* harmony export */   toggleClassInArray: function() { return /* binding */ toggleClassInArray; },
+/* harmony export */   toggleCustomClass: function() { return /* binding */ toggleCustomClass; }
+/* harmony export */ });
+const fadeIn = (el, timeout, display) => {
+  el.style.opacity = 0;
+  el.style.display = display || 'block';
+  el.style.transition = `all ${timeout}ms`;
+  setTimeout(() => {
+    el.style.opacity = 1;
+  }, 10);
+};
+// ----------------------------------------------------
+const fadeOut = (el, timeout) => {
+  el.style.opacity = 1;
+  el.style.transition = `all ${timeout}ms`;
+  el.style.opacity = 0;
+  setTimeout(() => {
+    el.style.display = 'none';
+  }, timeout);
+};
+// ----------------------------------------------------
+function addMultiListener(element, eventNames, listener) {
+  var events = eventNames.split(' ');
+  for (var i = 0, iLen = events.length; i < iLen; i++) {
+    element.addEventListener(events[i], listener, false);
+  }
+}
+// ----------------------------------------------------
+const even = n => !(n % 2);
+// ----------------------------------------------------
+const removeCustomClass = function (item) {
+  let customClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'active';
+  item.classList.remove(customClass);
+};
+// ----------------------------------------------------
+const toggleCustomClass = function (item) {
+  let customClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'active';
+  item.classList.toggle(customClass);
+};
+// ----------------------------------------------------
+const addCustomClass = function (item) {
+  let customClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'active';
+  item.classList.add(customClass);
+};
+// ----------------------------------------------------
+const removeClassInArray = function (arr) {
+  let customClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'active';
+  arr.forEach(item => {
+    item.classList.remove(customClass);
+  });
+};
+// ----------------------------------------------------
+const addClassInArray = function (arr) {
+  let customClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'active';
+  arr.forEach(item => {
+    item.classList.add(customClass);
+  });
+};
+// ----------------------------------------------------
+const toggleClassInArray = function (arr) {
+  let customClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'active';
+  arr.forEach(item => {
+    item.classList.toggle(customClass);
+  });
+};
+//-----------------------------------------------------
+
+const elementHeight = (el, variableName) => {
+  // el -- сам елемент (но не коллекция)
+  // variableName -- строка, имя создаваемой переменной
+  if (el) {
+    function initListener() {
+      const elementHeight = el.offsetHeight;
+      document.querySelector(':root').style.setProperty(`--${variableName}`, `${elementHeight}px`);
+    }
+    window.addEventListener('DOMContentLoaded', initListener);
+    window.addEventListener('resize', initListener);
+  }
+};
+
+//-----------------------------------------------------
+
+const stickyHeader = (block, duration, delay, type) => {
+  let prevScrollPos = window.pageYOffset;
+  block.style.transition = `top ${duration}ms ${type}`;
+  window.onscroll = function () {
+    const currentScrollPos = window.pageYOffset;
+    const scrollThreshold = 10; // Порог для начала анимации
+
+    if (prevScrollPos > currentScrollPos) {
+      block.style.top = "0";
+      block.style.transitionDelay = `0ms`;
+    } else {
+      if (currentScrollPos > block.offsetHeight) {
+        block.style.transitionDelay = `${delay}ms`;
+        block.style.top = `-${block.offsetHeight}px`;
+      }
+    }
+    prevScrollPos = currentScrollPos;
+  };
+};
+
+// --------------------------------
+
+// export const observeBodyMutation = (callback) => {
+//   // Функция для обработки мутаций
+//   const handleBodyMutation = (mutationsList, observer) => {
+//     for (let mutation of mutationsList) {
+//       if (mutation.type === 'childList') {
+//         // Обработка изменений в DOM
+
+//         console.log('reinit');
+//         callback();
+//       }
+//     }
+//   };
+
+//   // Настройка MutationObserver
+//   const observer = new MutationObserver(handleBodyMutation);
+
+//   // Опции для наблюдения за изменениями (в данном случае, изменениями в дочерних элементах тела)
+//   const observerConfig = {
+//     childList: true,
+//     subtree: true,
+//   };
+
+//   // Начинаем наблюдение за мутациями в теле страницы
+//   const bodyElement = document.body;
+//   observer.observe(bodyElement, observerConfig);
+// };
 
 /***/ }),
 
