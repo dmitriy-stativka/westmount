@@ -2,11 +2,17 @@
 @import "../blocks/footer.scss";
 //@import "../blocks/custom-styles.scss";
 
-@import "../blocks/_hero_section_with_slider";
-@import "../blocks/_block_with_4_crossing_images";
-@import "../blocks/_simple_block_with_action.scss";
-@import "../blocks/_block_with_cards.scss";
-@import "../blocks/_slider_with_many_blocks_in_a_row.scss";
-@import "../blocks/_block_with_static_figure_image.scss";
-@import "../blocks/_hero_section_with_image_and_title.scss";
-@import "../blocks/_section_with_w.scss";
+@import "../blocks/hero_section_with_slider";
+@import "../blocks/block_with_4_crossing_images";
+@import "../blocks/simple_block_with_action.scss";
+@import "../blocks/block_with_cards.scss";
+@import "../blocks/slider_with_many_blocks_in_a_row.scss";
+@import "../blocks/block_with_static_figure_image.scss";
+@import "../blocks/hero_section_with_image_and_title.scss";
+@import "../blocks/section_with_w.scss";
+
+@import "../blocks/solution_section.scss";
+@import "../blocks/contact_section.scss";
+@import "../blocks/article_hero_section.scss";
+@import "../blocks/article_content_section.scss";
+@import "../blocks/team_section.scss";

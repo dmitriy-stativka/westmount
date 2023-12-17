@@ -1,16 +1,17 @@
 header {
   background: rgba(0, 0, 0, 0);
   width: 100%;
-  height: toRem(140);
+  //height: toRem(140);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 999;
+  padding: toRem(40) 0;
+  background: linear-gradient(180deg, #24272D 0%, rgba(36, 39, 45, 0.00) 100%);
 }
 
 .top_plane {
   width: 100%;
-  height: toRem(140);
   display: flex;
 }
 
@@ -26,6 +27,12 @@ header {
   display: flex;
   align-items: center;
   max-width: toRem(221);
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .menu {

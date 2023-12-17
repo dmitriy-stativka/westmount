@@ -1,0 +1,114 @@
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: toRem(60) toRem(25);
+  counter-reset: section-counter;
+  --offset: toRem(15);
+
+  &__item {
+    counter-increment: section-counter;
+    //outline: red 1px solid;
+
+    max-width: 50vw;
+    margin: 0 auto;
+
+    &:nth-of-type(n+10) .card-list__article-title::before {
+      content: counter(section-counter) '.';
+    }
+
+    @include for-laptop {
+      grid-column: span 4;
+
+      &:nth-of-type(5n+4), &:nth-of-type(5n+5) {
+        grid-column: span 6;
+
+        .card-list__article-inner {
+          clip-path: polygon(3% 0, 100% 0, 100% 100%, 0 100%, 0 7%);
+        }
+      }
+
+      &:nth-of-type(1):nth-last-of-type(2),
+      &:nth-of-type(2):nth-last-of-type(1) {
+        grid-column: span 6;
+
+
+      }
+
+      &:only-child {
+        grid-column: span 12;
+      }
+    }
+  }
+
+  &__article {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+
+    @include gradient-corner(toRem(56));
+
+    &-img {
+      img {
+        display: flex;
+        //max-width: 50%;
+        width: 100%;
+      }
+    }
+
+    &-inner {
+      flex-grow: 1;
+      width: 100%;
+      clip-path: polygon(5% 0, 100% 0, 100% 100%, 0 100%, 0 5%);
+      margin-top: calc(toRem(15) * -1);
+      position: relative;
+      z-index: 2;
+      padding: toRem(40) toRem(44);
+      background-image: var(--article-card-bg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center center;
+      //height: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: toRem(25);
+    }
+
+    [data-descr=""] {
+      &:after {
+        content: none;
+      }
+    }
+
+    &-title {
+      color: rgba(var(--cl-a),1.0);
+      font-family: var(--font-family);
+      font-size: toRem(26);
+      font-style: normal;
+      font-weight: 600;
+      line-height: 100%; /* 32.24px */
+
+      &:before {
+        content: '0'counter(section-counter)'.';
+      }
+
+      &:after {
+        font-size: toRem(12);
+        line-height: 50%;
+        width: 100%;
+        display: inline-block;
+        content: attr(data-descr);
+        font-weight: 300;
+      }
+    }
+
+    p {
+      color: rgba(var(--cl-a),1.0);
+      font-family: var(--font-family);
+      font-size: toRem(14);
+      font-style: normal;
+      font-weight: 300;
+      line-height: 158%; /* 22.12px */
+    }
+  }
+}

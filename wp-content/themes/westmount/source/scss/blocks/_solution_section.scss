@@ -1,0 +1,33 @@
+.solution-section {
+  //margin-top: var(--header-height);
+  padding: toRem(60) 0 toRem(188);
+  //background-size: contain;{
+  background-color: #1f1f1f;
+  position: relative;
+
+  &:first-of-type {
+    padding-top: calc(var(--header-height) + toRem(60));
+
+    .section-bg {
+      top: toRem(120);
+    }
+  }
+
+  &:before{
+    pointer-events: none;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: contain;
+    background-image:radial-gradient(51.51% 49.89% at 58.19% 58.9%, #29343A 15.62%, #1E1E1E 100%);
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(56);
+  }
+}

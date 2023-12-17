@@ -1,6 +1,9 @@
 import './components/barba';
 import './components/sliders';
-// import './components/anchor';
+import './components/dinamicHeight';
+import './components/form';
+import './components/tabs';
+import './components/accordion';
 
 
 

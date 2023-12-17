@@ -1,0 +1,120 @@
+.main-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  &__title {
+    margin-bottom: toRem(80);
+
+    display: flex;
+    align-items: center;
+    gap: toRem(7);
+
+    color: rgba(var(--cl-a),1.0);
+    font-family: var(--font-family);
+    font-size: toRem(14);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 136%; /* 19.04px */
+    text-transform: uppercase;
+  }
+
+  &__inner {
+    display: grid;
+    gap: toRem(20) toRem(30);
+    grid-template-columns: repeat(2, 1fr);
+
+    .wpcf7-response-output {
+      grid-column: 1/-1;
+      margin: 0 !important;
+    }
+  }
+
+  &__label {
+    display: flex;
+    width: 100%;
+
+    input,
+    textarea {
+      height: toRem(35);
+      //min-height: ;
+      background-color: transparent;
+      width: 100%;
+      padding-bottom: toRem(15);
+      border-bottom: 1px solid var(--br-c);
+      padding-left: 0;
+      color: rgba(var(--cl-a),1.0);
+      font-family: var(--font-family);
+      font-size: toRem(14);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 158%; /* 22.12px */
+      overflow: hidden;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &:placeholder {
+        color: rgba(var(--cl-a),0.4);
+      }
+    }
+
+    span {
+      width: 100%;
+      display: flex;
+    }
+
+    .wpcf7-not-valid-tip {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  &__submit {
+    grid-column: 1/-1;
+    order: 999;
+    margin-top: toRem(30);
+    padding: toRem(2);
+    max-width: toRem(217);
+    height: toRem(66);
+    display: flex;
+    width: 100%;
+    background-color: rgba(var(--bg-a),1.0);
+    position: relative;
+    cursor: pointer;
+
+    input {
+      z-index: 2;
+      cursor: pointer;
+      position: absolute;
+      inset: 0;
+      text-align: left;
+      inset: toRem(20);
+
+      color: rgba(var(--cl-e),1.0);
+      font-family: var(--font-family2);
+      font-size: toRem(14);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: -0.42px;
+      text-transform: uppercase;
+    }
+
+    svg {
+      fill: rgba(var(--cl-a),1.0);
+    }
+
+    .icon {
+      clip-path: polygon(0% 0%, 75% 0%, 100% 25%, 100% 100%, 0% 100%);
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(var(--bg-e),1.0);
+      aspect-ratio: 1/1;
+    }
+  }
+}

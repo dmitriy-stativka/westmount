@@ -1,0 +1,111 @@
+.team-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: toRem(20);
+  width: 100%;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__item {
+    clip-path:polygon(0% 0%, 91% 0%, 100% 9%, 100% 100%, 0% 100%);
+  }
+}
+
+.team-card {
+  height: 100%;
+  display: grid;
+  grid-template-rows: toRem(313) 1fr;
+
+  img {
+    width: 100%;
+    display: flex;
+  }
+
+  &__inner {
+    padding: toRem(20);
+    min-height: toRem(255);
+    background: radial-gradient(59.53% 53.31% at 78.15% 42.3%, #29343A 15.62%, #1E1E1E 100%), #1F1F1F;
+    display: flex;
+    flex-direction: column;
+    gap: toRem(40);
+    justify-content: space-between;
+  }
+
+  &__top {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: toRem(15);
+
+    color: rgba(var(--cl-g),1.0);
+
+    @include tablet {
+      grid-template-columns: 100%;
+    }
+
+    span {
+      color: rgba(var(--cl-g),0.8);
+      font-size: toRem(14);
+      font-weight: 400;
+      line-height: 165%;
+    }
+  }
+
+  &__links {
+    display: flex;
+    gap: toRem(10);
+    flex-wrap: wrap;
+
+    a {
+      width: toRem(43);
+      height: toRem(43);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(var(--bg-a),1.0);
+      clip-path: var(--polly-button);
+
+      img {
+        max-width: toRem(20);
+      }
+    }
+  }
+
+  &__bottom {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+
+    .article-link {
+      grid-column: 2;
+      grid-row: 1/-1;
+    }
+
+    img {
+      grid-row: 1/-1;
+      grid-column: 1;
+      max-width: toRem(240);
+    }
+
+    span {
+      color: rgba(var(--cl-g),0.8);
+      font-size: toRem(14);
+      font-style: normal;
+      font-weight: 400;
+      line-height: 165%; /* 23.1px */
+    }
+
+    a:not([class]) {
+      color: rgba(var(--cl-f),1.0);
+      font-size: toRem(14);
+    }
+  }
+
+  &__name {
+    font-size: toRem(22);
+    font-weight: 600;
+    flex-grow: 1;
+  }
+}

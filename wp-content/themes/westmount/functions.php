@@ -123,17 +123,25 @@ function remove_page_fields() {
 	//remove_meta_box( 'authordiv',        'page' , 'normal' ); // removes author
 };
 
-
-
 function add_westmount_scripts() {
-    // Подключаем JavaScript
-    wp_enqueue_script('westmount-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
-    // wp_enqueue_script('westmount-script-main', get_template_directory_uri() . '/main.js', array('jquery'), '1.0.0', true);
+	// Подключаем JavaScript
+	wp_enqueue_script('westmount-script', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '1.0.0', true);
 
-    // Подключаем стили CSS
-    wp_enqueue_style('westmount-style', get_template_directory_uri() . '/assets/css/style.css', array(), '1.0.0', 'all');
+	// Подключаем стили CSS
+	wp_enqueue_style('westmount-style', get_template_directory_uri() . '/assets/css/style.css', array(), '1.0.0', 'all');
 }
 add_action('wp_enqueue_scripts', 'add_westmount_scripts');
+
+
+
+function add_page_title_to_body_class($classes) {
+	if (is_singular()) {
+		global $post;
+		$classes[] = $post->post_name . '-page';
+	}
+	return $classes;
+}
+add_filter('body_class', 'add_page_title_to_body_class');
 
 
 
@@ -143,3 +151,6 @@ add_action('wp_enqueue_scripts', 'add_westmount_scripts');
 //     wp_enqueue_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js', array(), null, true);
 // }
 // add_action('wp_enqueue_scripts', 'add_swiper_scripts');
+
+
+load_template(get_template_directory() . '/helpers/contactFormHooks.php', true);

@@ -1,0 +1,65 @@
+.footer-social {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  justify-content: flex-start;
+  gap: toRem(20);
+  width: fit-content;
+
+  &__item {
+    width: fit-content;
+    position: relative;
+    //background-color: red;
+    overflow: hidden;
+
+
+    &:nth-child(odd) {
+      margin-right: calc(toRem(50) * -1);
+      clip-path: polygon(0 0, 65% 0, 100% 100%, 0% 100%);
+
+      .footer-social__link {
+        padding-left: toRem(30);
+        justify-content: flex-start;
+      }
+    }
+
+    &:nth-child(even) {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 35% 100%);
+
+      .footer-social__link {
+        padding-right: toRem(30);
+        justify-content: flex-end;
+        &:before {
+          transform: scale(-1);
+        }
+      }
+    }
+
+
+
+  }
+
+  &__link {
+    width: toRem(110);
+    height: toRem(60);
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+
+    &:before {
+      pointer-events: none;
+      content: '';
+      position: absolute;
+      inset: 0;
+      display: block;
+      background-image: var(--social-border);
+      background-size: 100% 100%;
+    }
+
+
+    @include hover {
+      z-index: 2;
+    }
+  }
+}

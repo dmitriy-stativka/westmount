@@ -1,0 +1,49 @@
+.contact-list {
+  overflow: hidden;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(6);
+
+    a {
+      color: rgba(var(--cl-a),1.0);
+      font-family: var(--font-family);
+      font-size: toRem(26);
+      font-style: normal;
+      font-weight: 300;
+      line-height: 100%; /* 33.28px */
+    }
+  }
+
+  &__legend {
+    padding-top: toRem(14);
+    position: relative;
+    color: rgba(var(--cl-a),0.6);
+    font-family: var(--font-family);
+    font-size: toRem(14);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+
+    &:before {
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: toRem(1);
+      position: absolute;
+      content: '';
+      background-color: #555657;
+    }
+
+    &:after {
+      top: 0;
+      left: 0;
+      width: toRem(47);
+      height: toRem(1);
+      position: absolute;
+      content: '';
+      background-color:  rgba(var(--bg-f),1.0);
+    }
+  }
+}

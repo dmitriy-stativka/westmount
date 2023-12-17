@@ -224,7 +224,24 @@ const scriptsBackend = () => {
         fallback: {
           "path": require.resolve("path-browserify")
         }
-      } 
+      },
+      // optimization: {
+      //   splitChunks: {
+      //     cacheGroups: {
+      //       vendor: {
+      //         test: /[\\/]node_modules[\\/]/, // Выбирает модули из node_modules
+      //         name(module) {
+      //           // Получает имя библиотеки
+      //           const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+      //           return `vendor.${packageName.replace('@', '')}`; // Создает имя файла
+      //         },
+      //         chunks: 'all'
+      //       }
+      //     }
+      //   }
+      // }
+
+
     }))
     .on('error', function (err) {
       console.error('WEBPACK ERROR', err);
@@ -286,7 +303,7 @@ const watchFiles = () => {
   watch(`${paths.resourcesFolder}/**`, resources);
   watch(`${paths.srcImgFolder}/**/**.{jpg,jpeg,png,svg}`, images);
   watch(`${paths.srcImgFolder}/**/**.{webm,mp4,MPEG-4}`, video);
-  watch(`${paths.srcImgFolder}/**/**.{jpg,jpeg,png}`, webpImages);
+  // watch(`${paths.srcImgFolder}/**/**.{jpg,jpeg,png}`, webpImages);
   // watch(`${paths.srcImgFolder}/**/**.{jpg,jpeg,png}`, avifImages);
   watch(paths.srcSvg, svgSprites);
 }
@@ -342,11 +359,11 @@ const toProd = (done) => {
 
 
 // exports.default = series(clean, pdfInclude, json, scripts, styles, resources, faviconIcon ,images,  webpImages, video, svgSprites, watchFiles);
-exports.default = series(clean, pdfInclude, json, scripts, styles, resources, faviconIcon ,images, video, svgSprites, watchFiles);
+exports.default = series(clean, pdfInclude, json, scripts, styles, resources ,images, video, svgSprites, watchFiles);
 
 exports.backend = series(clean, scriptsBackend, stylesBackend, resources, video,images, webpImages, svgSprites)
 
-exports.build = series(toProd, clean, json, scripts, styles, resources, faviconIcon ,video,images, webpImages, svgSprites);
+exports.build = series(toProd, clean, json, scripts, styles, resources, faviconIcon ,video,images, svgSprites);
 
 exports.cache = series(cache, rewrite);
 
