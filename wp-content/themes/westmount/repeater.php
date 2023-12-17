@@ -74,6 +74,12 @@ if( have_rows('blocks_repeater', $page_id) ):
 
 	    endif;
 
+		if( get_row_layout() == 'team_section' ):
+
+		    include get_template_directory() . '/template_parts/team_section.php';
+
+	    endif;
+
         // if( get_row_layout() == 'block_service_two' ):
 
         //   include get_template_directory() . '/common/service_two.php' ;

@@ -18,10 +18,10 @@
  --header-height: 142px;
  --team-slider-offset: clamp(15px, 3.90625vw, 40px);
 
-  //@include for-laptop {
-  //  --content-width: 86%;
-  //  --body-font-size: Max(1.1111vw,14px);
-  //}
+  @include for-laptop {
+    --content-width: 86%;
+    --body-font-size: Max(1.1111vw,14px);
+  }
   //
   //@include laptop {
   //  --body-font-size: 1rem;
@@ -73,6 +73,7 @@
   --br-a: #EE6C3D; // var(--br-a);
   --br-b: rgba(255, 255, 255, 0.5); // var(--br-b);
   --br-c: #fff; // var(--br-c);
+  --br-e: rgba(15, 15, 15, 0.1); // var(--br-e);
 
   --polly-button:polygon(0% 0%, 75% 0%, 100% 25%, 100% 100%, 0% 100%);
 

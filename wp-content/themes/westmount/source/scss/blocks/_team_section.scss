@@ -1,0 +1,38 @@
+.team-section {
+  background-color: rgba(var(--bg-a),1.0);
+  padding: toRem(140) 0 toRem(200);
+  color: rgba(var(--cl-d),1.0);
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: toRem(50);
+  }
+
+  .team {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+
+    .action_btn {
+      background-color: #1B1B1B;
+
+      &_text {
+        color: rgba(var(--cl-a),1.0);
+      }
+
+      .square {
+        background-color: rgba(var(--bg-a),1.0);
+      }
+    }
+
+    &__more {
+      @include for-small-tablet {
+        display: none;
+      }
+    }
+  }
+
+
+}
