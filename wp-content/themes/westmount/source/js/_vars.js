@@ -7,7 +7,7 @@ export default {
   bodyEl: document.body,
   section_hero_slider: document.querySelectorAll(".section_hero_slider"),
   section_home_solutions: document.querySelectorAll(".section_home_solutions"),
-
+  singleTeamBox: document.querySelectorAll(".team-single__sliders"),
 
   header: document.querySelector("header"),
   // overlay: document.querySelector('[data-overlay]'),
