@@ -488,10 +488,14 @@ const mobileMenuHandler = function (overlay, mobileMenu, burger) {
   burger.forEach(btn => {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
+
+      // Переключаем класс 'active' для всех элементов
       (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_3__.toggleCustomClass)(mobileMenu, 'active');
       (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_3__.toggleClassInArray)(burger, 'active');
       (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_3__.toggleCustomClass)(overlay, 'active');
-      if (btn.classList.contains('active')) {
+
+      // Проверяем состояние после переключения классов
+      if (mobileMenu.classList.contains('active')) {
         (0,_functions_disable_scroll__WEBPACK_IMPORTED_MODULE_0__.disableScroll)();
       } else {
         (0,_functions_enable_scroll__WEBPACK_IMPORTED_MODULE_1__.enableScroll)();
@@ -856,7 +860,7 @@ lightGallery(eventVideoBox, {
     controls: true
   }
 });
-const videoUrl = eventVideoBox.querySelector('[data-src]').dataset.src;
+const videoUrl = eventVideoBox && eventVideoBox.querySelector('[data-src]').dataset.src;
 function fetchVimeoVideoThumbnail(url) {
   const oEmbedUrl = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(url)}`;
   fetch(oEmbedUrl).then(response => response.json()).then(data => {

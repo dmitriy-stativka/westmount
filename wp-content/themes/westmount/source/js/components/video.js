@@ -17,7 +17,7 @@ lightGallery(eventVideoBox, {
 	}
 });
 
-const videoUrl = eventVideoBox.querySelector('[data-src]').dataset.src;
+const videoUrl = eventVideoBox && eventVideoBox.querySelector('[data-src]').dataset.src;
 function fetchVimeoVideoThumbnail(url) {
 	const oEmbedUrl = `https://vimeo.com/api/oembed.json?url=${encodeURIComponent(url)}`;
 
