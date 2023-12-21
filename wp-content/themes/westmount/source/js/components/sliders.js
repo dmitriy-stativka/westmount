@@ -96,88 +96,105 @@ function slider_with_many_blocks_in_a_row() {
 }
 
 
+// function team_slider() {
+//   singleTeamBox.forEach(box => {
+//     const navSlider = box.querySelector('.team-single__nav');
+//     const teamSlider = box.querySelector('.team-single__slider');
+
+//     const sliderTeam = new Swiper(teamSlider, {
+//       slidesPerView: 1,
+//       effect: 'fade',
+//       spaceBetween: 0,
+//       observer: true,
+//       observeParents: true,
+//       loopedSlides: 5,
+//       loop: true,
+//       // watchOverflow: true,
+//     });
+
+//     const sliderThumb = new Swiper(navSlider, {
+//       slidesPerView: 'auto',
+//       spaceBetween: 0,
+
+//       freeMode: true,
+//       freeModeSticky: false,
+//       roundLengths: true,
+
+//       observer: true,
+//       observeParents: true,
+//       slideToClickedSlide: true,
+//       loopedSlides: sliderTeam.slides.length,
+//       loop: true,
+//       // watchOverflow: true,
+//       direction: 'vertical',
+
+
+//       // autoplay: {
+//       //   delay: 5000,
+//       // },
+
+//       // breakpoints: {
+//       //   320:{
+//       //     slidesPerView: 3,
+//       //     spaceBetween: 8,
+//       //     direction: 'horizontal',
+//       //   },
+//       //   576:{
+//       //     slidesPerView: 4,
+//       //     spaceBetween: 8,
+//       //     direction: 'horizontal',
+//       //   },
+//       //   767:{
+//       //     slidesPerView: 3,
+//       //     spaceBetween: 8,
+//       //     direction: 'horizontal',
+//       //   },
+//       //   1025:{
+//       //     slidesPerView: 'auto',
+//       //     spaceBetween: 8,
+//       //
+//       //   }
+//       // }
+
+//     });
+
+
+
+//     sliderThumb.on('slideChange', function () {
+//       sliderTeam.slideTo(this.realIndex);
+//     });
+//     // //
+//     // sliderTeam.on('slideChange', function () {
+//     //   sliderThumb.slideTo(this.index);
+//     // });
+
+//     //
+//     // sliderTeam.controller.control = sliderThumb;
+//     // sliderThumb.controller.control = sliderTeam;
+
+
+
+//   })
+// }
+
+
 function team_slider() {
-  singleTeamBox.forEach(box => {
-    const navSlider = box.querySelector('.team-single__nav');
-    const teamSlider = box.querySelector('.team-single__slider');
-
-
-
-
-
-
-    const sliderTeam = new Swiper(teamSlider, {
-      slidesPerView: 1,
-      effect: 'fade',
-      spaceBetween: 0,
-      observer: true,
-      observeParents: true,
-      loopedSlides: 5,
-      loop: true,
-      // watchOverflow: true,
-    });
-
-    const sliderThumb = new Swiper(navSlider, {
-      slidesPerView: 'auto',
-      spaceBetween: 0,
-
-      freeMode: true,
-      freeModeSticky: false,
-      roundLengths: true,
-
-      observer: true,
-      observeParents: true,
-      slideToClickedSlide: true,
-      loopedSlides: sliderTeam.slides.length,
-      loop: true,
-      // watchOverflow: true,
-      direction: 'vertical',
-
-
-      // autoplay: {
-      //   delay: 5000,
-      // },
-
-      // breakpoints: {
-      //   320:{
-      //     slidesPerView: 3,
-      //     spaceBetween: 8,
-      //     direction: 'horizontal',
-      //   },
-      //   576:{
-      //     slidesPerView: 4,
-      //     spaceBetween: 8,
-      //     direction: 'horizontal',
-      //   },
-      //   767:{
-      //     slidesPerView: 3,
-      //     spaceBetween: 8,
-      //     direction: 'horizontal',
-      //   },
-      //   1025:{
-      //     slidesPerView: 'auto',
-      //     spaceBetween: 8,
-      //
-      //   }
-      // }
-
-    });
-
-
-
-    sliderThumb.on('slideChange', function () {
-      sliderTeam.slideTo(this.realIndex);
-    });
-    // //
-    // sliderTeam.on('slideChange', function () {
-    //   sliderThumb.slideTo(this.index);
-    // });
-
-    //
-    // sliderTeam.controller.control = sliderThumb;
-    // sliderThumb.controller.control = sliderTeam;
-
-
-
-  })
+  var galleryThumbs = new Swiper('.team-single__nav', {
+    spaceBetween: 0,
+    slidesPerView: 4,
+    freeMode: true,
+    direction: 'vertical',
+    watchSlidesVisibility: true,
+    watchSlidesProgress: true,
+});
+var galleryTop = new Swiper('.team-single__slider', {
+    spaceBetween: 0,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    thumbs: {
+        swiper: galleryThumbs
+    }
+});
 }

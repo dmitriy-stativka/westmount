@@ -182,7 +182,6 @@ add_action( 'init', 'register_my_menus' );
 
 function my_wp_setup() {
     add_theme_support( 'menus' );
-    // Добавление поддержки описаний элементов меню
     add_filter( 'wp_nav_menu_args', 'my_description_in_nav_menu', 20, 1 );
 }
 add_action( 'after_setup_theme', 'my_wp_setup' );
@@ -191,7 +190,6 @@ function my_description_in_nav_menu( $args ) {
     $args['walker'] = new Footer_Menu_Walker();
     return $args;
 }
-
 
   
 class Footer_Menu_Walker extends Walker_Nav_Menu {
@@ -228,3 +226,34 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
     function end_el(&$output, $item, $depth = 0, $args = array()) {
     }
 }
+
+
+function custom_post_type() {
+    $labels = array(
+        'name'               => 'Events',
+        'singular_name'      => 'Events',
+        'menu_name'          => 'Events',
+        'add_new'            => 'Add new',
+        'add_new_item'       => 'Add new event',
+        'edit_item'          => 'Edit event',
+        'new_item'           => 'New event',
+        'view_item'          => 'Event',
+        'search_items'       => 'Search events',
+        'not_found'          => 'Not found',
+        'not_found_in_trash' => 'Not found',
+    );
+
+    $args = array(
+        'labels'              => $labels,
+        'public'              => true,
+        'has_archive'         => true,
+        'publicly_queryable'  => true,
+        'menu_icon'           => 'dashicons-book',
+        'rewrite'             => array('slug' => 'custom-post-type'),
+        'supports'            => array('title', 'editor', 'thumbnail', 'custom-fields'),
+    );
+
+    register_post_type('custom_post_type', $args);
+}
+
+add_action('init', 'custom_post_type');

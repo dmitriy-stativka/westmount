@@ -68,6 +68,7 @@
 
       img {
         max-width: toRem(20);
+        filter: invert(1);
       }
     }
   }

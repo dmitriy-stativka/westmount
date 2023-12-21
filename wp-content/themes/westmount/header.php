@@ -19,9 +19,9 @@ $logo         = get_field( 'logo', 'options' );
         <div class="container">
             <div class="header_wrap">
 				<?php if ( $logo ): ?>
-                    <div class="logo">
+                    <a href="/" class="logo">
                         <img src="<?php echo $logo["sizes"]['1440'] ?>" alt="logo"/>
-                    </div>
+                    </a>
 				<?php endif; ?>
                 <div class="menu">
                     <div class="buttons_wrap">
