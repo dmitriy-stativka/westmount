@@ -108,7 +108,7 @@
 
                                 <div class="team-card__links">
                                     <a href="#">
-                                        <img src="<?php echo $build_folder ?>img/new/link.svg" alt="">
+                                        <img width="20" height="20" src="<?php echo $build_folder ?>img/new/link.svg" alt="">
                                     </a>
                                 </div>
 

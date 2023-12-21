@@ -80,6 +80,18 @@ if( have_rows('blocks_repeater', $page_id) ):
 
 	    endif;
 
+	    if( get_row_layout() == 'events_section' ):
+
+		    include get_template_directory() . '/template_parts/events_section.php';
+
+	    endif;
+
+	    if( get_row_layout() == 'single_events' ):
+
+		    include get_template_directory() . '/template_parts/single_events.php';
+
+	    endif;
+
         // if( get_row_layout() == 'block_service_two' ):
 
         //   include get_template_directory() . '/common/service_two.php' ;

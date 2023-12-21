@@ -4,6 +4,9 @@ import './components/dinamicHeight';
 import './components/form';
 import './components/tabs';
 import './components/accordion';
+import './components/select';
+import './components/video';
+import './components/mobileMenu';
 
 
 

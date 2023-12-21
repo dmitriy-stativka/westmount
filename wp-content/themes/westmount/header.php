@@ -14,68 +14,7 @@ $logo         = get_field( 'logo', 'options' );
 	<?php wp_head() ?>
 </head>
 <body <?php body_class(); ?>>
-<header>
-
-    <div class="menu_open">
-        <div class="fiter_bg">
-            <div class="menu_col">
-                <div class="w1-3 menu_open_info_block">
-                    <div class="menu_open_text_wrap">
-                        <div class="menu_open_subtitle">
-                            <div class="square"></div>
-                            Westmount West
-                        </div>
-                        <div class="menu_open_title">New Name, Familiar Faces.</div>
-                        <div class="menu_open_text">
-                            <p>
-                                Westmount Guarantee Services Inc., a member of the Navacord group of companies, is
-                                pleased to
-                                announce the opening of Westmount West Services Inc., their Vancouver-based Managing
-                                General Agency
-                                (MGA).
-                            </p>
-                            <p>
-                                Tom Reeves, President of Westmount West, will continue to lead the established team of
-                                experts who
-                                have been providing surety solutions to builders and developers across Western Canada
-                                since 2005.
-                            </p>
-                        </div>
-                        <div class="action_btn">
-                            <div class="action_btn_text">Learn more</div>
-                            <div class="square">
-                                <img src="<?php echo $build_folder ?>/img/arrow_btn.svg" alt="arrow"/>
-                            </div>
-                        </div>
-                        <div class="menu_open_contacts">
-                            <div class="icon">
-                                <img src="<?php echo $build_folder ?>img/inlogo.svg" alt="logo in"/>
-                            </div>
-                            <div class="icon">
-                                <img src="<?php echo $build_folder ?>img/instlogo.svg" alt="logo instagram"/>
-                            </div>
-                            <div class="text">647-499-8249</div>
-                            <div class="text">info@westmontguarantee.com</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w1-3 linear_gr"></div>
-                <div class="w1-3 menu_ul">
-                    <ul>
-                        <li>Home</li>
-                        <li>Our Company</li>
-                        <li>Solutions</li>
-                        <li>Solutions</li>
-                        <li>Westmount West</li>
-                        <li>Affiliated Companies</li>
-                        <li>Events</li>
-                        <li>Contact Us</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
+<header class="fixed-block">
     <div class="top_plane">
         <div class="container">
             <div class="header_wrap">
@@ -111,7 +50,7 @@ $logo         = get_field( 'logo', 'options' );
 
 						<?php endif; ?>
 
-                        <div class="btn menu_desktop">
+                        <div class="btn menu_desktop burger">
                             <div class="col position_center">
                                 <span>Menu</span>
                             </div>
@@ -131,6 +70,7 @@ $logo         = get_field( 'logo', 'options' );
             </div>
         </div>
     </div>
+	<?php load_template(get_template_directory() . '/helpers/menu.php', true); ?>
 </header>
 <div id="pages" class="pages mt-[140px] transition-anima flex-grow px-4 py-4" data-barba="wrapper">
     <div class="page" data-barba="container">
