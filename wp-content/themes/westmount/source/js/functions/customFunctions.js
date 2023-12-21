@@ -81,10 +81,12 @@ export const stickyHeader = (block, duration, delay, type) => {
     const scrollThreshold = 10; // Порог для начала анимации
 
     if (prevScrollPos > currentScrollPos) {
+      addCustomClass(block,'fixed');
       block.style.top = "0";
       block.style.transitionDelay = `0ms`;
     } else {
       if (currentScrollPos > block.offsetHeight) {
+        removeCustomClass(block,'fixed');
         block.style.transitionDelay = `${delay}ms`;
         block.style.top = `-${block.offsetHeight}px`;
       }

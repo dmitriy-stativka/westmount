@@ -1,31 +1,31 @@
 /* stylelint-disable */
 
-@mixin burger {
-  --burger-width: 24px;
-  --burger-height: 20px;
+@mixin burger($sizeX, $sizeY, $line_height) {
   --burger-line-height: 3px;
-  --border-radius: 3px;
+  --border-radius: 0px;
 
   position: relative;
   border: none;
   padding: 0;
-  width: var(--burger-width);
-  height: var(--burger-height);
+  width: $sizeX;
+  height: $sizeY;
   color: rgba(var(--cl-f),1.0);
-  background-color: transparent;
+  clip-path: var(--polly-button);
   flex-shrink: 0;
   cursor: pointer;
+  background-color: rgba(var(--bg-a),1.0);
 
   &::before,
   &::after {
     content: "";
     position: absolute;
-    left: 0;
-    width: 100%;
-    height: var(--burger-line-height);
+    //left: 50%;
+    width: toRem(17);
+    height: $line_height;
     background-color: currentColor;
     transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
     border-radius: var(--border-radius);
+    //trans
   }
 
   &::before {
@@ -33,7 +33,8 @@
   }
 
   &::after {
-    top: calc(100% - var(--burger-line-height));
+    top: calc(100% - $line_height);
+
   }
 
   &__line {
@@ -41,11 +42,15 @@
     left: 0;
     top: 50%;
     width: 100%;
-    height: var(--burger-line-height);
+    height: $line_height;
     background-color: currentColor;
     transform: translateY(-50%);
     transition: transform 0.3s ease-in-out;
     border-radius: var(--border-radius);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &.active {

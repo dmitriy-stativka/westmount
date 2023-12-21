@@ -86,6 +86,7 @@
             </div>
         </div>
     </footer>
+    <div data-overlay></div>
 
 <?php wp_footer() ?>
 </body>

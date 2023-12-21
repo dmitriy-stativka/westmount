@@ -1,0 +1,12 @@
+.events-label {
+	display: flex;
+	align-items: center;
+	gap: toRem(8);
+
+	font-family: var(--font-family);
+	font-size: toRem(14);
+	font-style: normal;
+	font-weight: 400;
+	line-height: 100%; /* 19.04px */
+	text-transform: uppercase;
+}

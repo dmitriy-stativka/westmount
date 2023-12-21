@@ -94,6 +94,19 @@
 
 }
 
+@mixin tringle($color) {
+  &:after {
+    transform: translateY(-60%);
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: toRem(3) solid transparent;
+    border-bottom: toRem(3) solid transparent;
+    border-left: toRem(6) solid $color;
+  }
+}
+
 // @mixin fix-offset($offset-value-top, $offset-value-bottom,  $offset-value){
 //   padding: $offset-value-top $offset-value $offset-value-bottom;
 //   margin: $offset-value-top  calc($offset-value * -1) $offset-value-bottom;

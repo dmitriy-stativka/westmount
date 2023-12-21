@@ -53,6 +53,11 @@ main {
   }
 }
 
+.lg-backdrop {
+  backdrop-filter: blur(5px);
+}
+
+
 *,
 *::after,
 *::before {

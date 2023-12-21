@@ -28,6 +28,10 @@
         justify-content: center;
         clip-path: polygon(0% 0%, 65% 0%, 100% 25%, 100% 100%, 0% 100%);
 
+        svg {
+            fill: #fff;
+        }
+
         img {
             display: block;
             width: toRem(14);
@@ -102,6 +106,18 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(var(--bg-a),0.1);
+
+    svg {
+        fill: rgba(var(--cl-a),1.0);
+    }
+
+    &.blue {
+        background-color: rgba(var(--bg-f),1.0);
+
+        svg {
+            fill: #202222;
+        }
+    }
 }
 
 .back-button {
@@ -116,3 +132,75 @@
     align-items: center;
     gap: toRem(10);
 }
+
+.info-link {
+    color: rgba(var(--cl-i),0.8);
+    font-family:  var(--font-family);
+    font-size: toRem(14);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.social-link {
+    width: toRem(43);
+    height: toRem(43);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(var(--bg-f), 1);
+    clip-path: var(--polly-button);
+
+    img {
+        filter: grayscale(1) brightness(1000%);
+    }
+}
+
+.play-btn {
+    width: toRem(90);
+    height: toRem(90);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(var(--bg-a), 1);
+    clip-path: var(--polly-button);
+
+    svg {
+        fill: rgba(var(--cl-e),1.0);
+    }
+
+    &:hover {
+        background-color: rgba(var(--bg-f), 1);
+
+        svg {
+            fill: rgba(var(--cl-a),1.0);
+        }
+    }
+}
+
+.border-link {
+    width: toRem(38);
+    height: toRem(38);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(var(--cl-d),1.0);
+    clip-path: var(--polly-button);
+    color: rgba(var(--cl-a),1.0);
+    position: relative;
+
+    &:before {
+        pointer-events: none;
+        clip-path: inherit;
+        inset: toRem(1.2);
+        position: absolute;
+        content: '';
+        background-color: currentColor;
+    }
+
+    & > * {
+        position: relative;
+        z-index: 10;
+    }
+}
+
