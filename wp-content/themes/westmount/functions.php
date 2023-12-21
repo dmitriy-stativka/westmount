@@ -167,4 +167,64 @@ add_filter( 'body_class', 'add_page_title_to_body_class' );
 // add_action('wp_enqueue_scripts', 'add_swiper_scripts');
 
 
-load_template( get_template_directory() . '/helpers/contactFormHooks.php', true );
+load_template(get_template_directory() . '/helpers/contactFormHooks.php', true);
+
+
+function register_my_menus() {
+	register_nav_menus(
+	  array(
+		'footer-menu-1' => __( 'Footer Menu 1' ),
+		'footer-menu-2' => __( 'Footer Menu 2' )
+	  )
+	);
+}
+add_action( 'init', 'register_my_menus' );
+
+function my_wp_setup() {
+    add_theme_support( 'menus' );
+    // Добавление поддержки описаний элементов меню
+    add_filter( 'wp_nav_menu_args', 'my_description_in_nav_menu', 20, 1 );
+}
+add_action( 'after_setup_theme', 'my_wp_setup' );
+
+function my_description_in_nav_menu( $args ) {
+    $args['walker'] = new Footer_Menu_Walker();
+    return $args;
+}
+
+
+  
+class Footer_Menu_Walker extends Walker_Nav_Menu {
+    
+    function start_lvl(&$output, $depth = 0, $args = array()) {
+        if ($depth == 0) { 
+            $output .= "<ul>\n";
+        }
+    }
+
+    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+        global $build_folder; 
+
+        if ($depth == 0 && $item->url == '#') { 
+            $output .= '<h4 class="footer-nav__title">' .
+                       '<svg width="11" height="11">' .
+                       '<use href="' . esc_attr($build_folder) . 'img/sprite/sprite.svg#label_icon"></use>' .
+                       '</svg>' .
+                       esc_html($item->title) .
+                       '</h4>';
+        } elseif ($depth == 0) {
+            $output .= '<li><a href="' . esc_attr($item->url) . '">' . esc_html($item->title) . '</a></li>';
+        } else {
+            $output .= '<li><a href="' . esc_attr($item->url) . '">' . esc_html($item->title) . '</a></li>';
+        }
+    }
+
+    function end_lvl(&$output, $depth = 0, $args = array()) {
+        if ($depth == 0) {
+            $output .= "</ul>\n";
+        }
+    }
+
+    function end_el(&$output, $item, $depth = 0, $args = array()) {
+    }
+}
