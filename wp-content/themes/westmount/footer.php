@@ -1,73 +1,106 @@
- <?php $build_folder = get_template_directory_uri() . '/assets/'?>           </main>
+<?php 
+    $build_folder = get_template_directory_uri() . '/assets/';
+    $footerLogo1 = get_field('footer_logo_1', 'options'); 
+    $footerLogo2 = get_field('footer_logo_2', 'options'); 
+?>           
+</main>
         </div>
     </div>
     <footer class="footer">
         <div class="container">
             <div class="footer__inner">
                 <div class="footer__logos">
-                    <a href="#">
-                        <img src="<?php echo $build_folder ?>img/sprite/footer_logo.svg" alt="">
-                    </a>
-                    <a href="#">
-                        <img src="<?php echo $build_folder ?>img/sprite/footer_logo_2.svg" alt="">
-                    </a>
+                    <?php
+                        $link = get_field( 'footer_logo_link_1', 'options' );
+                        if ( $link ) :
+                            $link_url = $link['url'];
+                            $link_target = $link['target'] ? $link['target'] : '_self';
+                            ?>
+                            <a href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+                                <img src="<?php echo $footerLogo1; ?>" alt="Logo footer">
+                            </a>
+                        <?php endif; 
+                 
+                        $link = get_field( 'footer_logo_link_2', 'options' );
+                        if ( $link ) :
+                            $link_url = $link['url'];
+                            $link_target = $link['target'] ? $link['target'] : '_self';
+                            ?>
+                            <a href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+                                <img src="<?php echo $footerLogo2; ?>" alt="Logo footer">
+                            </a>
+                        <?php endif; 
+                    ?>
                 </div>
 
                 <div class="footer__contact">
                     <ul class="footer-social">
                         <li class="footer-social__item">
-                            <a href="#1" class="footer-social__link">
-                                <img width="20" height="20" src="<?php echo $build_folder ?>img/sprite/lin.svg" alt="">
-                            </a>
+                            <?php
+                                $link = get_field( 'linkedin_link', 'options' );
+                                if ( $link ) :
+                                    $link_url = $link['url'];
+                                    $link_target = $link['target'] ? $link['target'] : '_self';
+                                    ?>
+                                    <a class="footer-social__link" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+                                        <img width="20" height="20" src="<?php echo esc_url( get_field( 'linkedin_logo', 'options' ) ); ?>" alt="">
+                                    </a>
+                                <?php endif; 
+                            ?>
                         </li>
+                        
                         <li class="footer-social__item">
-                            <a href="#2" class="footer-social__link">
-                                <img width="20" height="20" src="<?php echo $build_folder ?>img/sprite/insta.svg" alt="">
-                            </a>
+                            <?php
+                                $link = get_field( 'instagram_link', 'options' );
+                                if ( $link ) :
+                                    $link_url = $link['url'];
+                                    $link_target = $link['target'] ? $link['target'] : '_self';
+                                    ?>
+                                    <a class="footer-social__link" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+                                        <img width="20" height="20" src="<?php echo esc_url( get_field( 'instagram_logo', 'options' ) ); ?>" alt="">
+                                    </a>
+                                <?php endif; 
+                            ?>
                         </li>
                     </ul>
 
-                    <a href="tel:6474998249" class="footer__contact-link">
-                        647-499-8249
-                    </a>
-                    <a href=mailto:info@westmontguarantee.com" class="footer__contact-link">
-                        info@westmontguarantee.com
-                    </a>
+                    <?php if ( $tel = get_field( 'tel', 'options' ) ) : ?>
+                        <a href="tel:<?php echo esc_html( $tel ); ?>" class="footer__contact-link">
+                            <?php echo esc_html( $tel ); ?>
+                         </a>
+                    <?php endif; ?>
 
+                    <?php if ( $email = get_field( 'email', 'options' ) ) : ?>
+                        <a href="mailto:<?php echo esc_html( $email ); ?>" class="footer__contact-link">
+                            <?php echo esc_html( $email ); ?>
+                        </a>
+                    <?php endif; ?>
                 </div>
 
                 <ul class="footer__nav footer-nav">
                     <li class="footer-nav__item">
-                        <h4 class="footer-nav__title">
-                            <svg width="11" height="11">
-                                <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#label_icon"></use>
-                            </svg>
-                            Quick Links
-                        </h4>
-                        <ul>
-                            <li><a href="#">Our Company</a></li>
-                            <li><a href="#">Our Team</a></li>
-                            <li><a href="#">Events</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Westmount West</a></li>
-                        </ul>
+                        <?php
+                            wp_nav_menu( array(
+                                'theme_location' => 'footer-menu-1',
+                                'walker' => new Footer_Menu_Walker(),
+                                'container' => false,
+                                'menu_id' => false,
+                                'menu_class' => ''
+                            ));
+                            
+                        ?>
                     </li>
-                    <li class="footer-nav__item">
-                        <h4 class="footer-nav__title">
-                            <svg width="11" height="11">
-                                <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#label_icon"></use>
-                            </svg>
-                            Solutions
-                        </h4>
 
-                        <ul>
-                            <li><a href="#">Tarion Bond</a></li>
-                            <li><a href="#">Condominium
-                                    Deposit Insurance</a></li>
-                            <li><a href="#">Freehold Deposit Insurance</a></li>
-                            <li><a href="#">Site & Subdivision Security</a></li>
-                            <li><a href="#">Westmount Plus</a></li>
-                        </ul>
+                    <li class="footer-nav__item">
+                        <?php
+                            wp_nav_menu( array(
+                                'theme_location' => 'footer-menu-2',
+                                'walker' => new Footer_Menu_Walker(),
+                                'container' => false,
+                                'menu_id' => false,
+                                'menu_class' => ''
+                            ));
+                        ?>
                     </li>
                 </ul>
 
@@ -77,15 +110,35 @@
         <div class="container">
             <div class="footer__bottom">
                 <ul>
-                    <li><a href="#">Legal Information</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <?php if ( have_rows( 'footer_menu', 'options' ) ) : ?>
+                        <?php while ( have_rows( 'footer_menu', 'options' ) ) :
+                            the_row(); ?>
+
+                            <li>
+                                <?php
+                                    $link = get_sub_field( 'link', 'options' );
+                                    if ( $link ) :
+                                        $link_url = $link['url'];
+                                        $link_title = $link['title'];
+                                        $link_target = $link['target'] ? $link['target'] : '_self';
+                                        ?>
+                                        <a href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+                                    <?php endif; 
+                                ?>
+                            </li>
+                            
+                        <?php endwhile; ?>
+                    <?php endif; ?>
                 </ul>
 
-                <span>Website by Pixelcarve</span>
-                <span>Copyright © 2020 Westmount Guarantee Services inc.</span>
+
+
+                <span><?php the_field('website_by', 'options'); ?></span>
+                <span><?php the_field('copywrite', 'options'); ?></span>
             </div>
         </div>
     </footer>
+    <div data-overlay></div>
 
 <?php wp_footer() ?>
 </body>
