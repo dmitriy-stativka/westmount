@@ -1,11 +1,63 @@
 <?php
-get_header(); ?>
+    get_header(); 
 
-<?php
-$build_folder = get_template_directory_uri() . '/assets/';
-$page_id      = get_queried_object_id();
+    $build_folder = get_template_directory_uri() . '/assets/';
+    $current_post_id = get_the_ID();
+    $args = array(
+        'post_type'      => 'team',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1
+    );
 
+    $team_members = new WP_Query($args);
+    $current_member = null;
+    $other_members = array();
+
+    if ($team_members->have_posts()) {
+        while ($team_members->have_posts()) {
+            $team_members->the_post();
+
+            $member_socials = array();
+            if (have_rows('social_list')) {
+                while (have_rows('social_list')) {
+                    the_row();
+                    $member_socials[] = array(
+                        'link' => get_sub_field('link'),
+                        'icon' => get_sub_field('icon')
+                    );
+                }
+            }
+
+            $member_data = array(
+                'id'            => get_the_ID(),
+                'permalink'     => get_permalink(),
+                'thumbnail'     => get_the_post_thumbnail_url(get_the_ID(), 'size'),
+                'name'          => get_the_title(),
+                'job_title'     => get_field('job_title'),
+                'phone'         => get_field('phone'),
+                'email'         => get_field('email'),
+                'biography_title' => get_field('biography_title'),
+                'biography_content' => get_field('biography_content'),
+                'social_list'   => $member_socials
+            );
+
+            if (get_the_ID() == $current_post_id) {
+                $current_member = $member_data;
+            } else {
+                $other_members[] = $member_data;
+            }
+        }
+    }
+
+    if ($current_member) {
+        array_unshift($other_members, $current_member);
+    }
+
+    $members = $other_members;
+    wp_reset_postdata();
 ?>
+
+
 
 <div id="app" class="app">
     <div id="pages" class="pages" data-barba="wrapper">
@@ -14,7 +66,6 @@ $page_id      = get_queried_object_id();
             <div class="page__content">
 				<?php
 				include get_template_directory() . '/repeater.php'; ?>
-
 
                 <section class="team-single">
                     <div class="section-bg"></div>
@@ -28,199 +79,52 @@ $page_id      = get_queried_object_id();
                                 Back to all team
                             </a>
 
-
                             <div class="team-single__sliders">
                                 <div class="team-single__nav swiper-container">
                                     <ul class="swiper-wrapper">
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-											echo $build_folder ?>img/new/single_team_nav.png" alt="">
-                                        </li>
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-											echo $build_folder ?>img/new/single_team_nav2.png" alt="">
-                                        </li>
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-											echo $build_folder ?>img/new/single_team_nav3.png" alt="">
-                                        </li>
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-											echo $build_folder ?>img/new/single_team_nav4.png" alt="">
-                                        </li>
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-											echo $build_folder ?>img/new/single_team_nav5.png" alt="">
-                                        </li>
-
+                                        <?php foreach ($members as $member): ?>
+                                            <li class="swiper-slide">
+                                                <img src="<?php echo esc_url($member['thumbnail']); ?>" alt="<?php echo esc_attr($member['name']); ?>">
+                                            </li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                                 <div class="team-single__slider swiper-container">
                                     <ul class="swiper-wrapper">
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-											echo $build_folder ?>img/new/single_team.png" alt="">
-                                            <div class="team-single__info">
-                                                <div class="team-single__info-top">
-                                                    <h3 class="team-single__info-name">
-                                                        JIM <br>
-                                                        EMANOILIDIS
-                                                    </h3>
-                                                    <span>FOUNDER & EXECUTIVE CHAIRMAN</span>
-                                                </div>
+                                        <?php foreach ($members as $member): ?>
+                                            <li class="swiper-slide">
+                                                <img src="<?php echo esc_url($member['thumbnail']); ?>" alt="<?php echo esc_attr($member['name']); ?>">
+                                                <div class="team-single__info">
+                                                    <div class="team-single__info-top">
+                                                        <h3 class="team-single__info-name"><?php echo esc_html($member['name']); ?></h3>
+                                                        <span><?php echo esc_html($member['job_title']); ?></span>
+                                                    </div>
 
-                                                <div class="team-single__info-middle">
-                                                    <a href="#" class="info-link">T — 647.499.8249 X 201</a>
-                                                    <a href="mailto:jim@westmountguarantee.com" class="info-link">E — jim@westmountguarantee.com</a>
-                                                    <a href="#" class="social-link">
-                                                        <img width="20" height="20" src="<?php echo $build_folder ?>img/new/link.svg" alt="">
-                                                    </a>
-                                                </div>
+                                                    <div class="team-single__info-middle">
+                                                        <a href="tel:<?php echo esc_html($member['phone']); ?>" class="info-link"><?php echo esc_html($member['phone']); ?></a>
+                                                        <a href="mailto:<?php echo esc_html($member['email']); ?>" class="info-link"><?php echo esc_html($member['email']); ?></a>
+                                                        
+                                                        <?php if (!empty($member['social_list'])): ?>
+                                                    
+                                                                <?php foreach ($member['social_list'] as $social): ?>
+                                                                    <a class="social-link" href="<?php echo esc_url($social['link']); ?>">
+                                                                        <img src="<?php echo esc_url($social['icon']); ?>" alt="Social Icon">
+                                                                    </a>
+                                                                <?php endforeach; ?>
+                                        
+                                                        <?php endif; ?>
+                                                    </div>
 
-                                                <div class="team-single__info-content">
-                                                    <h4>
-                                                        Biography
-                                                    </h4>
-
-                                                    <p>
-                                                        Jim Emanoilidis serves as the Chairman and Founder of Westmount Guarantee, driving the company's success with his visionary leadership.
-                                                        <br><br>With a rich background in the real estate industry, Jim has leveraged his expertise to establish Westmount Guarantee as a trusted name in the field. As Chairman, Jim sets the strategic direction of the company, constantly striving for excellence and innovation. His unwavering commitment to client satisfaction and his ability to anticipate industry trends have solidified Westmount Guarantee's position as a leader in the market. Jim's entrepreneurial spirit and dedication to tailored solutions have shaped the company's culture, ensuring that clients receive the highest level of service and customized solutions.
-                                                    </p>
+                                                    <div class="team-single__info-content">
+                                                        <h4><?php echo esc_html($member['biography_title']); ?> </h4>
+                                                        <p><?php echo wp_kses_post($member['biography_content']); ?></p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-		                                    echo $build_folder ?>img/new/single_team.png" alt="">
-                                            <div class="team-single__info">
-                                                <div class="team-single__info-top">
-                                                    <h3 class="team-single__info-name">
-                                                        JIM <br>
-                                                        EMANOILIDIS 2
-                                                    </h3>
-                                                    <span>FOUNDER & EXECUTIVE CHAIRMAN</span>
-                                                </div>
-
-                                                <div class="team-single__info-middle">
-                                                    <a href="#" class="info-link">T — 647.499.8249 X 201</a>
-                                                    <a href="mailto:jim@westmountguarantee.com" class="info-link">E — jim@westmountguarantee.com</a>
-                                                    <a href="#" class="social-link">
-                                                        <img width="20" height="20" src="<?php echo $build_folder ?>img/new/link.svg" alt="">
-                                                    </a>
-                                                </div>
-
-                                                <div class="team-single__info-content">
-                                                    <h4>
-                                                        Biography
-                                                    </h4>
-
-                                                    <p>
-                                                        Jim Emanoilidis serves as the Chairman and Founder of Westmount Guarantee, driving the company's success with his visionary leadership.
-                                                        <br><br>With a rich background in the real estate industry, Jim has leveraged his expertise to establish Westmount Guarantee as a trusted name in the field. As Chairman, Jim sets the strategic direction of the company, constantly striving for excellence and innovation. His unwavering commitment to client satisfaction and his ability to anticipate industry trends have solidified Westmount Guarantee's position as a leader in the market. Jim's entrepreneurial spirit and dedication to tailored solutions have shaped the company's culture, ensuring that clients receive the highest level of service and customized solutions.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-		                                    echo $build_folder ?>img/new/single_team.png" alt="">
-                                            <div class="team-single__info">
-                                                <div class="team-single__info-top">
-                                                    <h3 class="team-single__info-name">
-                                                        JIM <br>
-                                                        EMANOILIDIS 3
-                                                    </h3>
-                                                    <span>FOUNDER & EXECUTIVE CHAIRMAN</span>
-                                                </div>
-
-                                                <div class="team-single__info-middle">
-                                                    <a href="#" class="info-link">T — 647.499.8249 X 201</a>
-                                                    <a href="mailto:jim@westmountguarantee.com" class="info-link">E — jim@westmountguarantee.com</a>
-                                                    <a href="#" class="social-link">
-                                                        <img width="20" height="20" src="<?php echo $build_folder ?>img/new/link.svg" alt="">
-                                                    </a>
-                                                </div>
-
-                                                <div class="team-single__info-content">
-                                                    <h4>
-                                                        Biography
-                                                    </h4>
-
-                                                    <p>
-                                                        Jim Emanoilidis serves as the Chairman and Founder of Westmount Guarantee, driving the company's success with his visionary leadership.
-                                                        <br><br>With a rich background in the real estate industry, Jim has leveraged his expertise to establish Westmount Guarantee as a trusted name in the field. As Chairman, Jim sets the strategic direction of the company, constantly striving for excellence and innovation. His unwavering commitment to client satisfaction and his ability to anticipate industry trends have solidified Westmount Guarantee's position as a leader in the market. Jim's entrepreneurial spirit and dedication to tailored solutions have shaped the company's culture, ensuring that clients receive the highest level of service and customized solutions.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-		                                    echo $build_folder ?>img/new/single_team.png" alt="">
-                                            <div class="team-single__info">
-                                                <div class="team-single__info-top">
-                                                    <h3 class="team-single__info-name">
-                                                        JIM <br>
-                                                        EMANOILIDIS 4
-                                                    </h3>
-                                                    <span>FOUNDER & EXECUTIVE CHAIRMAN</span>
-                                                </div>
-
-                                                <div class="team-single__info-middle">
-                                                    <a href="#" class="info-link">T — 647.499.8249 X 201</a>
-                                                    <a href="mailto:jim@westmountguarantee.com" class="info-link">E — jim@westmountguarantee.com</a>
-                                                    <a href="#" class="social-link">
-                                                        <img width="20" height="20" src="<?php echo $build_folder ?>img/new/link.svg" alt="">
-                                                    </a>
-                                                </div>
-
-                                                <div class="team-single__info-content">
-                                                    <h4>
-                                                        Biography
-                                                    </h4>
-
-                                                    <p>
-                                                        Jim Emanoilidis serves as the Chairman and Founder of Westmount Guarantee, driving the company's success with his visionary leadership.
-                                                        <br><br>With a rich background in the real estate industry, Jim has leveraged his expertise to establish Westmount Guarantee as a trusted name in the field. As Chairman, Jim sets the strategic direction of the company, constantly striving for excellence and innovation. His unwavering commitment to client satisfaction and his ability to anticipate industry trends have solidified Westmount Guarantee's position as a leader in the market. Jim's entrepreneurial spirit and dedication to tailored solutions have shaped the company's culture, ensuring that clients receive the highest level of service and customized solutions.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="swiper-slide">
-                                            <img src="<?php
-		                                    echo $build_folder ?>img/new/single_team.png" alt="">
-                                            <div class="team-single__info">
-                                                <div class="team-single__info-top">
-                                                    <h3 class="team-single__info-name">
-                                                        JIM <br>
-                                                        EMANOILIDIS 5
-                                                    </h3>
-                                                    <span>FOUNDER & EXECUTIVE CHAIRMAN</span>
-                                                </div>
-
-                                                <div class="team-single__info-middle">
-                                                    <a href="#" class="info-link">T — 647.499.8249 X 201</a>
-                                                    <a href="mailto:jim@westmountguarantee.com" class="info-link">E — jim@westmountguarantee.com</a>
-                                                    <a href="#" class="social-link">
-                                                        <img width="20" height="20" src="<?php echo $build_folder ?>img/new/link.svg" alt="">
-                                                    </a>
-                                                </div>
-
-                                                <div class="team-single__info-content">
-                                                    <h4>
-                                                        Biography
-                                                    </h4>
-
-                                                    <p>
-                                                        Jim Emanoilidis serves as the Chairman and Founder of Westmount Guarantee, driving the company's success with his visionary leadership.
-                                                        <br><br>With a rich background in the real estate industry, Jim has leveraged his expertise to establish Westmount Guarantee as a trusted name in the field. As Chairman, Jim sets the strategic direction of the company, constantly striving for excellence and innovation. His unwavering commitment to client satisfaction and his ability to anticipate industry trends have solidified Westmount Guarantee's position as a leader in the market. Jim's entrepreneurial spirit and dedication to tailored solutions have shaped the company's culture, ensuring that clients receive the highest level of service and customized solutions.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </section>
@@ -228,13 +132,8 @@ $page_id      = get_queried_object_id();
 
         </div>
     </div>
-
 </div>
 
 <?php
 get_footer();
-wp_footer();
 ?>
-
-</body>
-</html>

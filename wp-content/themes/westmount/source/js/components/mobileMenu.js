@@ -10,18 +10,20 @@ const mobileMenuHandler = function(overlay, mobileMenu, burger) {
 		btn.addEventListener('click', function(e){
 			e.preventDefault();
 
-			toggleCustomClass(mobileMenu,'active');
-			toggleClassInArray(burger,'active');
-			toggleCustomClass(overlay,'active');
+			// Переключаем класс 'active' для всех элементов
+			toggleCustomClass(mobileMenu, 'active');
+			toggleClassInArray(burger, 'active');
+			toggleCustomClass(overlay, 'active');
 
-			if(btn.classList.contains('active')) {
-				disableScroll()
+			// Проверяем состояние после переключения классов
+			if (mobileMenu.classList.contains('active')) {
+				disableScroll();
 			} else {
-				enableScroll()
+				enableScroll();
 			}
-
 		})
-	})
+	});
+
 }
 
 const hideMenuHandler = function(overlay, mobileMenu, burger) {
