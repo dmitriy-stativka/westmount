@@ -130,9 +130,6 @@
                         <?php endwhile; ?>
                     <?php endif; ?>
                 </ul>
-
-
-
                 <span><?php the_field('website_by', 'options'); ?></span>
                 <span><?php the_field('copywrite', 'options'); ?></span>
             </div>
