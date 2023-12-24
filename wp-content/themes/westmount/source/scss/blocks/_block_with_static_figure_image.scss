@@ -3,11 +3,24 @@
   padding-bottom: toRem(122);
   padding-top: toRem(114);
 
+  @include small-tablet {
+    padding-top: 120px;
+    padding-bottom: 120px;
+  }
+
   .section_home_team_title {
     color: #fff;
     font-size: toRem(63);
     font-weight: 300;
     margin-top: toRem(10);
+    
+    @include laptop {
+      font-size: clamp(30px, 5.25vw, 63px);
+    }
+
+    @include mobile {
+      margin-top: 45px;
+    }
   }
   .action_btn {
     margin-top: toRem(60);
@@ -18,6 +31,15 @@
   margin-top: toRem(50);
   clip-path: polygon(6% 0%, 100% 0, 100% 80%, 93% 100%, 0 100%, 0% 15%);
   position: relative;
+
+  @include small-tablet {
+    min-height: clamp(250px, 38.333vw, 460px);
+    height: initial !important;
+  }
+
+  @include mobile {
+    margin-top: 40px;
+  }
 
   .corner {
     position: absolute;

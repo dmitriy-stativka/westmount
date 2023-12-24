@@ -135,7 +135,7 @@
             </div>
         </div>
     </footer>
-    <div data-overlay></div>
+    <div data-overlay class="overlay"></div>
 
 <?php wp_footer() ?>
 </body>

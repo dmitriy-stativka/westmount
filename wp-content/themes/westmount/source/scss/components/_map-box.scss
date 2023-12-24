@@ -2,7 +2,19 @@
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: flex-end;
-  gap: toRem(40);
+  gap: toRem(60);
+
+  @include laptop {
+    gap: clamp(10px, 5vw, 60px);
+  }
+
+  @include ios {
+    grid-template-columns: 100%;
+
+    .contact-list__item {
+      max-width: 246px;
+    }
+  }
 
   &__image {
     display: flex;

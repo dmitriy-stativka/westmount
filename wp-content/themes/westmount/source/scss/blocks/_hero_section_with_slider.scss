@@ -1,5 +1,6 @@
 .section_hero_slider{
   position: relative;
+
 }
 
 .gradient_bg {
@@ -37,6 +38,15 @@
   top: 0;
   left: 0;
   z-index: 9;
+
+  @include tablet {
+    justify-content: flex-start;
+    position: initial;
+  }
+
+  @include tablet {
+    padding-top: calc(var(--header-height) + 60px);
+  }
 }
 
 .h2hero_bottom_wrap {
@@ -44,9 +54,9 @@
 }
 
 .h2hero {
-  display: flex;
-  width: fit-content;
-  flex-wrap: nowrap;
+  //display: flex;
+  //width: fit-content;
+  //flex-wrap: nowrap;
   font-size: toRem(47);
   color: #fff;
   font-weight: 300;
@@ -54,6 +64,28 @@
   letter-spacing: 0.09rem;
   margin: 0;
   position: relative;
+
+  &:before,
+  &:after {
+    color: #0b76ef;
+  }
+
+  &:before {
+    content: '“';
+
+    @include mobile {
+      position: absolute;
+    }
+  }
+
+  &:after {
+    content: '“';
+  }
+
+  @include tablet {
+    font-size: clamp(37px, 3.917vw, 47px);
+  }
+
 }
 
 .quot_left {
@@ -105,6 +137,10 @@
     height: toRem(11);
     display: flex;
   }
+
+  @include small-tablet {
+    display: none;
+  }
 }
 
 
@@ -147,6 +183,15 @@
   right: 7%;
   display: flex;
   z-index: 99;
+
+  @include tablet {
+    right: initial;
+    left: 3%;
+  }
+
+  @include mobile {
+    left: 15px;
+  }
 }
 
 .button_slider {
@@ -155,6 +200,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 400ms;
+
+  &.swiper-button-disabled {
+    opacity: .2;
+    pointer-events: none;
+  }
+
+  @include mobile {
+    svg path:first-of-type {
+      fill: #fff;
+    }
+  }
 
 }
 

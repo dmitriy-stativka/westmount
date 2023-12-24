@@ -12,27 +12,38 @@
   --content-width: 95%;
   --container-offset: 0;
 
-  --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
+  --container-width: calc(var(--content-width));
 
 // --------------- default JS variable ---------------
  --header-height: 142px;
  --team-slider-offset: clamp(15px, 3.90625vw, 40px);
 
-  @include for-laptop {
-    --content-width: 86%;
-    --body-font-size: Max(1.1111vw,14px);
-  }
+
+
+ @include for-laptop {
+   --content-width: 86%;
+   --body-font-size: 1.1111vw;
+ }
+
+ @include for-desktop {
+  --content-width: 85% ;
+  --body-font-size: .8vw;
+ }
   //
   //@include laptop {
   //  --body-font-size: 1rem;
   //}
 
+ @include mobile {
+  --content-width: calc(100% - 30px);
+ }
+
 
 // --------------- default scroll variable ---------------
-  --scrollbar-thumb: #EDE6D1;
+  --scrollbar-thumb: #00A9EF;
   // --scrollbar-thumb-hover: #00aff0;
-  --scrollbar-track:  #ffffff;
-  --scrollbar-track-hover: #ffffff;
+  --scrollbar-track:  #00A9EF;
+  --scrollbar-track-hover: #00A9EF;
   --overlay-bg: rgba(0, 0, 0, 0.5);
 
 // --------------- default slect variable ---------------

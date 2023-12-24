@@ -3,9 +3,12 @@
   flex-direction: column;
   gap: toRem(15);
 
+  @include small-tablet {
+    gap: 40px;
+  }
+
   &.mode {
     --cl-a: #{HexToRGB(#0F0F0F)}; // rgba(var(--cl-a),1.0);
-
 
     p {
       padding: toRem(20) 0;
@@ -18,6 +21,20 @@
       font-style: normal;
       font-weight: 300;
 
+      @include small-tablet {
+        font-size: clamp(20px, 2.167vw, 26px);
+        grid-template-columns: 1fr minmax(240px, .5fr);
+      }
+
+      @include mobile {
+        margin-top: -10px;
+        grid-template-columns: 100%;
+
+        br {
+          display: none;
+        }
+      }
+
       &:after {
         content: attr(data-descr);
         border-left: toRem(1) solid var(--br-e);
@@ -29,6 +46,12 @@
         padding: toRem(25) toRem(28);
         padding-bottom: toRem(93);
         max-width: toRem(320);
+
+        @include mobile {
+          border: none;
+          padding: 30px 0;
+          max-width: 100%;
+        }
       }
     }
   }
@@ -49,6 +72,10 @@
     svg {
       fill: rgba(var(--cl-a),1.0);
     }
+
+    @include small-tablet {
+      font-size: clamp(12px, 1.83vw, 14px);
+    }
   }
 
   &__title {
@@ -57,11 +84,24 @@
     font-size: toRem(63);
     font-style: normal;
     font-weight: 300;
-    line-height: 100%; /* 22.12px */
+    line-height: 115%; /* 22.12px */
+
+
+    @include small-tablet {
+      font-size: clamp(30px, 8.21vw, 63px);
+    }
   }
 
   &__title + p {
-    margin-top: toRem(14);
+    margin-top: toRem(38);
+
+    @include small-tablet {
+      margin-top: clamp(0px, 3.333vw, 40px);
+    }
+
+    @include mobile {
+      margin-top: -30px;
+    }
   }
 
   p {

@@ -51,16 +51,4 @@ const tabsFunction = function (
 tabsFunction(tabsParrents, "data-tab", "data-tab-content");
 
 
-// adaptiveInit('576');
-//
-// function adaptiveInit(breakpoint)  {
-//     let containerWidth = document.documentElement.clientWidth;
-//
-//     if (containerWidth > `${breakpoint}`) {
-//         const tabsDescktop= document.querySelectorAll('[data-tabs-parrent-desktop]')
-//         !isMobile() ? tabsFunction(tabsDescktop, "data-tab", "data-tab-content") : null;
-//     }
-// };
-
-
 

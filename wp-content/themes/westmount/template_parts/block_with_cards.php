@@ -30,11 +30,6 @@
                       background-repeat: no-repeat;
                       background-size: cover;">
               </div>
-              <svg viewBox="0 0 556 318" style="enable-background:new 0 0 556 318;" xml:space="preserve">
-                <g>
-                  <path class="st0" stroke="#30A5DE" d="M451,0L268,317.8"/>
-                </g>
-              </svg>
               <div class="section_home_card_item_small_image">
                 <img src="<?php echo get_sub_field('card_icon')['sizes']['1440']; ?>" alt="icon" />
               </div>

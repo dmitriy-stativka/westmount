@@ -3,10 +3,18 @@
   padding: toRem(140) 0 toRem(200);
   color: rgba(var(--cl-d),1.0);
 
+  @include laptop {
+    padding: clamp(115px, 11.667vw, 140px) 0 clamp(120px, 16.667vw, 200px);
+  }
+
   &__inner {
     display: flex;
     flex-direction: column;
     gap: toRem(50);
+
+    @include mobile {
+      gap: 30px;
+    }
   }
 
   .team {
@@ -25,10 +33,18 @@
       .square {
         background-color: rgba(var(--bg-a),1.0);
       }
+
+      @include ios {
+        max-width: 285px;
+        width: 100%;
+        clip-path: polygon(0% 0%, 92% 0%, 100% 25%, 100% 100%, 0% 100%);
+      }
     }
 
     &__more {
-      @include for-small-tablet {
+      margin: 0;
+
+      @include for-mobile {
         display: none;
       }
     }

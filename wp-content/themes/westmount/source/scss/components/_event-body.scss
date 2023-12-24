@@ -1,6 +1,10 @@
 .event-body {
-	padding: toRem(60) 0 toRem(180);
+	padding: toRem(60) 0 toRem(170);
 	background-color: rgba(var(--bg-a),1.0);
+
+	@include laptop {
+		padding: clamp(30px, 5vw, 60px) 0 clamp(120px, 14.167vw, 170px);
+	}
 
 	&__inner {
 		display: grid;
@@ -16,6 +20,25 @@
 			transform: translateY(50%);
 			bottom: 0;
 		}
+
+		@include laptop {
+			gap: clamp(30px, 8.333vw, 100px);
+			grid-template-columns: minmax(280px, 420px) 1fr;
+		}
+
+		@include tablet {
+			grid-template-columns: 1fr 1.4fr;
+			gap: 30px;
+		}
+
+		@include small-tablet {
+			grid-template-columns: 230px 1fr;
+			gap: 15px;
+		}
+
+		@include mobile {
+			grid-template-columns: 100%;
+		}
 	}
 
 	&__aside {
@@ -27,6 +50,10 @@
 		position: relative;
 
 		@include tringle(var(--br-g));
+
+		@include mobile {
+			display: none;
+		}
 
 		&:after {
 			right: 0;
@@ -68,11 +95,16 @@
 	}
 
 	&__box {
-		padding: 0 0 toRem(30) toRem(0);
+		padding: 0 0 toRem(45) toRem(0);
 		display: flex;
 		flex-direction: column;
-		gap: toRem(50);
+		gap: toRem(35);
 		justify-content: space-between;
+
+		@include mobile {
+			gap: 25px;
+			padding-bottom: 20px;
+		}
 	}
 
 	&__date {
@@ -91,6 +123,12 @@
 			font-weight: 400;
 			line-height: 136%;
 			text-transform: uppercase;
+		}
+
+		@include small-tablet {
+			@include for-mobile {
+				font-size: clamp(35px, 5.25vw, 63px);
+			}
 		}
 	}
 
@@ -127,6 +165,10 @@
 			object-position: center;
 			width: 100%;
 			max-height: toRem(280);
+
+			@include mobile {
+				height: 48.750vw;
+			}
 		}
 	}
 
@@ -142,6 +184,14 @@
 		font-weight: 300;
 		line-height: 90%; /* 42.3px */
 		text-transform: uppercase;
+
+		@include laptop {
+			font-size: clamp(23px, 3.917vw, 47px);
+		}
+
+		@include mobile {
+			font-size: 7.188vw;
+		}
 
 		&:before,
 		&:after {
@@ -161,10 +211,18 @@
 
 	&__bottom {
 		width: fit-content;
-		margin: auto 0 0 auto;
+
 		display: flex;
 		align-items: flex-end;
 		gap: toRem(25);
+
+		@include for-mobile {
+			margin: auto 0 0 auto;
+		}
+
+		@include mobile {
+			margin-top: 35px;
+		}
 
 		span {
 			color: rgba(var(--cl-d),1.0);
