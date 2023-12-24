@@ -5,31 +5,62 @@
   width: 100%;
 
   @include tablet {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  }
+
+  @include mobile {
+    grid-template-columns: 100%;
   }
 
   &__item {
-    clip-path:polygon(0% 0%, 91% 0%, 100% 9%, 100% 100%, 0% 100%);
+    clip-path:polygon(0% 0%, 91% 0%, 100% 6%, 100% 100%, 0% 100%);
+
+    @include  for-mobile {
+      display: flex !important;
+    }
+
+    @include mobile {
+      &:nth-child(n+4) {
+        display: none;
+      }
+    }
   }
 }
 
 .team-card {
   height: 100%;
   display: grid;
-  grid-template-rows: toRem(313) 1fr;
+  width: 100%;
+  grid-template-rows: auto 1fr;
 
   img {
     width: 100%;
     display: flex;
   }
 
+  &__image {
+    display: flex;
+
+    img {
+      height: toRem(313);
+
+      @include for-desktop {
+        height: toRem(413);
+      }
+
+      @include mobile {
+        height: 70.313vw;
+      }
+    }
+  }
+
   &__inner {
-    padding: toRem(20);
-    min-height: toRem(255);
+    padding: toRem(15) toRem(20) toRem(25);
+    min-height: toRem(240);
     background: radial-gradient(59.53% 53.31% at 78.15% 42.3%, #29343A 15.62%, #1E1E1E 100%), #1F1F1F;
     display: flex;
     flex-direction: column;
-    gap: toRem(40);
+    gap:toRem(35);
     justify-content: space-between;
   }
 
@@ -79,9 +110,20 @@
     grid-template-rows: auto auto;
     align-items: center;
 
+    @include mobile {
+      gap: 5px;
+      grid-template-columns: 100%;
+    }
+
     .article-link {
-      grid-column: 2;
-      grid-row: 1/-1;
+      @include for-mobile {
+        grid-column: 2;
+        grid-row: 1/-1;
+      }
+
+      @include mobile {
+        margin-top: 25px;
+      }
     }
 
     img {

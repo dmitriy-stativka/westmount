@@ -4,11 +4,28 @@
   height: auto;
   padding-top: toRem(100);
   position: relative;
+  overflow: hidden;
+
+  @include laptop {
+    padding-top: clamp(30px, 8.333vw, 100px);
+  }
 
   .text_wrap {
     display: flex;
     flex-wrap: nowrap;
     margin-top: toRem(55);
+
+    @include mobile {
+      width: 100%;
+      flex-direction: column;
+      margin-top: 20px;
+      gap: 15px;
+
+      & > * {
+        margin: 0;
+        max-width: 100% !important;
+      }
+    }
   }
 
   .text {
@@ -18,6 +35,14 @@
     color: #fff;
     max-width: toRem(378);
     margin-top: toRem(-150);
+    z-index: 6;
+    position: relative;
+
+    @include mobile {
+      font-size: 20px;
+      margin: 0;
+      max-width: 100%;
+    }
   }
   .text_l {
     color: #fff;
@@ -50,6 +75,10 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
+
+  @include small-tablet {
+    font-size: clamp(12px, 1.5vw, 14px);
+  }
 }
 
 .section_top_title {
@@ -73,6 +102,15 @@
   max-width: toRem(440);
   margin-top: toRem(45);
   letter-spacing: toRem(4);
+
+  @include laptop {
+    font-size: clamp(30px, 5.25vw, 63px);
+    max-width: Min(36.667vw, 440px);
+  }
+
+  @include small-tablet {
+    max-width: 100%;
+  }
 }
 
 .section_sub_title {
@@ -86,22 +124,35 @@
 .section_building_image_block {
   width: 100%;
   height: toRem(1078);
+  pointer-events: none;
+
+  @include mobile {
+    height: clamp(320px, 106.597vw, 1078px);
+    margin:  0;
+  }
+
 }
 
 .section_building_image_wrap {
+
   max-width: toRem(1080);
+  pointer-events: none;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   margin-top: toRem(-190);
 
+  @include mobile {
+    margin: 0;
+  }
+
   .notice {
     position: absolute;
-    width: toRem(75);
+    width: toRem(178);
     height: toRem(74);
     top: 18.5%;
-    right: 8%;
+    right: 0%;
     display: flex;
 
     .txt {
@@ -109,6 +160,10 @@
       color: #fff;
       font-weight: 300;
       margin-left: toRem(10);
+    }
+
+    @include mobile {
+      display: none;
     }
   }
 
@@ -128,6 +183,10 @@
       margin-left: toRem(10);
       margin-bottom: toRem(-20);
     }
+
+    @include mobile {
+      display: none;
+    }
   }
 }
 
@@ -136,7 +195,13 @@
 }
 
 .mt_action_btn {
-  margin-top: toRem(60);
+  margin-top: toRem(40);
+  margin-bottom: toRem(50);
+
+  @include small-tablet {
+    margin-bottom: 0;
+    margin-top: 28px;
+  }
 }
 
 .section_building_image {
@@ -145,18 +210,26 @@
   position: absolute;
   top: 0;
   left: 0;
-
+  pointer-events: none;
 }
 
 .big_title_svg {
-  height: toRem(170);
   width: auto;
   margin-top: toRem(170);
   position: relative;
 
+  @include laptop {
+    margin-top: clamp(100px, 14.167vw, 170px);
+    height: clamp(73px, 14.167vw, 170px);
+  }
+
   svg {
-    height: auto;
-    width: 100%;
+    height: inherit;
+    transform: translateX(-4%);
+
+    @include laptop {
+      width: 200%;
+    }
   }
 
   img {

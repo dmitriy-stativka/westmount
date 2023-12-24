@@ -1,15 +1,17 @@
-export const fadeIn = (el, timeout, display) => {
+export const fadeIn = (el, timeout, delay = 0, display) => {
   el.style.opacity = 0;
   el.style.display = display || 'block';
   el.style.transition = `all ${timeout}ms`;
+  el.style.transitionDelay = `${delay}ms`;
   setTimeout(() => {
     el.style.opacity = 1;
   }, 10);
 };
 // ----------------------------------------------------
-export const fadeOut = (el, timeout) => {
+export const fadeOut = (el, timeout, delay = 0) => {
   el.style.opacity = 1;
   el.style.transition = `all ${timeout}ms`;
+  el.style.transitionDelay = `${delay}ms`;
   el.style.opacity = 0;
 
   setTimeout(() => {

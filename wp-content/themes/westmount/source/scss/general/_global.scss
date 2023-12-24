@@ -201,8 +201,8 @@ fieldset {
   position: relative;
 
   width: 100%;
-  max-width: 86%;
-  //max-width: var(--container-width);
+  //max-width: 86%;
+  max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 var(--container-offset);
 
@@ -246,13 +246,13 @@ fieldset {
 }
 
 
-.overlay {
+[data-overlay] {
   @include overlay;
 }
 
 * {
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 2px;
     height: 7px;
     // display: none;
 

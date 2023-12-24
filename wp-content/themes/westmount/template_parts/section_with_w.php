@@ -72,8 +72,8 @@
           <div class="section_company_w_r">
             <?php echo $right_bottom_text; ?>
           </div>
-          <div class="section_company_null">
-          </div>
+<!--          <div class="section_company_null">-->
+<!--          </div>-->
         </div>
         
         

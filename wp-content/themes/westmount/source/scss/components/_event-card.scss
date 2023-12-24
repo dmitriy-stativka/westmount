@@ -6,6 +6,10 @@
 
 	@include gradient-corner(toRem(56));
 
+	@include mobile {
+		grid-template-columns: 100%;
+	}
+
 	&:after {
 		pointer-events: none;
 		background-image: url("../img/bg_footer.png");
@@ -19,6 +23,10 @@
 		background-position: left bottom;
 		background-repeat: no-repeat;
 		transform: scaleY(-1);
+
+		@include mobile {
+			width: 90%;
+		}
 	}
 
 	&__coll {
@@ -27,6 +35,18 @@
 		justify-content: space-between;
 		gap: toRem(40);
 		padding: toRem(10) toRem(40) toRem(40) toRem(0);
+
+		@include laptop {
+			gap: clamp(20px, 3.333vw, 40px);
+			padding: toRem(10) clamp(20px, 3.333vw, 40px) clamp(20px, 3.333vw, 40px) toRem(0);
+		}
+
+		@include mobile {
+			padding: 0 0;
+			flex-direction: column;
+			gap: 24px;
+			border-right: none;
+		}
 	}
 
 	&__title {
@@ -36,6 +56,10 @@
 		font-style: normal;
 		font-weight: 300;
 		line-height: 100%;
+
+		@include laptop {
+			font-size: clamp(20px, 2.167vw, 26px);
+		}
 	}
 
 	&__bottom {
@@ -51,6 +75,15 @@
 				fill: currentColor;
 			}
 		}
+
+		@include laptop {
+			gap: 20px 10px;
+		}
+
+		@include ios {
+			flex-direction: column;
+			align-items: flex-start;
+		}
 	}
 
 	&__info {
@@ -59,6 +92,15 @@
 		flex-direction: column;
 		justify-content: space-between;
 		gap: toRem(47);
+
+		@include laptop {
+			padding: toRem(10) toRem(0) clamp(20px, 3.333vw, 40px) clamp(20px, 3.333vw, 40px);
+		}
+
+		@include mobile {
+			padding: 20px 25px 24px;
+			border-right: 1px solid var(--br-f);
+		}
 	}
 
 	&__image {
@@ -66,6 +108,19 @@
 		clip-path: var(--polly-card);
 		position: relative;
 		z-index: 2;
+
+		img {
+			height: toRem(256);
+
+			@include laptop {
+				height: clamp(174px, 21.333vw, 256px);
+			}
+
+			@include mobile {
+				height: 54.375vw;
+				width: 100%;
+			}
+		}
 	}
 
 	&__date {
@@ -86,6 +141,11 @@
 			font-weight: 400;
 			line-height: 240%;
 			text-transform: uppercase;
+			white-space: nowrap;
+		}
+
+		@include laptop {
+			font-size: clamp(30px, 5.25vw, 63px);
 		}
 	}
 }

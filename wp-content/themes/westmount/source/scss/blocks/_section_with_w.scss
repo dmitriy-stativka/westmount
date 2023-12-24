@@ -1,13 +1,21 @@
 .section_company_w {
   width: 100%;
-  padding-top: toRem(150);
+  padding-top: toRem(145);
   padding-bottom: toRem(60);
   position: relative;
-  height: toRem(1600);
+  min-height: toRem(1520);
   overflow: hidden;
+
+  @include laptop {
+    min-height: initial;
+  }
 
   .section_title {
     margin-top: toRem(16);
+
+    @include small-tablet {
+      margin: 0;
+    }
   }
   
   .section_top_title {
@@ -27,31 +35,73 @@
 
 .section_company_w_image {
   width: toRem(889);
-  height: toRem(1362);
+  height: 90%;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 52%;
+  left: 50.5%;
   transform: translate(-50%, -50%);
+
+  @include small-tablet {
+    height: clamp(460px, 63.25vw, 759px);
+    object-fit: contain;
+    width: 100%;
+    top: initial;
+    bottom: -5%;
+  }
 }
 
 .section_title_wrap {
   width: 100%;
+  max-width: toRem(1155);
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: flex-start;
+
+  @include for-desktop {
+    max-width: initial;
+  }
+
+  @include laptop {
+    position: relative;
+  }
+
+  @include small-tablet {
+    gap: 40px;
+    flex-direction: column;
+  }
 }
 
 .middle_sub_title {
   color: #FFF;
   font-size: toRem(14);
   margin-top: toRem(20);
-  line-height: 158%; 
-  position: relative;
+  line-height: 158%;
+
+  @include for-laptop {
+    position: relative;
+  }
+
+  @include small-tablet {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: 0;
+  }
 }
 
 .right_sub_title {
-  margin-top: toRem(20);
+
+  @include for-small-tablet {
+    margin-top: toRem(20);
+  }
+
+  @include small-tablet {
+    margin-left: auto;
+    margin-top: -18px;
+    margin-top: -18px;
+    order: -1;
+  }
 }
 
 .text_above_w {
@@ -59,15 +109,38 @@
   font-size: toRem(48);
   font-weight: 400;
   line-height: 110%;
-  max-width: toRem(576);
-  min-width: toRem(576);
-  position: absolute;
-  top: toRem(200);
-  left: 0%;
 
   span {
     color: #00A9EF;
-    margin-right: 10px;
+
+    @include for-small-tablet {
+      margin-right: 10px;
+    }
+
+    @include small-tablet {
+      margin-left: auto;
+      order: -1;
+    }
+  }
+
+  @include for-small-tablet {
+    max-width: toRem(576);
+    min-width: toRem(576);
+    position: absolute;
+    top: toRem(165);
+    left: -15%;
+  }
+
+  @include laptop {
+    font-size: clamp(24px, 4vw, 48px);
+    left: initial;
+    right: 0;
+    max-width: 42%;
+    min-width: initial;
+  }
+
+  @include small-tablet {
+    max-width: 100%;
   }
 }
 
@@ -77,6 +150,24 @@
   flex-wrap: nowrap;
   width: 100%;
   justify-content: space-between;
+  max-width: toRem(930);
+
+  @include for-desktop {
+    max-width: 71%;
+  }
+
+  @include laptop {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    max-width: 100%;
+    gap: 50px;
+    margin-top: clamp(460px, 63.25vw, 759px);
+  }
+
+  @include mobile {
+    grid-template-columns: 100%;
+    gap: 30px;
+  }
 }
 .section_company_w_text_l {
   color: #FFF;
@@ -84,13 +175,23 @@
   font-weight: 400;
   line-height: 110%; 
   max-width: toRem(365);
+
+  @include laptop {
+    font-size: clamp(24px, 2vw, 48px);
+  }
 }
 .section_company_w_r {
   color: #FFF;
   font-size: toRem(14);
   font-weight: 400;
   line-height: 150%; 
-  max-width: toRem(271);
-  margin-left: toRem(145);
+  max-width: toRem(270);
+  margin-left: toRem(0);
+  width: 100%;
+  //@include smal
+
+  @include mobile {
+    max-width: 100%;
+  }
 }
 

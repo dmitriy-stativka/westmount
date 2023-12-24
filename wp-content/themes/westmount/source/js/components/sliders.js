@@ -4,15 +4,6 @@ import Swiper from '../vendor/swiper';
 
 import vars from '../_vars'
 
-
-// import Swiper, { Controller } from 'swiper';
-
-// Инициализируйте Swiper с модулем Controller
-// Swiper.use([Controller]);
-
-// Теперь можно создавать экземпляры Swiper и связывать их
-
-
 const {section_hero_slider,section_home_solutions, singleTeamBox} = vars;
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -60,141 +51,110 @@ function slider_with_many_blocks_in_a_row() {
     const slides = el.querySelectorAll('.swiper-slide').length
 
     const swiper = new Swiper(el.querySelector('.swiper'), {
-      slidesPerView: 2,
-      spaceBetween: 10,
-      loop: true,
-      // Responsive breakpoints
+      watchOverflow: true,
+      spaceBetween: 24,
+      // loop: true,
       breakpoints: {
+        320: {
+          slidesPerView: 1.1,
+          spaceBetween: 10
+        },
         //
-        // 320: {
-        //   slidesPerView: 2,
-        //   spaceBetween: 20
-        // },
+        576: {
+          slidesPerView: 2,
+          spaceBetween: 24
+        },
         //
-        // 480: {
-        //   slidesPerView: 3,
-        //   spaceBetween: 30
-        // },
+        767: {
+          slidesPerView: 2.5,
+          // spaceBetween: 30
+        },
         1024: {
           slidesPerView: 4,
-          spaceBetween: 24
-        }
-      }
-    });
-    if (slides > 3) {
-      el.querySelector(".button_slider.btn_next").addEventListener('pointerdown', () => {
-        swiper.slideNext()
-      })
 
-      el.querySelector(".button_slider.btn_prev").addEventListener('pointerdown', () => {
-        swiper.slidePrev()
-      })
-    }
+        }
+      },
+
+      navigation: {
+        nextEl: el.querySelector(".button_slider.btn_next"),
+        prevEl: el.querySelector(".button_slider.btn_prev"),
+      },
+    });
+    // if (slides > 3) {
+    //   .addEventListener('pointerdown', () => {
+    //     swiper.slideNext()
+    //   })
+    //
+    //   .addEventListener('pointerdown', () => {
+    //     swiper.slidePrev()
+    //   })
+    // }
   })
 
 
 }
 
 
-// function team_slider() {
-//   singleTeamBox.forEach(box => {
-//     const navSlider = box.querySelector('.team-single__nav');
-//     const teamSlider = box.querySelector('.team-single__slider');
-
-//     const sliderTeam = new Swiper(teamSlider, {
-//       slidesPerView: 1,
-//       effect: 'fade',
-//       spaceBetween: 0,
-//       observer: true,
-//       observeParents: true,
-//       loopedSlides: 5,
-//       loop: true,
-//       // watchOverflow: true,
-//     });
-
-//     const sliderThumb = new Swiper(navSlider, {
-//       slidesPerView: 'auto',
-//       spaceBetween: 0,
-
-//       freeMode: true,
-//       freeModeSticky: false,
-//       roundLengths: true,
-
-//       observer: true,
-//       observeParents: true,
-//       slideToClickedSlide: true,
-//       loopedSlides: sliderTeam.slides.length,
-//       loop: true,
-//       // watchOverflow: true,
-//       direction: 'vertical',
-
-
-//       // autoplay: {
-//       //   delay: 5000,
-//       // },
-
-//       // breakpoints: {
-//       //   320:{
-//       //     slidesPerView: 3,
-//       //     spaceBetween: 8,
-//       //     direction: 'horizontal',
-//       //   },
-//       //   576:{
-//       //     slidesPerView: 4,
-//       //     spaceBetween: 8,
-//       //     direction: 'horizontal',
-//       //   },
-//       //   767:{
-//       //     slidesPerView: 3,
-//       //     spaceBetween: 8,
-//       //     direction: 'horizontal',
-//       //   },
-//       //   1025:{
-//       //     slidesPerView: 'auto',
-//       //     spaceBetween: 8,
-//       //
-//       //   }
-//       // }
-
-//     });
-
-
-
-//     sliderThumb.on('slideChange', function () {
-//       sliderTeam.slideTo(this.realIndex);
-//     });
-//     // //
-//     // sliderTeam.on('slideChange', function () {
-//     //   sliderThumb.slideTo(this.index);
-//     // });
-
-//     //
-//     // sliderTeam.controller.control = sliderThumb;
-//     // sliderThumb.controller.control = sliderTeam;
-
-
-
-//   })
-// }
-
-
 function team_slider() {
-  var galleryThumbs = new Swiper('.team-single__nav', {
-    spaceBetween: 0,
-    slidesPerView: 4,
-    freeMode: true,
-    direction: 'vertical',
-    watchSlidesVisibility: true,
-    watchSlidesProgress: true,
-});
-var galleryTop = new Swiper('.team-single__slider', {
-    spaceBetween: 0,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-    },
-    thumbs: {
-        swiper: galleryThumbs
-    }
-});
+  singleTeamBox.forEach(box => {
+    const navSlider = box.querySelector('.team-single__nav');
+    const teamSlider = box.querySelector('.team-single__slider');
+
+    const sliderThumb = new Swiper(navSlider, {
+      spaceBetween: 0,
+      slidesPerView: 'auto',
+      loop: true,
+      slideToClickedSlide: true,
+      watchSlidesProgress: true,
+      allowTouchMove: false,
+
+      on: {
+        click: function(swiper, event) {
+          let clickedSlideIndex = swiper.clickedIndex;
+          swiper.slideTo(clickedSlideIndex);
+        }
+      },
+
+      breakpoints: {
+        320: {
+          slidesPerView: 2.2,
+        },
+
+        414: {
+          slidesPerView: 3,
+        },
+
+        576: {
+          slidesPerView: 3.5,
+        },
+
+        767: {
+          slidesPerView: 4.5,
+        },
+        1201: {
+          slidesPerView: 'auto',
+          direction: 'vertical',
+        }
+      }
+    });
+    new Swiper(teamSlider, {
+      spaceBetween: 0,
+      loop: true,
+      thumbs: {
+        swiper: sliderThumb
+      },
+      breakpoints: {
+        320: {
+          spaceBetween: 20,
+        },
+
+        767: {
+          spaceBetween: 0,
+        }
+      }
+    });
+
+  })
 }
+
+

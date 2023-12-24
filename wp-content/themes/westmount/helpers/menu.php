@@ -33,7 +33,7 @@ echo $build_folder ?>/img/bg_menu.png');">
                 </span>
 
                 <h3 class="custom-menu__title">
-                    New Name, Familiar Faces.
+                    New Name, <br> Familiar Faces.
                 </h3>
 
                 <p class="custom-menu__text">
@@ -83,13 +83,24 @@ echo $build_folder ?>/img/bg_menu.png');">
                 </div>
             </div>
 
-
             <nav class="custom-menu__nav">
                 <div class="custom-menu__nav-inner">
                     <div data-menu="solutions" class="current-submenu">
-                        <span class="current-submenu__title">
-                            Solutions
-                        </span>
+                        <div class="current-submenu__nav">
+                            <button class="back-btn">
+                                <svg width="13" height="11">
+                                    <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-l"></use>
+                                </svg>
+                            </button>
+                            <a href="#" class="current-submenu__title">
+                                Solutions
+
+                                <svg width="13" height="11">
+                                    <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-r"></use>
+                                </svg>
+                            </a>
+                        </div>
+
                         <ul>
                             <li>
                                 <a href="#">
@@ -118,70 +129,92 @@ echo $build_folder ?>/img/bg_menu.png');">
                             </li>
                         </ul>
                     </div>
-                    <!--                    <div data-menu="solutions2" class="current-submenu">-->
-                    <!--                        <span class="current-submenu__title">-->
-                    <!--                            Solutions2-->
-                    <!--                        </span>-->
-                    <!--                        <ul>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#">-->
-                    <!--                                    Tarion Bond-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#">-->
-                    <!--                                    Condominium Deposit Insurance-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#" data-descr="(Freehold Deposit Insurance)">-->
-                    <!--                                    Westmount Protect-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#">-->
-                    <!--                                    Site & Subdivision Security-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#" data-descr="(Condo Project Insurance)">-->
-                    <!--                                    Westmount Plus-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                        </ul>-->
-                    <!--                    </div>-->
-                    <!--                    <div data-menu="solutions3" class="current-submenu">-->
-                    <!--                        <span class="current-submenu__title">-->
-                    <!--                            Solutions3-->
-                    <!--                        </span>-->
-                    <!--                        <ul>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#">-->
-                    <!--                                    Tarion Bond-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#">-->
-                    <!--                                    Condominium Deposit Insurance-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#" data-descr="(Freehold Deposit Insurance)">-->
-                    <!--                                    Westmount Protect-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#">-->
-                    <!--                                    Site & Subdivision Security-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="#" data-descr="(Condo Project Insurance)">-->
-                    <!--                                    Westmount Plus-->
-                    <!--                                </a>-->
-                    <!--                            </li>-->
-                    <!--                        </ul>-->
-                    <!--                    </div>-->
+                    <div data-menu="solutions2" class="current-submenu">
+                        <div class="current-submenu__nav">
+                            <button class="back-btn">
+                                <svg width="13" height="11">
+                                    <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-l"></use>
+                                </svg>
+                            </button>
+                            <a href="#" class="current-submenu__title">
+                                Solutions
+
+                                <svg width="13" height="11">
+                                    <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-r"></use>
+                                </svg>
+                            </a>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    Tarion Bond
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Condominium Deposit Insurance
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-descr="(Freehold Deposit Insurance)">
+                                    Westmount Protect
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Site & Subdivision Security
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-descr="(Condo Project Insurance)">
+                                    Westmount Plus
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div data-menu="solutions3" class="current-submenu">
+                        <div class="current-submenu__nav">
+                            <button class="back-btn">
+                                <svg width="13" height="11">
+                                    <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-l"></use>
+                                </svg>
+                            </button>
+                            <a href="#" class="current-submenu__title">
+                                Solutions
+
+                                <svg width="13" height="11">
+                                    <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-r"></use>
+                                </svg>
+                            </a>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    Tarion Bond
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Condominium Deposit Insurance
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-descr="(Freehold Deposit Insurance)">
+                                    Westmount Protect
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Site & Subdivision Security
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" data-descr="(Condo Project Insurance)">
+                                    Westmount Plus
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <ul>
                     <li>
@@ -210,44 +243,6 @@ echo $build_folder ?>/img/bg_menu.png');">
                     </li>
                 </ul>
             </nav>
-
-
         </div>
     </div>
 </div>
-
-
-<!--<div class="menu_open">-->
-<!--	<div class="fiter_bg">-->
-<!--		<div class="menu_col">-->
-<!--			<div class="w1-3 menu_open_info_block">-->
-<!--				<div class="menu_open_text_wrap">-->
-<!--					<div class="menu_open_subtitle">-->
-<!--						<div class="square"></div>-->
-<!--						Westmount West-->
-<!--					</div>-->
-<!--					<div class="menu_open_title">New Name, Familiar Faces.</div>-->
-<!--					<div class="menu_open_text">-->
-<!--						<p>-->
-<!--							Westmount Guarantee Services Inc., a member of the Navacord group of companies, is-->
-<!--							pleased to-->
-<!--							announce the opening of Westmount West Services Inc., their Vancouver-based Managing-->
-<!--							General Agency-->
-<!--							(MGA).-->
-<!--						</p>-->
-<!--						<p>-->
-<!--							Tom Reeves, President of Westmount West, will continue to lead the established team of-->
-<!--							experts who-->
-<!--							have been providing surety solutions to builders and developers across Western Canada-->
-<!--							since 2005.-->
-<!--						</p>-->
-<!--					</div>-->
-
-
-<!--				</div>-->
-<!--			</div>-->
-<!--			<div class="w1-3 linear_gr"></div>-->
-
-<!--		</div>-->
-<!--	</div>-->
-<!--</div>-->

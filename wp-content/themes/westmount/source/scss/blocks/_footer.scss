@@ -1,7 +1,7 @@
 .footer {
     overflow: hidden;
-    min-height: toRem(480);
-    height: auto;
+    min-height: toRem(470);
+    //height: auto;
     width: 100%;
     background-color: rgba(var(--bg-d),1.0);
     background-image: url('../img/bg_footer.png');
@@ -14,12 +14,32 @@
     gap: toRem(60);
     justify-content: space-between;
 
+    @include  mobile {
+        background-size: 150% 50%;
+    }
+
+
+
     &__inner {
         display: grid;
         grid-template-columns: auto 1fr;
         grid-template-rows: auto 1fr;
         gap: toRem(45) toRem(30);
         align-items: flex-start;
+
+        @include tablet {
+            justify-content: space-between;
+            grid-template-columns: minmax(470px, auto) auto;
+        }
+
+        @include small-tablet {
+            grid-template-columns: 100%;
+            grid-template-rows: initial;
+        }
+
+        @include mobile {
+            gap: 40px toRem(30);
+        }
     }
 
     &__logos {
@@ -27,11 +47,19 @@
         display: grid;
         grid-template-columns: repeat(2, auto);
         align-items: center;
-        gap: toRem(66);
+        gap: 24px toRem(66);
+
+        @include mobile {
+            grid-template-columns: 100%;
+            margin-bottom: 20px;
+        }
 
         img {
             display: flex;
-            width: 100%;
+
+            @include for-mobile {
+                width: 100%;
+            }
         }
 
         & > * {
@@ -41,22 +69,24 @@
         & > *:nth-child(even) {
 
 
-            &:before {
-                width: 1px;
-                top: -5px;
-                bottom: -5px;
-                background: rgba(255, 255, 255, 0.20);
-                position: absolute;
-                display: block;
-                content: '';
-                left: calc(toRem(66) * -0.5);
-                transform: translateX(100%);
-            }
+           @include for-mobile {
+               &:before {
+                   width: 1px;
+                   top: -5px;
+                   bottom: -5px;
+                   background: rgba(255, 255, 255, 0.20);
+                   position: absolute;
+                   display: block;
+                   content: '';
+                   left: calc(toRem(66) * -0.5);
+                   transform: translateX(100%);
+               }
+           }
         }
     }
 
     &__contact {
-        grid-column: 1;
+
 
         display: grid;
         grid-template-columns: repeat(2, auto);
@@ -65,8 +95,23 @@
         align-items: center;
         gap: toRem(10) toRem(30);
 
+        @include for-mobile {
+            grid-column: 1;
+        }
+
+        @include mobile {
+            order: 3;
+            grid-template-columns: 100%;
+        }
+
+
+
         .footer-social {
             grid-row: 1/-1;
+
+            @include mobile {
+                margin-bottom: 30px;
+            }
         }
 
         &-link {
@@ -77,11 +122,15 @@
             font-weight: 400;
             line-height: 100%; /* 19.04px */
         }
+
+
     }
 
     &__nav {
-        grid-row: 1/-1;
-        grid-column: 2;
+       @include for-small-tablet {
+           grid-row: 1/-1;
+           grid-column: 2;
+       }
     }
 
     &__bottom {
@@ -93,19 +142,40 @@
         justify-content: space-between;
         flex-wrap: wrap;
 
+        @include mobile {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
         * {
             color: rgba(var(--cl-a),0.5);
             font-family: var(--font-family);
             font-size: toRem(14);
             font-style: normal;
             font-weight: 400;
-            line-height: 100%; /* 23.8px */
+            line-height: 110%; /* 23.8px */
         }
 
         ul {
             display: flex;
             align-items: center;
             gap: toRem(30);
+
+            @include ios {
+                gap: 10px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @include tablet {
+            @include for-mobile {
+                span:last-of-type {
+                    flex-grow: 1;
+                    width: 100%;
+                    text-align: center;
+                }
+            }
         }
     }
 

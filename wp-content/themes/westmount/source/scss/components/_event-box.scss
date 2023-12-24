@@ -1,8 +1,12 @@
 .events-box {
 	position: relative;
 	z-index: 2;
-	padding: toRem(85) 0 toRem(140);
+	padding: toRem(160) 0 toRem(140);
 	background: var(--Gradient-Box, radial-gradient(59.53% 53.31% at 78.15% 42.3%, #29343A 15.62%, #1E1E1E 100%));
+
+	@include laptop {
+		padding: clamp(60px, 13.333vw, 160px) 0 clamp(120px, 11.667vw, 140px);
+	}
 
 	&__bg {
 		background-color: rgba(var(--bg-e),1.0);
@@ -35,7 +39,7 @@
 		justify-content: space-between;
 		color: rgba(var(--cl-a),1.0);
 		position: relative;
-		padding-top: toRem(35);
+		padding-top: toRem(25);
 		border-top: 1px solid var(--br-f);
 
 		@include tringle(var(--br-f));
@@ -51,6 +55,7 @@
 		.select {
 			min-width: 120px;
 			max-width: 120px;
+
 			width: 100%;
 			&__current {
 				color: rgba(var(--cl-a),1.0);
@@ -59,7 +64,6 @@
 				font-style: normal;
 				font-weight: 400;
 				line-height: 158%;
-				//white-space: normal;
 			}
 
 			&__body {
@@ -71,6 +75,10 @@
 	&__list {
 		display: flex;
 		flex-direction: column;
-		gap: toRem(45);
+		gap: toRem(75);
+
+		@include laptop {
+			gap: clamp(50px, 6.25vw, 75px);
+		}
 	}
 }

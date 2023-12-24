@@ -1,9 +1,13 @@
 .other-event {
-	padding: toRem(30) toRem(30) toRem(25) 0;
+	padding: toRem(35) toRem(30) toRem(30) 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
 	gap: toRem(22);
+
+	@include small-tablet {
+		padding: 15px 15px 15px 0;
+	}
 
 	&__image {
 		display: flex;
@@ -11,10 +15,22 @@
 		max-width: toRem(154);
 		clip-path: var(--polly-card);
 
+		@include small-tablet {
+			width: 100%;
+			max-width: 100%;
+		}
+
 		img {
 			width: 100%;
 			height: 100%;
-			max-height: toRem(90);
+
+			@include for-small-tablet {
+				max-height: toRem(90);
+			}
+
+			@include small-tablet {
+				width: 100%;
+			}
 		}
 	}
 
@@ -35,15 +51,21 @@
 		grid-template-columns: 1fr auto;
 		grid-template-rows: auto auto;
 		align-items: center;
-		gap: 0 toRem(20);
+		gap: toRem(10) toRem(20);
 
 		color: rgba(var(--cl-d),1.0);
 		font-family: var(--font-family);
 		font-style: normal;
 
 		.article-link {
-			grid-column: 2;
-			grid-row: 1/-1;
+			@include for-small-tablet {
+				grid-column: 2;
+				grid-row: 1/-1;
+			}
+		}
+
+		@include small-tablet {
+			grid-template-columns: 100%;
 		}
 	}
 }

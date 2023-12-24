@@ -38,9 +38,9 @@
                                 <?php if($title): ?> 
 
                                   <h2 class="h2hero">
-                                    <span class="quot_left">"</span>
+<!--                                    <span class="quot_left">"</span>-->
                                       &nbsp;&nbsp;<?php echo $title; ?>
-                                    <span class="quot_right">"</span>
+<!--                                    <span class="quot_right">"</span>-->
                                   </h2>
 
                                 <?php endif; ?>
