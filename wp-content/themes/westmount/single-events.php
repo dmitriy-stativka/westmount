@@ -1,8 +1,13 @@
-<?php
+<?php get_header(); 
 
 $build_folder = get_template_directory_uri() . '/assets/';
-$video_url    = 'https://vimeo.com/429695886';
+
 ?>
+
+<?php if ( $video_url = get_field( 'video_url' ) ) :
+	 $video_url = get_field( 'video_url' );
+ endif; ?>
+
 
 <section class="single-events">
 
@@ -10,14 +15,21 @@ $video_url    = 'https://vimeo.com/429695886';
         <div class="container">
             <div class="single-event__inner">
                 <div class="main-top">
-                        <span class="main-top__label">
+                    <?php if ( $location = get_field( 'location' ) ) : ?>
+                        <span class="events-label">
                             <svg width="11" height="11">
                                 <use href="<?php
                                 echo $build_folder ?>img/sprite/sprite.svg#label_icon"></use>
                             </svg>
-                            Location
+                            <?php echo esc_html( $location ); ?>
                         </span>
-                    <h2 class="main-top__title">Aga Khan Museum</h2>
+                    <?php endif; ?>
+
+                    <?php if ( $title = get_field( 'title' ) ) : ?>
+                        <h2 class="main-top__title"><?php echo esc_html( $title ); ?></h2>
+                    <?php endif; ?>
+
+        
                 </div>
 
                 <div class="video-box">
@@ -26,12 +38,18 @@ $video_url    = 'https://vimeo.com/429695886';
 					   echo $video_url ?>">
 
                         <span class="video-box__link-wrapper">
-                            <img
-                            width="1240"
-                            height="640"
-                            class="img-responsive"
-                            src="<?php
-                            echo $build_folder ?>img/new/video-prev.png"/>
+                            <?php
+                                $image_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'custom-size');
+                                if ($image_url) {
+                                    $image_url = $image_url[0]; ?>
+                                    <img
+                                        width="1240"
+                                        height="640"
+                                        class="img-responsive"
+                                        src="<?php echo $image_url;?>"/>
+                                <?php }
+                            ?>
+
 
                             <span class="video-box__play play-btn">
                                 <svg width="22" height="22">
@@ -122,13 +140,20 @@ $video_url    = 'https://vimeo.com/429695886';
                 </aside>
 
                 <div class="event-body__box">
-                    <div class="event-body__date">
-                        06 <i>June 2019</i>
-                    </div>
+                   
+                    <?php 
+                        $acf_date = get_field('date');
+                        $date = DateTime::createFromFormat('d/m/Y', $acf_date);
+                        $formatted_date = $date->format('d') . ' <i> ' . $date->format('F Y') . '</i>';
+
+                        echo '<div class="event-body__date">' . $formatted_date . '</div>';
+                    ?>
+
+
 
                     <div class="event-body__image">
                         <img src="<?php echo $build_folder ?>img/word.png" alt="" class="bg-word">
-                        <span class="event-body__name">A Journey through Space and Time</span>
+                        <span class="event-body__name"><?php the_title();?></span>
                         <img width="715" height="278" src="<?php
 	                    echo $build_folder ?>img/new/events.png" alt="">
                     </div>
@@ -268,3 +293,5 @@ $video_url    = 'https://vimeo.com/429695886';
         </div>
     </div>
 </section>
+
+<?php get_footer();?>

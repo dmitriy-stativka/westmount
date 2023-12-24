@@ -34,7 +34,6 @@ if (select.length) {
 		item.addEventListener("click", (e) => {
 			if (e.target.tagName.toLowerCase() !== 'a') {
 				e.preventDefault();
-				console.log('Цель не является ссылкой');
 			}
 
 			const isSelectOpen = checkIsSelectOpen(item);
