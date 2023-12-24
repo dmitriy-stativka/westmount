@@ -1,3 +1,4 @@
+
 export default {
   activeMode: 'active-mode',
   activeClass: "active",
@@ -10,6 +11,13 @@ export default {
   singleTeamBox: document.querySelectorAll(".team-single__sliders"),
   currentEvents: document.querySelector(".current-events"),
   eventVideoBox: document.querySelector(".video-box"),
+  teamMore: document.querySelector(".team__more"),
+
+  allMenus: document.querySelectorAll('.current-submenu'),
+  customMenuNavInner: document.querySelector('.custom-menu__nav-inner'),
+  dataMenuItems: document.querySelectorAll('[data-menu] li'),
+  dataTrigger: document.querySelectorAll('[data-trigger]'),
+  backBtn: document.querySelectorAll('.back-btn'),
   mobileMenu: document.querySelector('.custom-menu'),
   burger: document.querySelectorAll('.burger'),
   header: document.querySelector("header"),

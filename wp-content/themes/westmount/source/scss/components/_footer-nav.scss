@@ -2,7 +2,21 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(toRem(194), auto));
   justify-content: flex-end;
-  gap: toRem(20);
+  gap: toRem(50);
+
+  @include laptop {
+    grid-template-columns: repeat(auto-fill, minmax(180px, auto));
+    gap: 40px clamp(20px, 5vw, 50px);
+  }
+
+  @include small-tablet {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  @include  mobile {
+    order: 2;
+  }
+
 
   &__item {
     display: flex;
@@ -20,7 +34,7 @@
         font-size: toRem(14);
         font-style: normal;
         font-weight: 400;
-        line-height: 170%; /* 23.8px */
+        line-height: 170%;
       }
     }
   }
@@ -35,12 +49,16 @@
     font-size: toRem(14);
     font-style: normal;
     font-weight: 400;
-    line-height: 136%; /* 19.04px */
+    line-height: 136%;
     text-transform: uppercase;
     margin-bottom: 10px;
 
     svg {
       fill: currentColor;
+    }
+
+    @include mobile {
+      font-size: 12px;
     }
   }
 }

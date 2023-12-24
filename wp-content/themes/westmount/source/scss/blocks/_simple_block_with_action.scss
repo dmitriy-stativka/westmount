@@ -5,6 +5,15 @@
   width: 100%;
   overflow: hidden;
 
+  @include laptop {
+    min-height: clamp(450px, 58.333vw, 700px) !important;
+  }
+
+  @include mobile {
+    padding: 30px 0;
+    min-height: 450px !important;
+  }
+
   .section_home_surety_title {
     color: $grey;
     font-size: toRem(53);
@@ -14,6 +23,11 @@
     text-transform: uppercase;
     max-width: toRem(750);
     flex-direction: column;
+
+    @include small-tablet {
+      font-size: clamp(26px, 4.417vw, 53px);
+      max-width: clamp(290px, 54.833vw, 658px);
+    }
   }
 
   .height_wrap {
@@ -21,6 +35,8 @@
     justify-content: space-between;
     flex-direction: column;
     // min-height: 100%;
+
+    padding-bottom: toRem(0);
   }
 
   .title_wrap {
@@ -37,4 +53,12 @@
   left: 0;
   bottom: 0;
   right: 0;
+
+  @include mobile {
+    background-position: 65% !important;
+    right: initial !important;
+    width: 100% !important;
+    left: initial !important;
+    //background-size: contain !important;
+  }
 }

@@ -7,6 +7,10 @@
   max-width: 100%;
   overflow: hidden;
 
+  @include  laptop {
+    padding: clamp(120px, 10.417vw, 125px) 0 clamp(120px, 16.667vw, 200px);
+  }
+
   .sub_title {
     color: $black;
   }
@@ -36,11 +40,34 @@
   .section_title {
     margin: 0;
   }
+
+  @include mobile {
+    margin-top: 43px;
+  }
+
+  .controls {
+    @include mobile {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+  }
 }
 
 .solutions_swiper_container {
-  margin-top: toRem(55);
-  width: 135%;
+  margin-top: toRem(45);
+
+  @include small-tablet {
+    margin-top: 60px;
+  }
+
+  @include for-tablet {
+    width: 135%;
+  }
+
+  @include mobile {
+    padding-bottom: 120px;
+  }
 }
 
 .swiper_item {
@@ -56,10 +83,19 @@
   padding-top: toRem(30);
   padding-left: toRem(55);
   padding-right: toRem(55);
-  height: 88%;
+  padding-bottom: toRem(32);
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-bottom: 2px solid #00A9EF;
+
+  @include tablet {
+    padding-top: 40px;
+    padding-right: clamp(25px, 4.583vw, 55px);
+    padding-left: clamp(25px, 4.583vw, 55px);
+    padding-bottom: clamp(22px, 4.167vw, 32px);
+  }
 }
 
 .swiper_item_title {
@@ -67,6 +103,10 @@
   font-size: toRem(28);
   font-weight: 600;
   line-height: 124%;
+
+  @include small-tablet {
+    font-size: clamp(22px, 2.333vw, 28px);
+  }
 }
 
 .swiper_item_link {

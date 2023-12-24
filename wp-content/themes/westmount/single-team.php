@@ -105,13 +105,13 @@
                                                         <a href="mailto:<?php echo esc_html($member['email']); ?>" class="info-link"><?php echo esc_html($member['email']); ?></a>
                                                         
                                                         <?php if (!empty($member['social_list'])): ?>
-                                                    
+                                                            <div class="team-single__info-links">
                                                                 <?php foreach ($member['social_list'] as $social): ?>
                                                                     <a class="social-link" href="<?php echo esc_url($social['link']); ?>">
                                                                         <img src="<?php echo esc_url($social['icon']); ?>" alt="Social Icon">
                                                                     </a>
                                                                 <?php endforeach; ?>
-                                        
+                                                            </div>
                                                         <?php endif; ?>
                                                     </div>
 

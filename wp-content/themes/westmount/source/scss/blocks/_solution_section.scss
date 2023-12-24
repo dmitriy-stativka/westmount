@@ -5,8 +5,16 @@
   background-color: #1f1f1f;
   position: relative;
 
+  @include laptop {
+    padding: clamp(45px, 7.5vw, 90px) 0 clamp(12-px, 15.667vw, 188px);
+  }
+
   &:first-of-type {
-    padding-top: calc(var(--header-height) + toRem(60));
+    padding-top: calc(var(--header-height) + toRem(90));
+
+    @include laptop {
+      padding-top: calc(var(--header-height) + clamp(45px, 7.5vw, 90px));
+    }
 
     .section-bg {
       top: toRem(120);
@@ -28,6 +36,6 @@
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: toRem(56);
+    gap: toRem(50);
   }
 }

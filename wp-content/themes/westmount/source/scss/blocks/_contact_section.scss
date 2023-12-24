@@ -6,7 +6,11 @@
 
 .contact-section {
   position: relative;
-  padding: toRem(80) 0 toRem(120);
+  padding: toRem(105) 0 toRem(130);
+
+  @include laptop {
+    padding: clamp(60px, 10.417vw, 105px) 0 clamp(115px, 10.833vw, 130px);
+  }
 
   &:before{
     pointer-events: none;
@@ -21,9 +25,14 @@
   }
 
   &:first-of-type {
-    padding-top: calc(var(--header-height) + toRem(80));
+    padding-top: calc(var(--header-height) + toRem(105));
     position: relative;
     overflow: hidden;
+
+    @include laptop {
+      padding-top: calc(var(--header-height) + clamp(60px, 10.417vw, 105px));
+
+    }
 
     .section-bg {
       background-repeat: repeat;
@@ -40,12 +49,26 @@
         grid-column: 1/-1;
       }
     }
+
+    @include small-tablet {
+      order: 9;
+    }
   }
 
   &__inner {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: toRem(60) toRem(85);
+    align-items: flex-end;
+
+    @include laptop {
+      gap: clamp(10px, 5vw, 60px) clamp(20px, 7.083vw, 85px);
+    }
+
+    @include small-tablet {
+      grid-template-columns: 100%;
+      row-gap: 50px;
+    }
   }
 
   &__list,
@@ -58,8 +81,30 @@
     gap: toRem(60) toRem(85);
     grid-template-columns: 2fr repeat(2, 1fr);
 
-    .contact-list__item:nth-of-type(2) {
-      margin-left: calc(toRem(85) /2);
+    @include small-tablet {
+      gap: clamp(20px, 3.333vw, 60px) 40px;
+      grid-template-columns: repeat(2, 1fr);
+
+
+      .contact-list__item {
+        &:first-of-type {
+          grid-column: 1/-1;
+        }
+      }
+    }
+
+    @include ios {
+      grid-template-columns: 100%;
+    }
+
+    @include for-small-tablet {
+      .contact-list__item:nth-of-type(2) {
+        margin-left: calc(toRem(85) /2);
+
+        @include laptop {
+          margin-left: calc(clamp(20px, 7.083vw, 85px) / 2);
+        }
+      }
     }
   }
 }

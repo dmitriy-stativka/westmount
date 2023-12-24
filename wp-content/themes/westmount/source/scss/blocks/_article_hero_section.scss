@@ -2,12 +2,24 @@
   background: linear-gradient(180deg, #23262C 0%, #434951 100%);
   position: relative;
   padding: calc(var(--header-height) + toRem(60)) 0 toRem(60);
-  min-height: toRem(669);
+  min-height: toRem(660);
   max-height: 100vh;
   display: flex;
   //
   &:first-of-type {
-    padding: calc(var(--header-height) + toRem(60)) 0 toRem(60);
+    padding: calc(var(--header-height) + toRem(105)) 0 toRem(60);
+
+    @include mobile {
+      padding: calc(var(--header-height) + toRem(40)) 0 toRem(36);
+    }
+
+  }
+
+  @include mobile {
+    min-height: toRem(568);
+    max-height: 100vh;
+
+    padding: calc(var(--header-height) + toRem(40)) 0 toRem(36);
   }
 
   .section-bg {
@@ -15,6 +27,10 @@
     opacity: 1;
     background-position: bottom right;
 
+    @include mobile {
+      background-position: bottom center;
+      background-size: 160%;
+    }
   }
 
   &__inner {

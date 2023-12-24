@@ -17,12 +17,32 @@
     font-weight: 400;
     line-height: 136%; /* 19.04px */
     text-transform: uppercase;
+
+    svg {
+      fill: currentColor;
+    }
+
+    @include laptop {
+      margin-bottom: clamp(40px, 6.667vw, 80px);
+    }
+
+    @include mobile {
+      font-size: 12px;
+    }
   }
 
   &__inner {
     display: grid;
-    gap: toRem(20) toRem(30);
+    gap: toRem(30) toRem(30);
     grid-template-columns: repeat(2, 1fr);
+
+    @include tablet {
+      gap: 30px 15px;
+    }
+
+    @include mobile {
+      grid-template-columns: 100%;
+    }
 
     .wpcf7-response-output {
       grid-column: 1/-1;
@@ -84,6 +104,11 @@
     background-color: rgba(var(--bg-a),1.0);
     position: relative;
     cursor: pointer;
+
+    @include ios {
+      max-width: 100%;
+      clip-path: polygon(0% 0%, 95% 0%, 100% 25%, 100% 100%, 0% 100%);
+    }
 
     input {
       z-index: 2;

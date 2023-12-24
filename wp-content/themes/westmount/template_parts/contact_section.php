@@ -16,7 +16,7 @@
                 <?php endif; ?>
 
                 <?php if ( $title = get_sub_field( 'title' ) ) : ?>
-                    <h2 class="main-top__title"> <?php echo esc_html( $title ); ?> </h2>
+                    <h2 class="main-top__title"> <?php echo $title ?> </h2>
                 <?php endif; ?>
 
                 <?php if ( $sub_title = get_sub_field( 'sub_title' ) ) : ?>

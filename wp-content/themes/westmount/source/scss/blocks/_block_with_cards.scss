@@ -2,9 +2,17 @@
   padding-top: toRem(100);
   background-color: $dark;
   padding-bottom: toRem(200);
+
+  @include laptop {
+    padding-top: 120px;
+    padding-bottom: clamp(120px, 16.667vw, 200px);
+  }
+
+  @include mobile {
+    background-size: 200% !important;
+    background-position: top center !important;
+  }
 }
-
-
 
 .section_title_max_w {
   max-width: 100%;
@@ -18,9 +26,19 @@
   position: relative;
   overflow: hidden;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  //grid-template-rows: 1fr 1fr;
   justify-items: stretch;
   gap: toRem(70) toRem(127);
+
+  @include laptop {
+    margin-top: clamp(30px, 7.5vw, 90px);
+    gap: clamp(20px, 5.833vw, 70px);
+  }
+
+  @include small-tablet {
+    gap: 20px;
+    grid-template-columns: 100%;
+  }
 }
 
 .section_home_card_item_wrap {
@@ -29,6 +47,13 @@
   //width: toRem(556);
   height: toRem(318);
   position: relative;
+
+  @include mobile {
+
+    & > svg {
+      display: none;
+    }
+  }
 
   .corner {
     position: absolute;
@@ -53,6 +78,10 @@
 
 .section_home_cards .action_btn {
   margin: toRem(60) auto 0;
+
+  @include mobile {
+    margin-top: 50px;
+  }
 }
 
 .section_home_card_item {
@@ -73,6 +102,13 @@
     top: toRem(38);
     left: toRem(32);
     position: absolute;
+
+    @include mobile {
+      font-size: 14px;
+      top: 18px;
+      left: 24px;
+      right: 24px;
+    }
   }
 }
 
@@ -95,6 +131,24 @@
   right: 0;
   width: 60%;
   height: 100%;
+
+  &:before {
+    inset: 0;
+    background-color: rgba(var(--bg-f),1.0);
+    position: absolute;
+    content: '';
+    clip-path: polygon(15vw 0, 70% 0, 15% 100%, -30% 100%)
+  }
+
+  @include mobile {
+    clip-path: polygon(72vw 0, 100% 0, 100% 100%, 15% 100%);
+
+    &:before {
+      clip-path: polygon(72vw 0, 72vw 0, 9vw 100%, 15% 100%);
+    }
+
+
+  }
 }
 
 .section_home_card_item_small_image {
