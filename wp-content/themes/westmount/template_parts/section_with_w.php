@@ -48,11 +48,15 @@
         </div>
 
         <div class="section_title_wrap">
-          <div class="section_title">
+
+          <div class="section_title" data-subtitle="<?php echo $middle_sub_title; ?>">
             <?php echo $title ?>
           </div>
           <div class="middle_sub_title">
-            <?php echo $middle_sub_title; ?>
+              <span class="middle_sub_title-hidden">
+                   <?php echo $middle_sub_title; ?>
+              </span>
+
             <div class="text_above_w">
               <?php echo $text_above_w; ?>
             </div>

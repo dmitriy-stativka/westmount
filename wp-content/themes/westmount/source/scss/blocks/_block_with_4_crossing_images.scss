@@ -111,6 +111,10 @@
   @include small-tablet {
     max-width: 100%;
   }
+
+  @include mobile {
+    letter-spacing: initial;
+  }
 }
 
 .section_sub_title {

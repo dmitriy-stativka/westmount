@@ -57,6 +57,11 @@
       background-size: 100% 100%;
     }
 
+    img {
+      width: toRem(20);
+      height: toRem(20);
+    }
+
 
     @include hover {
       z-index: 2;

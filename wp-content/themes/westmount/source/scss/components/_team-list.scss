@@ -44,12 +44,20 @@
     img {
       height: toRem(313);
 
+
+
       @include for-desktop {
         height: toRem(413);
       }
 
       @include mobile {
         height: 70.313vw;
+      }
+
+      @include for-full-hd {
+        height: initial;
+        width: 100%;
+        aspect-ratio: 1/1;
       }
     }
   }

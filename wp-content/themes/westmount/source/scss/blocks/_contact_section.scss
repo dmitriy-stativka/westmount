@@ -30,7 +30,7 @@
     overflow: hidden;
 
     @include laptop {
-      padding-top: calc(var(--header-height) + clamp(60px, 10.417vw, 105px));
+      padding-top: calc(var(--header-height) + clamp(45px, 10.417vw, 105px));
 
     }
 

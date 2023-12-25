@@ -77,6 +77,11 @@
   background: radial-gradient(59.53% 53.31% at 78.15% 42.3%, #29343A 15.62%, #1E1E1E 100%);
   position: relative;
   display: flex;
+
+  @include mobile {
+    height: 252px !important;
+    background: radial-gradient(59.53% 53.31% at left 50%, #29343A 15.62%, #1E1E1E 100%)
+  }
 }
 
 .swiper_item_block {

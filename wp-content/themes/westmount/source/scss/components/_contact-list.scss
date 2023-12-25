@@ -18,6 +18,33 @@
         font-size: clamp(18px, 2.167vw, 26px);
       }
     }
+
+    &:last-of-type {
+      @include mobile {
+        position: relative;
+        padding-bottom: toRem(14);
+
+        &:before {
+          bottom: 0;
+          left: 0;
+          width: 100vw;
+          height: toRem(1);
+          position: absolute;
+          content: '';
+          background-color: #555657;
+        }
+
+        &:after {
+          bottom: 0;
+          left: 0;
+          width: toRem(47);
+          height: toRem(1);
+          position: absolute;
+          content: '';
+          background-color:  rgba(var(--bg-f),1.0);
+        }
+      }
+    }
   }
 
   &__legend {

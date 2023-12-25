@@ -55,6 +55,9 @@
 
     svg {
       fill: currentColor;
+
+      width: toRem(11);
+      height: toRem(11);
     }
 
     @include mobile {

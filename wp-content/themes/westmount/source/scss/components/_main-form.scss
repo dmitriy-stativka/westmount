@@ -20,6 +20,8 @@
 
     svg {
       fill: currentColor;
+      width: toRem(11);
+      height: toRem(11);
     }
 
     @include laptop {
@@ -89,6 +91,7 @@
       position: absolute;
       bottom: 0;
       left: 0;
+      transform: translateY(calc(100% + 2px));
     }
   }
 
@@ -104,10 +107,16 @@
     background-color: rgba(var(--bg-a),1.0);
     position: relative;
     cursor: pointer;
+    clip-path: polygon(0% 0%, 93% 0%, 100% 25%, 100% 100%, 0% 100%);
 
     @include ios {
       max-width: 100%;
       clip-path: polygon(0% 0%, 95% 0%, 100% 25%, 100% 100%, 0% 100%);
+    }
+
+    svg {
+      width: toRem(14);
+      height: toRem(11);
     }
 
     input {

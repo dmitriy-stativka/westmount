@@ -2,9 +2,10 @@
   background: linear-gradient(180deg, #23262C 0%, #434951 100%);
   position: relative;
   padding: calc(var(--header-height) + toRem(60)) 0 toRem(60);
-  min-height: toRem(660);
-  max-height: 100vh;
+  height: toRem(660);
+  //max-height: 100vh;
   display: flex;
+  min-height: 100vh;
   //
   &:first-of-type {
     padding: calc(var(--header-height) + toRem(105)) 0 toRem(60);
@@ -28,8 +29,20 @@
     background-position: bottom right;
 
     @include mobile {
-      background-position: bottom center;
-      background-size: 160%;
+      background-position: top center;
+      background-size: 150%;
+
+
+      &:before {
+        width: 100%;
+        bottom: 0;
+        height: 100%;
+        position: absolute;
+        content: '';
+        opacity: .7;
+        //transform: scaleY(-1);
+        background: linear-gradient(180deg, rgba(35, 38, 44,1) 0%, rgba(67, 73, 81, 1) 100%);
+      }
     }
   }
 

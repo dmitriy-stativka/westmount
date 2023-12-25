@@ -111,6 +111,7 @@
 
 		img {
 			height: toRem(256);
+			width: toRem(445);
 
 			@include laptop {
 				height: clamp(174px, 21.333vw, 256px);
@@ -125,7 +126,7 @@
 
 	&__date {
 		display: flex;
-
+		gap: toRem(2);
 		align-items: flex-start;
 		color: rgba(var(--cl-c),1.0);
 		font-family: var(--font-family);
@@ -142,6 +143,10 @@
 			line-height: 240%;
 			text-transform: uppercase;
 			white-space: nowrap;
+
+			@include mobile {
+				line-height: 140%;
+			}
 		}
 
 		@include laptop {

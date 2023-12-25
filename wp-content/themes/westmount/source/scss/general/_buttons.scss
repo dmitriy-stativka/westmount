@@ -28,6 +28,11 @@
         justify-content: center;
         clip-path: polygon(0% 0%, 65% 0%, 100% 25%, 100% 100%, 0% 100%);
 
+        @include mobile {
+            clip-path: polygon(0% 0%, 75% 0%, 100% 25%, 100% 100%, 0% 100%);
+        }
+
+
         svg {
             fill: #fff;
         }
@@ -42,8 +47,9 @@
     @include mobile {
         width: 100%;
         max-width: 290px;
-        clip-path: polygon(0% 0%, 92% 0%, 100% 25%, 100% 100%, 0% 100%);
+        clip-path: polygon(0% 0%, 94.5% 0%, 100% 25%, 100% 100%, 0% 100%);
     }
+
 }
 
 .arrow-link {
@@ -121,6 +127,8 @@
 
     svg {
         fill: rgba(var(--cl-a),1.0);
+        width: toRem(14);
+        height: toRem(11);
     }
 
     &.blue {
@@ -143,15 +151,24 @@
     display: flex;
     align-items: center;
     gap: toRem(10);
+
+    svg {
+        width: toRem(14);
+        height: toRem(11);
+    }
 }
 
 .info-link {
     color: rgba(var(--cl-i),0.8);
     font-family:  var(--font-family);
-    font-size: toRem(14);
+
     font-style: normal;
     font-weight: 400;
     line-height: 100%;
+
+    @include  for-full-hd {
+        font-size: toRem(18);
+    }
 }
 
 .social-link {
@@ -166,6 +183,13 @@
     img {
         filter: grayscale(1) brightness(1000%);
     }
+
+    & > * {
+        width: toRem(20);
+        height: toRem(20);
+
+
+    }
 }
 
 .play-btn {
@@ -179,6 +203,13 @@
 
     svg {
         fill: rgba(var(--cl-e),1.0);
+        width: toRem(22);
+        height: toRem(22);
+
+        @include laptop {
+            width: clamp(9px, 1.667vw, 20px);
+            height: clamp(9px, 1.667vw, 20px);
+        }
     }
 
     &:hover {
