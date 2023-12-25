@@ -104,10 +104,20 @@
       justify-content: center;
       background-color: rgba(var(--bg-a),1.0);
       clip-path: var(--polly-button);
+      transition: all 300ms;
 
       img {
         max-width: toRem(20);
         filter: invert(1);
+        transition: all 300ms;
+      }
+
+      &:hover {
+        background: rgba(var(--bg-f),1.0);
+
+        img {
+          filter: invert(0);
+        }
       }
     }
   }
@@ -151,6 +161,11 @@
     a:not([class]) {
       color: rgba(var(--cl-f),1.0);
       font-size: toRem(14);
+      width: fit-content;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 

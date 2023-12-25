@@ -2173,6 +2173,8 @@ fieldset {
   clip-path: polygon(0% 0%, 90% 0%, 100% 25%, 100% 100%, 0% 100%);
   cursor: pointer;
   margin-top: 2.5rem;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
 }
 .action_btn:hover {
   background: rgba(var(--bg-f), 1);
@@ -2180,7 +2182,12 @@ fieldset {
 .action_btn:hover .action_btn_text {
   color: rgba(var(--cl-a), 1);
 }
+.action_btn:hover .square {
+  background: rgba(var(--bg-f), 1);
+}
 .action_btn .action_btn_text {
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
   color: #1b1b1b;
   font-weight: 400;
   font-size: 1rem;
@@ -2188,6 +2195,8 @@ fieldset {
   text-transform: uppercase;
 }
 .action_btn .square {
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
   width: 3.8125rem;
   height: 3.875rem;
   background: #1b1b1b;
@@ -2318,8 +2327,15 @@ fieldset {
   background-color: rgba(var(--bg-a), 0.1);
   -ms-flex-negative: 0;
   flex-shrink: 0;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+.article-link:hover {
+  background: rgba(var(--bg-f), 1);
 }
 .article-link svg {
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
   fill: rgba(var(--cl-a), 1);
   width: 0.875rem;
   height: 0.6875rem;
@@ -2364,6 +2380,9 @@ fieldset {
     font-size: 1.125rem;
   }
 }
+.info-link:hover {
+  text-decoration: underline;
+}
 
 .social-link {
   width: 2.6875rem;
@@ -2388,6 +2407,9 @@ fieldset {
 .social-link > * {
   width: 1.25rem;
   height: 1.25rem;
+}
+.social-link:hover {
+  background-color: rgba(var(--bg-e), 1);
 }
 
 .play-btn {
@@ -2732,6 +2754,8 @@ fieldset {
   cursor: pointer;
   -webkit-clip-path: polygon(0% 0%, 93% 0%, 100% 25%, 100% 100%, 0% 100%);
   clip-path: polygon(0% 0%, 93% 0%, 100% 25%, 100% 100%, 0% 100%);
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
 }
 @media (max-width: 415px) {
   .main-form__submit {
@@ -2740,11 +2764,22 @@ fieldset {
     clip-path: polygon(0% 0%, 95% 0%, 100% 25%, 100% 100%, 0% 100%);
   }
 }
+.main-form__submit:hover {
+  background-color: rgba(var(--bg-f), 1);
+}
+.main-form__submit:hover input {
+  color: rgba(var(--cl-a), 1);
+}
+.main-form__submit:hover .icon {
+  background-color: rgba(var(--bg-f), 1);
+}
 .main-form__submit svg {
   width: 0.875rem;
   height: 0.6875rem;
 }
 .main-form__submit input {
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
   z-index: 2;
   cursor: pointer;
   position: absolute;
@@ -2764,6 +2799,8 @@ fieldset {
   fill: rgba(var(--cl-a), 1);
 }
 .main-form__submit .icon {
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
   -webkit-clip-path: polygon(0% 0%, 75% 0%, 100% 25%, 100% 100%, 0% 100%);
   clip-path: polygon(0% 0%, 75% 0%, 100% 25%, 100% 100%, 0% 100%);
   margin-left: auto;
@@ -2833,6 +2870,11 @@ fieldset {
   font-style: normal;
   font-weight: 400;
   line-height: 170%;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+.footer-nav__item ul a:hover {
+  color: rgba(var(--cl-f), 1);
 }
 .footer-nav__title {
   display: -webkit-box;
@@ -3070,7 +3112,13 @@ fieldset {
   width: -moz-fit-content;
   width: fit-content;
   position: relative;
+  background-color: rgba(var(--bg-f), 0);
   overflow: hidden;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+.footer-social__item:hover {
+  background-color: rgba(var(--bg-f), 1);
 }
 .footer-social__item:nth-child(odd) {
   margin-right: calc(3.125rem * -1);
@@ -3150,11 +3198,16 @@ fieldset {
   font-style: normal;
   font-weight: 300;
   line-height: 100%; /* 33.28px */
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
 }
 @media (max-width: 1200px) {
   .contact-list__item a {
     font-size: clamp(18px, 2.167vw, 26px);
   }
+}
+.contact-list__item a:hover {
+  color: rgba(var(--cl-f), 1);
 }
 @media (max-width: 576px) {
   .contact-list__item:last-of-type {
@@ -3335,11 +3388,22 @@ fieldset {
   background-color: rgba(var(--bg-a), 1);
   -webkit-clip-path: var(--polly-button);
   clip-path: var(--polly-button);
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
 }
 .team-card__links a img {
   max-width: 1.25rem;
   -webkit-filter: invert(1);
   filter: invert(1);
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+}
+.team-card__links a:hover {
+  background: rgba(var(--bg-f), 1);
+}
+.team-card__links a:hover img {
+  -webkit-filter: invert(0);
+  filter: invert(0);
 }
 .team-card__bottom {
   display: grid;
@@ -3381,6 +3445,12 @@ fieldset {
 .team-card__bottom a:not([class]) {
   color: rgba(var(--cl-f), 1);
   font-size: 0.875rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.team-card__bottom a:not([class]):hover {
+  text-decoration: underline;
 }
 .team-card__name {
   font-size: 1.375rem;

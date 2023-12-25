@@ -13,9 +13,14 @@
       font-style: normal;
       font-weight: 300;
       line-height: 100%; /* 33.28px */
+      transition: all 300ms;
 
       @include laptop {
         font-size: clamp(18px, 2.167vw, 26px);
+      }
+
+      &:hover {
+        color: rgba(var(--cl-f),1.0);
       }
     }
 
