@@ -17,6 +17,12 @@
 				margin-right: -15px;
 			}
 		}
+
+		@include ios {
+			.main-top__title {
+				max-width: 70%;
+			}
+		}
 	}
 
 	.video-box {
@@ -30,7 +36,7 @@
 
 		img {
 			width: 100%;
-			max-height: 640px;
+			max-height: toRem(639);
 		}
 
 		&__play {

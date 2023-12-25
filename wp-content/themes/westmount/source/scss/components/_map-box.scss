@@ -20,6 +20,8 @@
     display: flex;
     grid-column: 1/-1;
     position: relative;
+    //background-color: red;
+    clip-path: polygon(0% 0%, 92% 0%, 100% 12%, 100% 100%, 0% 100%);
 
     @include gradient-corner(toRem(56));
   }

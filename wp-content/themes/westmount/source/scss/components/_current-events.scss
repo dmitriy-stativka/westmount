@@ -15,8 +15,12 @@
 		height: 100%;
 		width: 100%;
 
-		@include  for-laptop {
+		@include for-laptop {
 			max-height: toRem(429);
+		}
+
+		@include for-full-hd {
+			max-height: initial;
 		}
 	}
 

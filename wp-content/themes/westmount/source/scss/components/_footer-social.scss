@@ -8,8 +8,13 @@
   &__item {
     width: fit-content;
     position: relative;
-    //background-color: red;
+    background-color: rgba(var(--bg-f),0);
     overflow: hidden;
+    transition: all 300ms;
+
+    &:hover {
+      background-color: rgba(var(--bg-f),1.0);
+    }
 
 
     &:nth-child(odd) {
@@ -55,6 +60,11 @@
       display: block;
       background-image: var(--social-border);
       background-size: 100% 100%;
+    }
+
+    img {
+      width: toRem(20);
+      height: toRem(20);
     }
 
 

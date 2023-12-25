@@ -371,18 +371,12 @@ add_action('wp_ajax_filter_events', 'filter_events_callback');
 add_action('wp_ajax_nopriv_filter_events', 'filter_events_callback');
 
 
-
+// Custom Menu Start
 
 function register_my_menu() {
     register_nav_menu('custom-menu',__( 'Custom Menu' ));
 }
 add_action( 'init', 'register_my_menu' );
-
-
-
-
-
-
 
 
 class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
@@ -404,7 +398,7 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
         if ($depth == 0) {
             $this->current_item = $item;
-            $data_trigger = get_field('data-trigger', $item);  // Получаем значение поля data-trigger
+            $data_trigger = get_field('data-trigger', $item); 
             $output .= '<li' . $this->get_item_attributes($item) . ($data_trigger ? ' data-trigger="' . esc_attr($data_trigger) . '"' : '') . '>';
             $output .= $this->get_item_link($item);
             $output .= '</li>';
@@ -444,7 +438,7 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
         $output = '<ul class="main-menu">';
         foreach ($this->sorted_menu_items as $item) {
             if ($item->menu_item_parent == 0) {
-                $data_trigger = get_field('data-trigger', $item); // Добавление data-trigger
+                $data_trigger = get_field('data-trigger', $item);
                 $output .= '<li' . $this->get_item_attributes($item) . ($data_trigger ? ' data-trigger="' . esc_attr($data_trigger) . '"' : '') . '>';
                 $output .= '<a href="' . esc_url($item->url) . '">' . esc_html($item->title) . '</a>';
                 $output .= '</li>';
@@ -459,7 +453,7 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
         $output .= '<div class="custom-menu__nav-inner">';
         foreach ($this->sub_menu_items as $parent_id => $sub_items) {
             $parent_item = $this->sorted_menu_items[array_search($parent_id, array_column($this->sorted_menu_items, 'ID'))];
-            $parent_data_trigger = get_field('data-trigger', get_post($parent_id)); // Получение data-trigger для родительского элемента
+            $parent_data_trigger = get_field('data-trigger', get_post($parent_id));
             $parent_url = $parent_item->url;
             $output .= '<div data-menu="' . esc_attr($parent_data_trigger) . '" class="current-submenu">';
             $output .= '<div class="current-submenu__nav">';
@@ -493,22 +487,6 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
         
         return $output;
     }
-
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
 }
 
 
@@ -518,3 +496,5 @@ function print_custom_menu() {
     $walker->sorted_menu_items = wp_get_nav_menu_items($menu->term_id);
     echo $walker->display_custom_nav();
 }
+
+// Custom Menu End

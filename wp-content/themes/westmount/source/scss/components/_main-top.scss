@@ -71,6 +71,8 @@
 
     svg {
       fill: rgba(var(--cl-a),1.0);
+      width: toRem(11);
+      height: toRem(11);
     }
 
     @include small-tablet {

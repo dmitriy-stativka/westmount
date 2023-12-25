@@ -1,6 +1,6 @@
 .section_home_surety {
   padding-top: toRem(45);
-  padding-bottom: toRem(45);
+  padding-bottom: toRem(60);
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -14,6 +14,12 @@
     min-height: 450px !important;
   }
 
+  .mt_action_btn {
+    @include for-full-hd {
+      margin-bottom: 0;
+    }
+  }
+
   .section_home_surety_title {
     color: $grey;
     font-size: toRem(53);
@@ -25,7 +31,7 @@
     flex-direction: column;
 
     @include small-tablet {
-      font-size: clamp(26px, 4.417vw, 53px);
+      font-size: clamp(30px, 4.417vw, 53px);
       max-width: clamp(290px, 54.833vw, 658px);
     }
   }
@@ -37,6 +43,10 @@
     // min-height: 100%;
 
     padding-bottom: toRem(0);
+
+    @include for-full-hd {
+      gap: 12vw;
+    }
   }
 
   .title_wrap {
@@ -60,5 +70,16 @@
     width: 100% !important;
     left: initial !important;
     //background-size: contain !important;
+  }
+}
+
+.section_home_team + .section_home_surety,
+.team-section + .section_home_surety {
+  .section_home_surety_bg_image {
+    @include mobile {
+      background-position: left center !important;
+      background-size: contain !important;
+      min-height: 100% !important;
+    }
   }
 }

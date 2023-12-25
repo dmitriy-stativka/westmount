@@ -24,6 +24,14 @@
       //fill: transparent;
       //stroke: rgba(var(--bg-f),1.0);
       transition: transform .4s linear;
+
+      width: toRem(5);
+      height: toRem(11);
+
+      @include  mobile {
+        width: toRem(10);
+        height: toRem(22);
+      }
     }
   }
 
@@ -37,10 +45,14 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    font-size: 16px;
+    font-size: toRem( 16);
     font-family: var(--font-family);
     line-height: 24px;
     color: rgba(var(--cl-b),1.0);
+
+    @include  mobile {
+      justify-content: flex-end;
+    }
 
     svg {
       width: 24px;
@@ -73,7 +85,7 @@
   &__list {
     // border: 1px solid var(--br-a);
     overflow-y: auto;
-    max-height: 200px;
+    max-height: toRem(200);
     height: fit-content;
     margin-right: 8px;
 
@@ -94,7 +106,7 @@
 
   &__option {
     display: flex;
-    padding: 10px;
+    padding: toRem(10);
     align-items: center;
     grid-gap: 5px;
     width: 100%;
@@ -102,7 +114,7 @@
     // transition: all 0.2s ease;
 
     color: rgba(var(--cl-a),1.0);
-    font-size: 14px;
+    font-size: toRem(14);
     font-family: var(--font-family);
     line-height: 100%;
 
