@@ -10,7 +10,7 @@ echo $build_folder ?>/img/bg_menu.png');">
     <div class="container">
         <div class="custom-menu__inner">
             <div class="custom-menu__top">
-                <a href="#" class="custom-menu__logo">
+                <a href="/" class="custom-menu__logo">
                     <img width="221" height="31" src="<?php
 					echo $logo["sizes"]['1440'] ?>" alt="logo"/>
                 </a>
@@ -24,66 +24,114 @@ echo $build_folder ?>/img/bg_menu.png');">
             </div>
 
             <div class="custom-menu__content">
-                <span class="events-label">
-                    <svg width="11" height="11">
-                        <use href="<?php
-                        echo $build_folder ?>img/sprite/sprite.svg#label_icon"></use>
-                    </svg>
-                    Westmount West
-                </span>
 
-                <h3 class="custom-menu__title">
-                    New Name, <br> Familiar Faces.
-                </h3>
+                <?php if ( $pre_title = get_field( 'pre_title', 'options' ) ) : ?>
+                    <span class="events-label">
+                        <svg width="11" height="11">
+                            <use href="<?php
+                            echo $build_folder ?>img/sprite/sprite.svg#label_icon"></use>
+                        </svg>
+                        <?php echo esc_html( $pre_title ); ?>
+                    </span>
+                <?php endif; ?>
 
-                <p class="custom-menu__text">
-                    Westmount Guarantee Services Inc., a member of the Navacord group of companies, is pleased to
-                    announce the opening of Westmount West Services Inc., their Vancouver-based Managing General Agency
-                    (MGA).
-                    <br><br>
-                    Tom Reeves, President of Westmount West, will continue to lead the established team of experts who
-                    have been providing surety solutions to builders and developers across Western Canada since 2005.
-                </p>
+                <?php if ( $title = get_field( 'title', 'options' ) ) : ?>
+                    <h3 class="custom-menu__title"><?php echo esc_html( $title ); ?> </h3>
+                <?php endif; ?>
+                
+                <?php if ( $description = get_field( 'description', 'options' ) ) : ?>
+                    <div class="custom-menu__text"><?php echo $description; ?></div>
+                <?php endif; ?>
 
-                <div class="action_btn">
-                    <div class="action_btn_text">Learn more</div>
-                    <div class="square">
-                        <img src="<?php
-						echo $build_folder ?>/img/arrow_btn.svg" alt="arrow"/>
-                    </div>
-                </div>
+                <?php
+                    $link = get_field( 'cta', 'options' );
+                    if ( $link ) :
+                        $link_url = $link['url'];
+                        $link_title = $link['title'];
+                        $link_target = $link['target'] ? $link['target'] : '_self';
+                        ?>
+                        <a class="action_btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+                            <div class="action_btn_text"><?php echo esc_html( $link_title ); ?></div>
+                            <div class="square">
+                                <img src="<?php
+                                echo $build_folder ?>/img/arrow_btn.svg" alt="arrow"/>
+                            </div>
+                        </a>
+                    <?php endif; ?>
+
+
+
+              
 
                 <div class="custom-menu__content-bottom">
 
                     <ul class="social">
                         <li>
-                            <a href="#">
-                                <img src="<?php
-		                        echo $build_folder ?>img/inlogo.svg" alt="logo in"/>
+                            <a href="<?php echo get_field( 'linkedin_link', 'options' )['url'];?>">
+                                <img src="<?php echo esc_url( get_field( 'linkedin_logo', 'options' ) ); ?>" alt="logo in"/>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <img src="<?php
-		                        echo $build_folder ?>img/instlogo.svg" alt="logo instagram"/>
+                            <a href="<?php echo get_field( 'instagram_link', 'options' )['url'];?>">
+                                <img src="<?php echo esc_url( get_field( 'instagram_logo', 'options' ) ); ?>" alt="logo instagram"/>
                             </a>
                         </li>
                     </ul>
 
+
                     <ul class="contacts">
-                        <li>
-                            <a href="tel:647-499-8249">647-499-8249</a>
-                        </li>
-                        <li>
-                            <a href="mailto:info@westmontguarantee.com">
-                                info@westmontguarantee.com
-                            </a>
-                        </li>
+                        <?php if ( $tel = get_field( 'tel', 'options' ) ) : ?>
+                            <li>
+                                <a href="tel:<?php echo esc_html( $tel ); ?>"><?php echo esc_html( $tel ); ?></a>
+                            </li>
+                        <?php endif; ?>
+                        
+                        <?php if ( $email = get_field( 'email', 'options' ) ) : ?>
+                            <li>
+                                <a href="mailto:<?php echo esc_html( $email ); ?>">
+                                    <?php echo esc_html( $email ); ?>
+                                </a>
+                            </li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
 
+
+
+
+            
+<!-- 
+            
             <nav class="custom-menu__nav">
+
+              <ul class="main-menu">
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">Our Company</a>
+                    </li>
+                    <li>
+                        <a href="#">Our Team</a>
+                    </li>
+                    <li data-trigger="solutions">
+                        <a href="#">Solutions</a>
+                    </li>
+                    <li data-trigger="solutions2">
+                        <a href="#">Westmount West</a>
+                    </li>
+                    <li data-trigger="solutions3">
+                        <a href="#">Affiliated Companies</a>
+                    </li>
+                    <li>
+                        <a href="#">Events</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact Us</a>
+                    </li>
+                </ul>
+                
                 <div class="custom-menu__nav-inner">
                     <div data-menu="solutions" class="current-submenu">
                         <div class="current-submenu__nav">
@@ -216,33 +264,18 @@ echo $build_folder ?>/img/bg_menu.png');">
                         </ul>
                     </div>
                 </div>
-                <ul>
-                    <li>
-                        <a href="#">Home</a>
-                    </li>
-                    <li>
-                        <a href="#">Our Company</a>
-                    </li>
-                    <li>
-                        <a href="#">Our Team</a>
-                    </li>
-                    <li data-trigger="solutions">
-                        <a href="#">Solutions</a>
-                    </li>
-                    <li data-trigger="solutions2">
-                        <a href="#">Westmount West</a>
-                    </li>
-                    <li data-trigger="solutions3">
-                        <a href="#">Affiliated Companies</a>
-                    </li>
-                    <li>
-                        <a href="#">Events</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact Us</a>
-                    </li>
-                </ul>
+              
+            </nav> -->
+
+            <nav class="custom-menu__nav">
+                <?php print_custom_menu(); ?>
             </nav>
+
+
+
+
+
+
         </div>
     </div>
 </div>

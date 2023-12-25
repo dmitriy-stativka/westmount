@@ -195,32 +195,6 @@
     }
 }
 
-.border-link {
-    width: toRem(38);
-    height: toRem(38);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(var(--cl-d),1.0);
-    clip-path: var(--polly-button);
-    color: rgba(var(--cl-a),1.0);
-    position: relative;
-
-    &:before {
-        pointer-events: none;
-        clip-path: inherit;
-        inset: toRem(1.2);
-        position: absolute;
-        content: '';
-        background-color: currentColor;
-    }
-
-    & > * {
-        position: relative;
-        z-index: 10;
-    }
-}
-
 
 .back-btn {
     width: 40px;

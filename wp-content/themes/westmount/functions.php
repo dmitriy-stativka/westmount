@@ -369,3 +369,152 @@ function filter_events_callback() {
 
 add_action('wp_ajax_filter_events', 'filter_events_callback');
 add_action('wp_ajax_nopriv_filter_events', 'filter_events_callback');
+
+
+
+
+function register_my_menu() {
+    register_nav_menu('custom-menu',__( 'Custom Menu' ));
+}
+add_action( 'init', 'register_my_menu' );
+
+
+
+
+
+
+
+
+class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
+    private $sub_menu_items = array();
+
+    function start_lvl(&$output, $depth = 0, $args = array()) {
+        if ($depth == 0) {
+            ob_start();
+        }
+    }
+
+    function end_lvl(&$output, $depth = 0, $args = array()) {
+        if ($depth == 0) {
+            $sub_menu = ob_get_clean();
+            $this->sub_menu_items[$this->current_item->ID] = $sub_menu;
+        }
+    }
+
+    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+        if ($depth == 0) {
+            $this->current_item = $item;
+            $data_trigger = get_field('data-trigger', $item);  // Получаем значение поля data-trigger
+            $output .= '<li' . $this->get_item_attributes($item) . ($data_trigger ? ' data-trigger="' . esc_attr($data_trigger) . '"' : '') . '>';
+            $output .= $this->get_item_link($item);
+            $output .= '</li>';
+        }
+    }
+
+    function end_el(&$output, $item, $depth = 0, $args = array()) {
+        if ($depth > 0) {
+            $output .= '</li>';
+        }
+    }
+
+    private function get_item_attributes($item) {
+        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($item->classes), $item));
+        return $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+    }
+
+    private function get_item_link($item) {
+        $atts = array(
+            'title'  => !empty($item->attr_title) ? $item->attr_title : '',
+            'target' => !empty($item->target) ? $item->target : '',
+            'rel'    => !empty($item->xfn) ? $item->xfn : '',
+            'href'   => !empty($item->url) ? $item->url : ''
+        );
+
+        $attributes = '';
+        foreach ($atts as $attr => $value) {
+            if (!empty($value)) {
+                $attributes .= ' ' . $attr . '="' . esc_attr($value) . '"';
+            }
+        }
+
+        return '<a' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</a>';
+    }
+
+    public function display_custom_nav() {
+        $output = '<ul class="main-menu">';
+        foreach ($this->sorted_menu_items as $item) {
+            if ($item->menu_item_parent == 0) {
+                $data_trigger = get_field('data-trigger', $item); // Добавление data-trigger
+                $output .= '<li' . $this->get_item_attributes($item) . ($data_trigger ? ' data-trigger="' . esc_attr($data_trigger) . '"' : '') . '>';
+                $output .= '<a href="' . esc_url($item->url) . '">' . esc_html($item->title) . '</a>';
+                $output .= '</li>';
+            } else {
+                $this->sub_menu_items[$item->menu_item_parent][] = $item;
+            }
+        }
+        $output .= '</ul>';
+        
+        $build_folder = get_template_directory_uri() . '/assets/';
+        
+        $output .= '<div class="custom-menu__nav-inner">';
+        foreach ($this->sub_menu_items as $parent_id => $sub_items) {
+            $parent_item = $this->sorted_menu_items[array_search($parent_id, array_column($this->sorted_menu_items, 'ID'))];
+            $parent_data_trigger = get_field('data-trigger', get_post($parent_id)); // Получение data-trigger для родительского элемента
+            $parent_url = $parent_item->url;
+            $output .= '<div data-menu="' . esc_attr($parent_data_trigger) . '" class="current-submenu">';
+            $output .= '<div class="current-submenu__nav">';
+            $output .= '<button class="back-btn">';
+            $output .= '<svg width="13" height="11">';
+            $output .= '<use href="' . $build_folder . 'img/sprite/sprite.svg#arrow-l"></use>';
+            $output .= '</svg>';
+            $output .= '</button>';
+            $output .= '<a href="' . esc_url($parent_url) . '" class="current-submenu__title">';
+            $output .= esc_html($parent_item->title);
+            $output .= '<svg width="13" height="11">';
+            $output .= '<use href="' . $build_folder . 'img/sprite/sprite.svg#arrow-r"></use>';
+            $output .= '</svg>';
+            $output .= '</a>';
+            $output .= '</div>';
+            $output .= '<ul>';
+            
+            foreach ($sub_items as $sub_item) {
+                $data_descr = get_field('data-descr', $sub_item); 
+                $output .= '<li' . $this->get_item_attributes($sub_item) . '>';
+                $output .= '<a href="' . esc_url($sub_item->url) . '"';
+                if ($data_descr) {
+                    $output .= ' data-descr="' . esc_attr($data_descr) . '"';
+                }
+                $output .= '>' . esc_html($sub_item->title) . '</a>';
+                $output .= '</li>';
+            }
+            $output .= '</ul></div>';
+        }
+        $output .= '</div>'; 
+        
+        return $output;
+    }
+
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+}
+
+
+function print_custom_menu() {
+    $walker = new Custom_Walker_Nav_Menu();
+    $menu = wp_get_nav_menu_object(get_nav_menu_locations()['custom-menu']);
+    $walker->sorted_menu_items = wp_get_nav_menu_items($menu->term_id);
+    echo $walker->display_custom_nav();
+}
