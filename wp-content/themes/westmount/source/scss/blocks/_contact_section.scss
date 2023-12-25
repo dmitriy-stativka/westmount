@@ -8,6 +8,40 @@
   position: relative;
   padding: toRem(105) 0 toRem(130);
 
+  &.error {
+    min-height: toRem(600);
+    height: calc(100vh - var(--header-height) );
+    padding: calc(var(--header-height) + toRem(45)) 0 toRem(90);
+    display: flex;
+    align-items: center;
+  }
+
+  &__error {
+
+    .main-top {
+      align-items: center;
+
+      &__title {
+        font-size: toRem(250);
+        line-height: toRem(250);
+        font-weight: bold;
+
+        @include laptop {
+          font-size: clamp(135px, 20.833vw, 250px);
+          line-height: clamp(135px, 20.833vw, 250px);
+        }
+      }
+
+      &__subtitle {
+        font-size: toRem(30);
+      }
+
+      @include small-tablet {
+        gap: 20px;
+      }
+    }
+  }
+
   @include laptop {
     padding: clamp(60px, 10.417vw, 105px) 0 clamp(115px, 10.833vw, 130px);
   }

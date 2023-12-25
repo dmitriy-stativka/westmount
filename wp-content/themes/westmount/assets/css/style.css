@@ -2174,6 +2174,12 @@ fieldset {
   cursor: pointer;
   margin-top: 2.5rem;
 }
+.action_btn:hover {
+  background: rgba(var(--bg-f), 1);
+}
+.action_btn:hover .action_btn_text {
+  color: rgba(var(--cl-a), 1);
+}
 .action_btn .action_btn_text {
   color: #1b1b1b;
   font-weight: 400;
@@ -2205,6 +2211,8 @@ fieldset {
 }
 .action_btn .square svg {
   fill: #fff;
+  width: 0.875rem;
+  height: 0.6875rem;
 }
 .action_btn .square img {
   display: block;
@@ -4800,6 +4808,7 @@ header.fixed {
   transition: 0.5s all ease-in-out;
   text-transform: uppercase;
   display: flex;
+  cursor: pointer;
 }
 
 .contact_us {
@@ -6112,6 +6121,41 @@ header.fixed {
   position: relative;
   padding: 6.5625rem 0 8.125rem;
 }
+.contact-section.error {
+  min-height: 37.5rem;
+  height: calc(100vh - var(--header-height));
+  padding: calc(var(--header-height) + 2.8125rem) 0 5.625rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.contact-section__error .main-top {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.contact-section__error .main-top__title {
+  font-size: 15.625rem;
+  line-height: 15.625rem;
+  font-weight: bold;
+}
+@media (max-width: 1200px) {
+  .contact-section__error .main-top__title {
+    font-size: clamp(135px, 20.833vw, 250px);
+    line-height: clamp(135px, 20.833vw, 250px);
+  }
+}
+.contact-section__error .main-top__subtitle {
+  font-size: 1.875rem;
+}
+@media (max-width: 767px) {
+  .contact-section__error .main-top {
+    gap: 20px;
+  }
+}
 @media (max-width: 1200px) {
   .contact-section {
     padding: clamp(60px, 10.417vw, 105px) 0 clamp(115px, 10.833vw, 130px);
@@ -6211,11 +6255,11 @@ header.fixed {
   background: linear-gradient(180deg, #23262C 0%, #434951 100%);
   position: relative;
   padding: calc(var(--header-height) + 3.75rem) 0 3.75rem;
-  height: 41.25rem;
+  min-height: 41.25rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
 }
 .article-hero:first-of-type {
   padding: calc(var(--header-height) + 6.5625rem) 0 3.75rem;
@@ -6228,7 +6272,6 @@ header.fixed {
 @media (max-width: 576px) {
   .article-hero {
     min-height: 35.5rem;
-    max-height: 100vh;
     padding: calc(var(--header-height) + 2.5rem) 0 2.25rem;
   }
 }

@@ -11,6 +11,14 @@
     cursor: pointer;
     margin-top: toRem(40);
 
+    &:hover {
+        background: rgba(var(--bg-f),1.0);
+
+        .action_btn_text {
+            color: rgba(var(--cl-a),1.0);
+        }
+    }
+
     .action_btn_text {
         color: $dark;
         font-weight: 400;
@@ -35,6 +43,8 @@
 
         svg {
             fill: #fff;
+            width: toRem(14);
+            height: toRem(11);
         }
 
         img {
