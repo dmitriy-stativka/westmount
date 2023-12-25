@@ -151,7 +151,10 @@
 		font-style: normal;
 		font-weight: 300;
 		line-height: 176%;
-		margin-bottom: toRem(30);
+
+		p{
+			margin-bottom: toRem(30);
+		}
 	}
 
 	.action_btn {
@@ -187,6 +190,7 @@
 			text-align: right;
 			position: relative;
 			z-index: 10;
+			order: 2;
 
 			@include tablet {
 				align-items: flex-start;
@@ -261,6 +265,7 @@
 		&-inner {
 			position: relative;
 			z-index: 1;
+			order: 1;
 
 			@include tablet {
 				grid-column: 1;

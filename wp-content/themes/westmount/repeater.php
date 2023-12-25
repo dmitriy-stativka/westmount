@@ -86,11 +86,11 @@ if( have_rows('blocks_repeater', $page_id) ):
 
 	    endif;
 
-	    if( get_row_layout() == 'single_events' ):
+	    // if( get_row_layout() == 'single_events' ):
 
-		    include get_template_directory() . '/template_parts/single_events.php';
+		  //   include get_template_directory() . '/template_parts/single_events.php';
 
-	    endif;
+	    // endif;
 
         // if( get_row_layout() == 'block_service_two' ):
 

@@ -213,7 +213,7 @@
 		width: fit-content;
 
 		display: flex;
-		align-items: flex-end;
+		align-items: center;
 		gap: toRem(25);
 
 		@include for-mobile {

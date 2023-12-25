@@ -157,4 +157,9 @@
   position: absolute;
   left: 7%;
   bottom: 15%;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
 }

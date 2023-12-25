@@ -16,6 +16,22 @@
     @include small-tablet {
       margin: 0;
     }
+
+    @include mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+
+      &:before {
+        content: attr(data-subtitle);
+        font-family: var(--font-family);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 158%; /* 22.12px */
+        letter-spacing: initial;
+      }
+    }
   }
   
   .section_top_title {
@@ -48,6 +64,12 @@
     top: initial;
     bottom: -5%;
   }
+
+  @include mobile {
+    height: clamp(390px, 63.25vw, 759px);
+    width: 90%;
+    bottom: 5%;
+  }
 }
 
 .section_title_wrap {
@@ -77,6 +99,12 @@
   font-size: toRem(14);
   margin-top: toRem(20);
   line-height: 158%;
+
+  &-hidden {
+    @include mobile {
+      display: none;
+    }
+  }
 
   @include for-laptop {
     position: relative;

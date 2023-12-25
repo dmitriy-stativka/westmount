@@ -143,7 +143,7 @@ function initMobileMenu() {
 
 	backBtn.forEach(btn => {
 		btn.addEventListener('click', function (){
-			const currentList = customMenuNavInner.nextElementSibling;
+			const currentList = customMenuNavInner.previousElementSibling;
 			allMenus.forEach(item => {
 				fadeOut(item,0);
 			})

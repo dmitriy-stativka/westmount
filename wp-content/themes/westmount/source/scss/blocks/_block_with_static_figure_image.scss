@@ -39,6 +39,7 @@
 
   @include mobile {
     margin-top: 40px;
+    clip-path: polygon(15% 0%, 100% 0, 100% 85%, 85% 100%, 0 100%, 0% 15%)
   }
 
   .corner {

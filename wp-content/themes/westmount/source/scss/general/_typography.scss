@@ -13,4 +13,9 @@
 	@include laptop {
 		font-size: clamp(12px, 1.167vw, 14px);
 	}
+
+	svg {
+		width: toRem(11);
+		height: toRem(11);
+	}
 }

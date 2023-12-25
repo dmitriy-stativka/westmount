@@ -12,8 +12,7 @@
                 $color_bg2 = $slide['color_background_end'];
                 $img1 = $slide['background_image_top'];
                 $img2 = $slide['background_image_bottom'];
-        
-              ?>
+                ?>
 
                 <?php if(!get_sub_field('hide_slide', $page_id)): ?> 
 
@@ -37,11 +36,7 @@
 
                                 <?php if($title): ?> 
 
-                                  <h2 class="h2hero">
-<!--                                    <span class="quot_left">"</span>-->
-                                      &nbsp;&nbsp;<?php echo $title; ?>
-<!--                                    <span class="quot_right">"</span>-->
-                                  </h2>
+                                  <h2 class="h2hero"><?php echo $title; ?></h2>
 
                                 <?php endif; ?>
 
