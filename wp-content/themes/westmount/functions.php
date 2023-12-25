@@ -228,7 +228,7 @@ class Footer_Menu_Walker extends Walker_Nav_Menu {
 }
 
 
-function custom_post_type() {
+function events() {
     $labels = array(
         'name'               => 'Events',
         'singular_name'      => 'Events',
@@ -249,11 +249,123 @@ function custom_post_type() {
         'has_archive'         => true,
         'publicly_queryable'  => true,
         'menu_icon'           => 'dashicons-book',
-        'rewrite'             => array('slug' => 'custom-post-type'),
+        'rewrite'             => array('slug' => 'events-posts'),
         'supports'            => array('title', 'editor', 'thumbnail', 'custom-fields'),
     );
 
-    register_post_type('custom_post_type', $args);
+    register_post_type('events', $args);
 }
 
-add_action('init', 'custom_post_type');
+add_action('init', 'events');
+
+
+
+function events_taxonomy() {
+    $labels = array(
+        'name'              => 'Event Types',
+        'singular_name'     => 'Event Type',
+        'search_items'      => 'Search Event Types',
+        'all_items'         => 'All Event Types',
+        'parent_item'       => 'Parent Event Type',
+        'parent_item_colon' => 'Parent Event Type:',
+        'edit_item'         => 'Edit Event Type', 
+        'update_item'       => 'Update Event Type',
+        'add_new_item'      => 'Add New Event Type',
+        'new_item_name'     => 'New Event Type Name',
+        'menu_name'         => 'Event Types',
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array('slug' => 'event-type'),
+    );
+
+    register_taxonomy('event_type', array('events'), $args);
+}
+
+add_action('init', 'events_taxonomy');
+
+
+function add_ajax_scripts() {
+    wp_enqueue_script('my-ajax-handle', get_template_directory_uri() . '/ajax-filter.js', array());
+    wp_localize_script('my-ajax-handle', 'my_ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+}
+add_action('wp_enqueue_scripts', 'add_ajax_scripts');
+
+
+function filter_events_callback() {
+    $term_id = isset($_POST['term_id']) ? intval($_POST['term_id']) : '';
+
+    $args = array(
+        'post_type' => 'events',
+        'posts_per_page' => -1,
+        'orderby' => 'date',
+        'order' => 'DESC'
+    );
+
+    if ($term_id != 'all') {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'event_type',
+                'field' => 'term_id',
+                'terms' => $term_id
+            )
+        );
+    }
+
+    $query = new WP_Query($args);
+
+    echo '<ul class="events-box__list">';
+    while ($query->have_posts()): $query->the_post(); ?>
+        <li class="events-box__item">
+            <div class="event-card">
+                <div class="event-card__coll">
+                    <?php 
+                        $acf_date = get_field('date');
+                        $date = DateTime::createFromFormat('d/m/Y', $acf_date);
+                        $formatted_date = $date->format('d') . ' <i>' . $date->format('F Y') . '</i>';
+                        echo '<span class="current-events__date">' . $formatted_date . '</span>';
+                    ?>
+
+                    <div class="event-card__image">
+                        <?php if (has_post_thumbnail()): ?>
+                            <?php the_post_thumbnail('custom-size', array('class' => 'event-card__image', 'width' => 445, 'height' => 256)); ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="event-card__info">
+                    <span class="event-card__title">
+                        <?php the_title(); ?>
+                    </span>
+
+                    <div class="event-card__bottom">
+                        <span class="events-label">
+                            <svg width="11" height="11">
+                                <use href="<?php echo get_template_directory_uri() . '/assets/' ?>img/sprite/sprite.svg#label_icon"></use>
+                            </svg>
+                            <?php echo get_field('location'); ?>
+                        </span>
+
+                        <a href="<?php the_permalink(); ?>" class="article-link">
+                            <svg width="14" height="11">
+                                <use href="<?php echo get_template_directory_uri() . '/assets/' ?>img/sprite/sprite.svg#arrow-r"></use>
+                            </svg>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+    <?php endwhile;
+    echo '</ul>';
+    wp_die();
+}
+
+
+add_action('wp_ajax_filter_events', 'filter_events_callback');
+add_action('wp_ajax_nopriv_filter_events', 'filter_events_callback');
