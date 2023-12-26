@@ -36,8 +36,7 @@
                         while ($query->have_posts()) {
                             $query->the_post(); 
                             $team_member_slug = $post->post_name;
-                        ?>
-                            
+                        ?>  
 
                             <li class="team-list__item">
                                 <div class="team-card">
@@ -82,7 +81,6 @@
                                                 <?php endif; ?>
                                             <?php }?>
 
-                                        
                                             <a href="/team/#<?php echo esc_attr($team_member_slug); ?>" class="team-card__link article-link">
                                                 <svg width="14" height="11">
                                                     <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-r"></use>
@@ -95,10 +93,8 @@
                         <?php }
                         echo '</ul>';
                     } 
-                    
                     wp_reset_postdata();
                 ?>
-
 
                 <button class="team__more action_btn">
                     <span class="action_btn_text">Load More</span>

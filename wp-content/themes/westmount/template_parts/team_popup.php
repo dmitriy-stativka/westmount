@@ -8,7 +8,6 @@
     <div class="container">
         <div class="team-single__inner">
             <?php
-            // Проверяем, существует ли подполе 'button' и получаем его данные
             $link = get_sub_field( 'button' );
             if ( $link ) :
                 $link_url = $link['url'];
@@ -35,9 +34,9 @@
                         if ($team_query->have_posts()) :
                             while ($team_query->have_posts()) : $team_query->the_post();
                                 $thumbnail = get_the_post_thumbnail_url(get_the_ID(), '1440');
-                                $post_slug = get_post_field('post_name', get_the_ID()); // Получаем слаг поста
+                                $post_slug = get_post_field('post_name', get_the_ID());
                                 ?>
-                                <li class="swiper-slide" data-hash="<?php echo esc_attr($post_slug); ?>"> <!-- Добавляем data-id -->
+                                <li class="swiper-slide" data-hash="<?php echo esc_attr($post_slug); ?>"> 
                                     <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php the_title(); ?>">
                                 </li>
                             <?php endwhile;
@@ -49,19 +48,16 @@
                 <div class="team-single__slider swiper-container">
                 <ul class="swiper-wrapper">
                         <?php
-                        // Повторный запрос, поскольку предыдущий сброшен методом wp_reset_postdata()
                         $team_query = new WP_Query($args);
 
                         if ($team_query->have_posts()) :
                             while ($team_query->have_posts()) : $team_query->the_post();
                                 $thumbnail = get_the_post_thumbnail_url(get_the_ID(), '1440');
-                                // Получение дополнительных полей
-                                $job_title = get_field('job_title'); // Предполагаем, что у вас есть поле ACF 'job_title'
-                                $phone = get_field('phone'); // Поле 'phone'
-                                $email = get_field('email'); // Поле 'email'
-                                $biography_title = get_field('biography_title'); // Поле 'biography_title'
-                                $biography_content = get_field('biography_content'); // Поле 'biography_content'
-                                // Предполагаем, что у вас есть повторитель 'social_list' в ACF
+                                $job_title = get_field('job_title');
+                                $phone = get_field('phone');
+                                $email = get_field('email');
+                                $biography_title = get_field('biography_title'); 
+                                $biography_content = get_field('biography_content'); 
                                 $social_list = get_field('social_list');
                                 ?>
                                 <li class="swiper-slide">

@@ -124,9 +124,7 @@ function team_slider() {
     const sliderThumb = new Swiper(navSlider, {
       spaceBetween: 0,
       slidesPerView: 'auto',
-      loop: true,
-      // slideToClickedSlide: true,
-      // watchSlidesProgress: true,
+      loop: false,
       allowTouchMove: false,
       history: false,
       initialSlide: initialSlideIndex,
@@ -176,11 +174,11 @@ function team_slider() {
 
     const mainSwiper = new Swiper(teamSlider, {
       spaceBetween: 0,
-      loop: true,
+      loop: false,
       thumbs: {
         swiper: sliderThumb
       },
-      initialSlide: initialSlideIndex, // И здесь установим начальный слайд
+      initialSlide: initialSlideIndex,
       breakpoints: {
         320: {
           spaceBetween: 20,
@@ -190,13 +188,5 @@ function team_slider() {
         }
       }
     });
-
-    // Функция для обновления URL
-    // function updateURL(swiper) {
-    //   const activeSlideId = swiper.slides[swiper.activeIndex].getAttribute('data-id');
-    //   if (activeSlideId) {
-    //     history.pushState(null, null, '#' + activeSlideId);
-    //   }
-    // }
   });
 }

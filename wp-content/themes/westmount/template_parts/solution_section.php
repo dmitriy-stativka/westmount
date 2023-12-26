@@ -30,12 +30,12 @@
                     <?php while ( have_rows( 'solutions_list' ) ) :
                         the_row(); ?>
                         <li class="card-list__item 
-                            <?php if ( get_sub_field( 'width_item' ) == 33 ){
+                            <?php if ( get_sub_field( 'width_item' ) == '33%'){
                                     echo "-small";
-                                }elseif(get_sub_field( 'width_item' ) == 50){
+                                }elseif(get_sub_field( 'width_item' ) == '50%'){
                                     echo "-medium";
                                 }
-                                elseif(get_sub_field( 'width_item' ) == 100){
+                                elseif(get_sub_field( 'width_item' ) == '100%'){
                                     echo "-large";
                                 }
                             ?>"

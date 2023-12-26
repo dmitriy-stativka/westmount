@@ -1,8 +1,5 @@
 <?php if(!get_sub_field('hide_block', $page_id)): ?>
 
-
-  
-  
   <?php if( have_rows('slider') ): ?>
     <section class="section_hero_slider">
       <div class="swiper-container swiper">
