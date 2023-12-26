@@ -1,13 +1,22 @@
 .section_home_company {
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   position: relative;
   z-index: 1;
 
   &_image,
-  &_video{
+  &_video {
     position: absolute;
     inset: 0;
+    z-index: -2;
+  }
+
+
+  &_image {
+    img {
+      width: 100vw;
+      height: 100%;
+    }
   }
 
   &_video{
@@ -31,7 +40,7 @@
 
   .section_wrap {
     position: relative;
-    height: 100vh;
+    height: 100dvh;
   }
 
   &:before {

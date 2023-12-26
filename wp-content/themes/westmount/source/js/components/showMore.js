@@ -25,9 +25,6 @@ if (showReviews) {
 			});
 		}
 
-		// reviewItems.map(function(reviewItem){
-		// 	fadeOut(reviewItem, 0)
-		// });
 		showInitialItems(reviewItems,initialValue);
 
 

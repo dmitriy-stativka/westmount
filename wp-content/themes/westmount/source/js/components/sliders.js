@@ -52,7 +52,6 @@ function slider_with_many_blocks_in_a_row() {
     const swiper = new Swiper(el.querySelector('.swiper'), {
       watchOverflow: true,
       spaceBetween: 24,
-      // loop: true,
       breakpoints: {
         320: {
           slidesPerView: 1.1,
@@ -63,13 +62,12 @@ function slider_with_many_blocks_in_a_row() {
           slidesPerView: 2,
           spaceBetween: 24
         },
-        //
         767: {
           slidesPerView: 2.5,
           // spaceBetween: 30
         },
         1024: {
-          slidesPerView: 4,
+          slidesPerView: 3,
 
         }
       },
@@ -79,15 +77,6 @@ function slider_with_many_blocks_in_a_row() {
         prevEl: el.querySelector(".button_slider.btn_prev"),
       },
     });
-    // if (slides > 3) {
-    //   .addEventListener('pointerdown', () => {
-    //     swiper.slideNext()
-    //   })
-    //
-    //   .addEventListener('pointerdown', () => {
-    //     swiper.slidePrev()
-    //   })
-    // }
   })
 
 
@@ -110,7 +99,7 @@ function getInitialSlideIndex() {
       return i;
     }
   }
-  return 0; // Если нет совпадений, вернем 0
+  return 0;
 }
 
 function team_slider() {
@@ -125,12 +114,17 @@ function team_slider() {
       spaceBetween: 0,
       slidesPerView: 'auto',
       loop: false,
-      allowTouchMove: false,
+      // allowTouchMove: false,
       history: false,
       initialSlide: initialSlideIndex,
       hashNavigation: {
         replaceState: true,
         watchState: true,
+      },
+
+      navigation: {
+        nextEl: box.querySelector(".team-single__sliders-btn.prev"),
+        prevEl: box.querySelector(".team-single__sliders-btn.next"),
       },
 
       on: {
@@ -143,8 +137,6 @@ function team_slider() {
         click: function (swiper, event) {
           const clickedSlide = event.target.closest('.swiper-slide');
           if (clickedSlide) {
-
-            console.log(clickedSlide.dataset.hash)
 
             history.replaceState(null, null, '#' + clickedSlide.dataset.hash);
 
@@ -168,14 +160,13 @@ function team_slider() {
           slidesPerView: 3,
         },
         576: {
-          slidesPerView: 3.5,
+          slidesPerView: 3,
         },
         767: {
-          slidesPerView: 4.5,
+          slidesPerView: 4,
         },
         1201: {
-          allowTouchMove: true,
-          slidesPerView: 'auto',
+          slidesPerView: 4,
           direction: 'vertical',
         }
       }
@@ -186,6 +177,10 @@ function team_slider() {
       loop: false,
       thumbs: {
         swiper: sliderThumb
+      },
+      navigation: {
+        nextEl: box.querySelector(".team-single__sliders-btn.prev"),
+        prevEl: box.querySelector(".team-single__sliders-btn.next"),
       },
       initialSlide: initialSlideIndex,
       breakpoints: {

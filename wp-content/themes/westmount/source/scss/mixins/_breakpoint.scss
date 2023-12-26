@@ -68,7 +68,7 @@
 }
 
 @mixin ios {
-  @media (max-width: (415px)) {
+  @media (max-width: (450px)) {
     @content;
   }
 }

@@ -30,6 +30,10 @@
 		background-size: 350% 100%;
 	}
 
+	@include ios {
+		max-width: 100%;
+	}
+
 
 	[data-trigger] > a {
 		@include tablet {

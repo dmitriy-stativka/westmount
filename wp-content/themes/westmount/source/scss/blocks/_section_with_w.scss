@@ -156,7 +156,7 @@
     min-width: toRem(576);
     position: absolute;
     top: toRem(165);
-    left: -15%;
+    left: 0;
   }
 
   @include laptop {
@@ -180,8 +180,8 @@
   justify-content: space-between;
   max-width: toRem(930);
 
-  @include for-desktop {
-    max-width: 71%;
+  @include for-laptop {
+    max-width: 81%;
   }
 
   @include laptop {

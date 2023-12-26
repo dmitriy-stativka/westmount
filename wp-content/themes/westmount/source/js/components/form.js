@@ -2,7 +2,7 @@ const wpcf7Els = document.querySelectorAll( '.wpcf7' );
 
 wpcf7Els.forEach(form => {
     form.addEventListener( 'wpcf7submit', function( event ) {
-        alert( "Fire!" );
+        // alert( "Fire!" );
     }, false );
 })
 

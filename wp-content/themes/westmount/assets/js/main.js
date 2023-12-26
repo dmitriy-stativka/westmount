@@ -457,7 +457,7 @@ const {
 const wpcf7Els = document.querySelectorAll('.wpcf7');
 wpcf7Els.forEach(form => {
   form.addEventListener('wpcf7submit', function (event) {
-    alert("Fire!");
+    // alert( "Fire!" );
   }, false);
 });
 
@@ -646,13 +646,9 @@ const mobileMenuHandler = function (overlay, mobileMenu, burger) {
   burger.forEach(btn => {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
-
-      // Переключаем класс 'active' для всех элементов
       (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_3__.toggleCustomClass)(mobileMenu, 'active');
       (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_3__.toggleClassInArray)(burger, 'active');
       (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_3__.toggleCustomClass)(overlay, 'active');
-
-      // Проверяем состояние после переключения классов
       if (mobileMenu.classList.contains('active')) {
         (0,_functions_disable_scroll__WEBPACK_IMPORTED_MODULE_0__.disableScroll)();
       } else {
@@ -770,10 +766,6 @@ if (showReviews) {
         (0,_functions_customFunctions__WEBPACK_IMPORTED_MODULE_1__.fadeIn)(initialItem, 300, 0, 'flex');
       });
     }
-
-    // reviewItems.map(function(reviewItem){
-    // 	fadeOut(reviewItem, 0)
-    // });
     showInitialItems(reviewItems, initialValue);
     showMore.addEventListener('click', function (e) {
       e.preventDefault();
@@ -862,7 +854,6 @@ function slider_with_many_blocks_in_a_row() {
     const swiper = new (_vendor_swiper__WEBPACK_IMPORTED_MODULE_1___default())(el.querySelector('.swiper'), {
       watchOverflow: true,
       spaceBetween: 24,
-      // loop: true,
       breakpoints: {
         320: {
           slidesPerView: 1.1,
@@ -873,13 +864,12 @@ function slider_with_many_blocks_in_a_row() {
           slidesPerView: 2,
           spaceBetween: 24
         },
-        //
         767: {
           slidesPerView: 2.5
           // spaceBetween: 30
         },
         1024: {
-          slidesPerView: 4
+          slidesPerView: 3
         }
       },
       navigation: {
@@ -887,15 +877,6 @@ function slider_with_many_blocks_in_a_row() {
         prevEl: el.querySelector(".button_slider.btn_prev")
       }
     });
-    // if (slides > 3) {
-    //   .addEventListener('pointerdown', () => {
-    //     swiper.slideNext()
-    //   })
-    //
-    //   .addEventListener('pointerdown', () => {
-    //     swiper.slidePrev()
-    //   })
-    // }
   });
 }
 document.addEventListener("DOMContentLoaded", function () {
@@ -909,7 +890,7 @@ function getInitialSlideIndex() {
       return i;
     }
   }
-  return 0; // Если нет совпадений, вернем 0
+  return 0;
 }
 function team_slider() {
   const initialSlideIndex = getInitialSlideIndex();
@@ -921,12 +902,16 @@ function team_slider() {
       spaceBetween: 0,
       slidesPerView: 'auto',
       loop: false,
-      allowTouchMove: false,
+      // allowTouchMove: false,
       history: false,
       initialSlide: initialSlideIndex,
       hashNavigation: {
         replaceState: true,
         watchState: true
+      },
+      navigation: {
+        nextEl: box.querySelector(".team-single__sliders-btn.prev"),
+        prevEl: box.querySelector(".team-single__sliders-btn.next")
       },
       on: {
         slideChange: function () {
@@ -938,7 +923,6 @@ function team_slider() {
         click: function (swiper, event) {
           const clickedSlide = event.target.closest('.swiper-slide');
           if (clickedSlide) {
-            console.log(clickedSlide.dataset.hash);
             history.replaceState(null, null, '#' + clickedSlide.dataset.hash);
             const clickedSlideIndex = this.slides.indexOf(clickedSlide);
             if (clickedSlideIndex !== -1) {
@@ -959,14 +943,13 @@ function team_slider() {
           slidesPerView: 3
         },
         576: {
-          slidesPerView: 3.5
+          slidesPerView: 3
         },
         767: {
-          slidesPerView: 4.5
+          slidesPerView: 4
         },
         1201: {
-          allowTouchMove: true,
-          slidesPerView: 'auto',
+          slidesPerView: 4,
           direction: 'vertical'
         }
       }
@@ -976,6 +959,10 @@ function team_slider() {
       loop: false,
       thumbs: {
         swiper: sliderThumb
+      },
+      navigation: {
+        nextEl: box.querySelector(".team-single__sliders-btn.prev"),
+        prevEl: box.querySelector(".team-single__sliders-btn.next")
       },
       initialSlide: initialSlideIndex,
       breakpoints: {

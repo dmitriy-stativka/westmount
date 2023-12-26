@@ -23,28 +23,41 @@
             <?php endif; ?>
 
             <div class="team-single__sliders">
-                <div class="team-single__nav swiper-container">
-                    <ul class="swiper-wrapper">
-                        <?php 
-                        $args = array(
-                            'post_type'      => 'team',
-                            'posts_per_page' => -1,
-                        );
-                        $team_query = new WP_Query($args);
-                        if ($team_query->have_posts()) :
-                            while ($team_query->have_posts()) : $team_query->the_post();
-                                $thumbnail = get_the_post_thumbnail_url(get_the_ID(), '1440');
-                                $post_slug = get_post_field('post_name', get_the_ID());
-                                ?>
-                                <li class="swiper-slide" data-hash="<?php echo esc_attr($post_slug); ?>"> 
-                                    <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php the_title(); ?>">
-                                </li>
-                            <?php endwhile;
-                        endif;
-                        wp_reset_postdata();
-                        ?>
-                    </ul>
+                <div class="team-single__sliders-wrapp">
+                    <button class="team-single__sliders-btn next">
+                        <svg width="12" height="15">
+                        	<use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-slider"></use>
+                        </svg>
+                    </button>
+                    <div class="team-single__nav swiper-container">
+                        <ul class="swiper-wrapper">
+			                <?php
+			                $args = array(
+				                'post_type'      => 'team',
+				                'posts_per_page' => -1,
+			                );
+			                $team_query = new WP_Query($args);
+			                if ($team_query->have_posts()) :
+				                while ($team_query->have_posts()) : $team_query->the_post();
+					                $thumbnail = get_the_post_thumbnail_url(get_the_ID(), '1440');
+					                $post_slug = get_post_field('post_name', get_the_ID());
+					                ?>
+                                    <li class="swiper-slide" data-hash="<?php echo esc_attr($post_slug); ?>">
+                                        <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php the_title(); ?>">
+                                    </li>
+				                <?php endwhile;
+			                endif;
+			                wp_reset_postdata();
+			                ?>
+                        </ul>
+                    </div>
+                    <button class="team-single__sliders-btn prev">
+                        <svg width="12" height="15">
+                            <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-slider"></use>
+                        </svg>
+                    </button>
                 </div>
+
                 <div class="team-single__slider swiper-container">
                 <ul class="swiper-wrapper">
                         <?php

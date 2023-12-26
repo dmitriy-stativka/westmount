@@ -75,12 +75,16 @@
 	&__date {
 		display: flex;
 		gap: toRem(5);
-		align-items: baseline;
+		align-items: flex-start;
 
 		font-size: toRem(63);
 		font-style: normal;
 		font-weight: 300;
-		line-height: 113.5%;
+		line-height: 100%;
+
+		@include for-laptop {
+			line-height: toRem(63);
+		}
 
 		i {
 			font-style: normal;
@@ -88,6 +92,10 @@
 			font-weight: 400;
 			line-height: 136%;
 			text-transform: uppercase;
+
+			@include for-laptop {
+				line-height: 200%;
+			}
 		}
 
 		@include laptop {

@@ -62,7 +62,9 @@
   }
 
   @include for-tablet {
-    width: 135%;
+    //width: 135%;
+    max-width: 100%;
+    width: 100%;
   }
 
   @include mobile {

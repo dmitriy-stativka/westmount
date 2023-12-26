@@ -73,6 +73,11 @@
   bottom: 0;
   right: 0;
 
+  img {
+    width: 100vw;
+    height: 100% !important;
+  }
+
   @include mobile {
     background-position: 65% !important;
     right: initial !important;
@@ -85,10 +90,24 @@
 .section_home_team + .section_home_surety,
 .team-section + .section_home_surety {
   .section_home_surety_bg_image {
+
+    img {
+      width: initial !important;
+    }
+
     @include mobile {
       background-position: left center !important;
       background-size: contain !important;
       min-height: 100% !important;
+
+      display: flex;
+      align-items: center;
+
+      img {
+        height: initial !important;
+        position: initial !important;
+        min-height: initial !important;
+      }
     }
   }
 }

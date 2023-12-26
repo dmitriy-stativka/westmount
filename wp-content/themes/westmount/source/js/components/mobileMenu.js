@@ -10,12 +10,10 @@ const mobileMenuHandler = function(overlay, mobileMenu, burger) {
 		btn.addEventListener('click', function(e){
 			e.preventDefault();
 
-			// Переключаем класс 'active' для всех элементов
 			toggleCustomClass(mobileMenu, 'active');
 			toggleClassInArray(burger, 'active');
 			toggleCustomClass(overlay, 'active');
 
-			// Проверяем состояние после переключения классов
 			if (mobileMenu.classList.contains('active')) {
 				disableScroll();
 			} else {

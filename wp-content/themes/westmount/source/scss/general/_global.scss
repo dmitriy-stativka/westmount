@@ -252,7 +252,7 @@ fieldset {
 
 * {
   &::-webkit-scrollbar {
-    width: 2px;
+    width: toRem(7);
     height: 7px;
     // display: none;
 

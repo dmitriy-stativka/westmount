@@ -25,7 +25,7 @@
     }
 
     &:last-of-type {
-      @include mobile {
+      @include ios {
         position: relative;
         padding-bottom: toRem(14);
 

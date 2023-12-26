@@ -19,16 +19,18 @@
  --team-slider-offset: clamp(15px, 3.90625vw, 40px);
 
 
-
  @include for-laptop {
-   --content-width: 86%;
-   --body-font-size: 1.1111vw;
+  --content-width: 86%;
+  --body-font-size: 1.1111vw;
  }
 
- @include for-desktop {
-  --content-width: 85% ;
-  --body-font-size: .8vw;
- }
+ //
+ //@include for-desktop {
+ // --content-width: 85% ;
+ // --body-font-size: .8vw;
+ //}
+
+
   //
   //@include laptop {
   //  --body-font-size: 1rem;
@@ -42,7 +44,7 @@
 // --------------- default scroll variable ---------------
   --scrollbar-thumb: #00A9EF;
   // --scrollbar-thumb-hover: #00aff0;
-  --scrollbar-track:  #00A9EF;
+  --scrollbar-track:  #fff;
   --scrollbar-track-hover: #00A9EF;
   --overlay-bg: rgba(0, 0, 0, 0.5);
 
