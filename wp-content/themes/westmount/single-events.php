@@ -137,9 +137,19 @@ $build_folder = get_template_directory_uri() . '/assets/';
                     ?>
                     <div class="event-body__image">
                         <img src="<?php echo $build_folder ?>img/word.png" alt="" class="bg-word">
-                        <span class="event-body__name"><?php the_title();?></span>
-                        <img width="715" height="278" src="<?php
-	                    echo $build_folder ?>img/new/events.png" alt="">
+                        
+                        <span class="event-body__name"><?php the_field('review');?></span>
+
+                    <?php
+                        $image_url = wp_get_attachment_image_src(get_post_thumbnail_id(), '1440');
+                        
+                        if ($image_url) {
+                            $image_url = $image_url[0]; ?>
+                            <img
+                                width="1240"
+                                height="640"
+                                src="<?php echo $image_url;?>"/>
+                        <?php } ?>
                     </div>
 
                     <div class="event-body__bottom">
