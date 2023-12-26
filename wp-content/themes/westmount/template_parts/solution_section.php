@@ -1,9 +1,11 @@
+<?php if(!get_sub_field('hide_block', $page_id)): ?>
+
 <?php $build_folder = get_template_directory_uri() . '/assets/'
 ?>
 
 <section class="solution-section">
     <div class="section-bg"
-         style="background-image: url(<?php echo esc_url( get_sub_field( 'background_image' ) ); ?>)"></div>
+         style="background-image: url(<?php echo esc_url( get_sub_field('background_image')['sizes']['1440'] ); ?>)"></div>
     <div class="container">
         <div class="solution-section__inner">
             <div class="main-top">
@@ -27,10 +29,20 @@
                 <?php if ( have_rows( 'solutions_list' ) ) : ?>
                     <?php while ( have_rows( 'solutions_list' ) ) :
                         the_row(); ?>
-                        <li class="card-list__item">
+                        <li class="card-list__item 
+                            <?php if ( get_sub_field( 'width_item' ) == 33 ){
+                                    echo "-small";
+                                }elseif(get_sub_field( 'width_item' ) == 50){
+                                    echo "-medium";
+                                }
+                                elseif(get_sub_field( 'width_item' ) == 100){
+                                    echo "-large";
+                                }
+                            ?>"
+                        >
                             <article class="card-list__article">
                                 <div class="card-list__article-img">
-                                    <img src="<?php echo esc_url( get_sub_field( 'image' ) ); ?>" alt="">
+                                    <img src="<?php echo esc_url( get_sub_field( 'image' )['sizes']['1440'] ); ?>" alt="">
                                 </div>
 
                                 <div class="card-list__article-inner">
@@ -66,3 +78,4 @@
         </div>
     </div>
 </section>
+<?php endif; ?>

@@ -9,7 +9,6 @@ const {section_hero_slider,section_home_solutions, singleTeamBox} = vars;
 document.addEventListener("DOMContentLoaded", function () {
   // console.log('start');
   // barbaInit()
-  team_slider();
   hero_slider();
   slider_with_many_blocks_in_a_row();
 });
@@ -95,7 +94,29 @@ function slider_with_many_blocks_in_a_row() {
 }
 
 
+
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  team_slider();
+});
+
+function getInitialSlideIndex() {
+  const hash = window.location.hash.substring(1);
+  const slides = document.querySelectorAll('.team-single__nav .swiper-slide');
+  for (let i = 0; i < slides.length; i++) {
+    if (slides[i].getAttribute('data-hash') === hash) {
+      return i;
+    }
+  }
+  return 0; // Если нет совпадений, вернем 0
+}
+
 function team_slider() {
+  const initialSlideIndex = getInitialSlideIndex();
+  const singleTeamBox = document.querySelectorAll('.team-single');
+
   singleTeamBox.forEach(box => {
     const navSlider = box.querySelector('.team-single__nav');
     const teamSlider = box.querySelector('.team-single__slider');
@@ -104,14 +125,32 @@ function team_slider() {
       spaceBetween: 0,
       slidesPerView: 'auto',
       loop: true,
-      slideToClickedSlide: true,
-      watchSlidesProgress: true,
+      // slideToClickedSlide: true,
+      // watchSlidesProgress: true,
       allowTouchMove: false,
+      history: false,
+      initialSlide: initialSlideIndex,
+      hashNavigation: {
+        replaceState: true,
+        watchState: true,
+      },
 
       on: {
-        click: function(swiper, event) {
-          let clickedSlideIndex = swiper.clickedIndex;
-          swiper.slideTo(clickedSlideIndex);
+        click: function (swiper, event) {
+          const clickedSlide = event.target.closest('.swiper-slide');
+          if (clickedSlide) {
+
+            console.log(clickedSlide.dataset.hash)
+
+            const clickedSlideIndex = this.slides.indexOf(clickedSlide);
+            if (clickedSlideIndex !== -1) {
+              this.slideTo(clickedSlideIndex);
+              const hash = clickedSlide.dataset.hash
+              if (hash && this.hashNavigation.replaceState) {
+                history.replaceState(null, null, '#' + hash);
+              }
+            }
+          }
         }
       },
 
@@ -119,15 +158,12 @@ function team_slider() {
         320: {
           slidesPerView: 2.2,
         },
-
         414: {
           slidesPerView: 3,
         },
-
         576: {
           slidesPerView: 3.5,
         },
-
         767: {
           slidesPerView: 4.5,
         },
@@ -137,24 +173,30 @@ function team_slider() {
         }
       }
     });
-    new Swiper(teamSlider, {
+
+    const mainSwiper = new Swiper(teamSlider, {
       spaceBetween: 0,
       loop: true,
       thumbs: {
         swiper: sliderThumb
       },
+      initialSlide: initialSlideIndex, // И здесь установим начальный слайд
       breakpoints: {
         320: {
           spaceBetween: 20,
         },
-
         767: {
           spaceBetween: 0,
         }
       }
     });
 
-  })
+    // Функция для обновления URL
+    // function updateURL(swiper) {
+    //   const activeSlideId = swiper.slides[swiper.activeIndex].getAttribute('data-id');
+    //   if (activeSlideId) {
+    //     history.pushState(null, null, '#' + activeSlideId);
+    //   }
+    // }
+  });
 }
-
-

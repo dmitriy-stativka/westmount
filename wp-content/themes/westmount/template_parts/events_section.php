@@ -1,3 +1,5 @@
+<?php if(!get_sub_field('hide_block', $page_id)): ?>
+
 <?php
     $build_folder = get_template_directory_uri() . '/assets/';
 ?>
@@ -42,7 +44,7 @@
                                 <div class="current-events__image">
                                     <?php 
                                         add_image_size('custom-size', 695, 429, true);
-                                        the_post_thumbnail('custom-size', array('class' => 'current-events_img'));
+                                        the_post_thumbnail('custom-size', array('class' => 'current-events_img', 'size' => '1440'));
                                     ?>
                                 </div>
                                 <div class="current-events__info">
@@ -161,7 +163,7 @@
                                             ?>
                                             <div class="event-card__image">
                                                 <?php if (has_post_thumbnail()): ?>
-                                                    <?php the_post_thumbnail('custom-size', array('class' => 'event-card__image', 'width' => 445, 'height' => 256)); ?>
+                                                    <?php the_post_thumbnail('custom-size', array('class' => 'event-card__image', 'width' => 445, 'height' => 256, 'size' => '1440')); ?>
                                                 <?php endif; ?>
                                             </div>
                                         </div>
@@ -195,3 +197,4 @@
         </div>
     </div>
 </section>
+<?php endif; ?>

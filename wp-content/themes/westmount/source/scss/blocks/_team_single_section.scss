@@ -115,14 +115,18 @@
       &-active {
         cursor: pointer;
 
-        &:before {
-          opacity: 1;
-        }
-
-        img {
-          opacity: 1;
-        }
+        
       }
+    }
+  }
+
+  .swiper-slide-thumb-active{
+    &:before {
+      opacity: 1;
+    }
+
+    img {
+      opacity: 1;
     }
   }
 

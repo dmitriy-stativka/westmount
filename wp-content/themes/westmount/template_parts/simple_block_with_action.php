@@ -1,12 +1,14 @@
 <?php
-if ( ! get_field( 'hide_block', $page_id ) ): ?>
+if ( ! get_sub_field( 'hide_block', $page_id ) ): ?>
 	<?php
-	$build_folder = get_template_directory_uri() . '/assets/';
-	$bg_image     = get_sub_field( 'background_image' );
-	$sub_title    = get_sub_field( 'sub_title' );
-	$color_bg1    = get_sub_field( 'background_color_1' );
-	$color_bg2    = get_sub_field( 'background_color_2' );
-	$blue_border  = get_sub_field( 'blue_border' );
+	$build_folder   = get_template_directory_uri() . '/assets/';
+	$bg_image       = get_sub_field( 'background_image' );
+	$sub_title      = get_sub_field( 'sub_title' );
+	$color_bg1      = get_sub_field( 'background_color_1' );
+	$color_bg2      = get_sub_field( 'background_color_2' );
+	$blue_border    = get_sub_field( 'blue_border' );
+	$image_video_bg = get_sub_field( 'image_video_bg' );
+	$video_bg       = get_sub_field( 'video_bg' );
 	?>
 
     <section class="section_home_surety"
@@ -28,29 +30,16 @@ if ( ! get_field( 'hide_block', $page_id ) ): ?>
 	         echo get_sub_field( 'height_block' ); ?>px"
     >
 
-        <div class="section_home_surety_bg_image"
-             style="background-image: url(<?php
-		     echo $bg_image['sizes']['1440']; ?>);
-		     <?php
-		     if ( get_sub_field( 'image_width' ) ): ?>
-                     width:<?php echo get_sub_field('image_width') ?>px;
-		     <?php
-		     endif; ?>
-		     <?php
-		     if ( get_sub_field( 'image_height' ) ): ?>
-                     min-height:<?php echo get_sub_field('image_height') ?>px;
-		     <?php
-		     endif; ?>
-                     background-position: center;
-                     background-repeat: no-repeat;
-                     background-size: cover;
-		     <?php
-		     if ( get_sub_field( 'image_styles' ) ): ?>
-			     <?php
-			     echo get_sub_field( 'image_styles' ) ?>
-		     <?php
-		     endif; ?>
-                     "></div>
+		<?php if ( $image_video_bg ) : ?>
+			<div class="section_home_surety_bg_video">
+				<video autoplay loop muted src="<?php echo $video_bg; ?>"></video>
+			</div>
+		<?php else: ?>
+			<div class="section_home_surety_bg_image">
+				<img width="<?php echo get_sub_field('image_width') ?>px;" style="min-height: <?php echo get_sub_field('image_height') ?>px; <?php if ( get_sub_field( 'image_styles' ) ): echo get_sub_field( 'image_styles' ); endif; ?>" src="<?php echo $bg_image['sizes']['1440']; ?>" alt="">
+			</div>
+		<?php endif; ?>
+
         <div class="container">
             <div class="height_wrap"
                  style="min-height: <?php
@@ -91,7 +80,7 @@ if ( ! get_field( 'hide_block', $page_id ) ): ?>
                         <div class="square">
                             <svg width="14" height="11">
                                 <use href="<?php
-								echo $build_folder ?>img/sprite/sprite.svg#arrow-r"></use
+								echo $build_folder ?>img/sprite/sprite.svg#arrow-r"></use>
                             </svg>
                         </div>
                     </a>

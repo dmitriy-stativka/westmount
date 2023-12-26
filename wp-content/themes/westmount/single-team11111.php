@@ -84,7 +84,7 @@
                                     <ul class="swiper-wrapper">
                                         <?php foreach ($members as $member): ?>
                                             <li class="swiper-slide">
-                                                <img src="<?php echo esc_url($member['thumbnail']); ?>" alt="<?php echo esc_attr($member['name']); ?>">
+                                                <img src="<?php echo esc_url($member['thumbnail'], '1440'); ?>" alt="<?php echo esc_attr($member['name']); ?>">
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
@@ -93,7 +93,7 @@
                                     <ul class="swiper-wrapper">
                                         <?php foreach ($members as $member): ?>
                                             <li class="swiper-slide">
-                                                <img src="<?php echo esc_url($member['thumbnail']); ?>" alt="<?php echo esc_attr($member['name']); ?>">
+                                                <img src="<?php echo esc_url($member['thumbnail'], '1440'); ?>" alt="<?php echo esc_attr($member['name']); ?>">
                                                 <div class="team-single__info">
                                                     <div class="team-single__info-top">
                                                         <h3 class="team-single__info-name"><?php echo esc_html($member['name']); ?></h3>
