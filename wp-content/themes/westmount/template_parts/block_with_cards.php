@@ -8,13 +8,21 @@
             background-size: cover;">
     <div class="container">
       <div class="section_top_title">
-        <div class="sub_title">
-          <div class="octagon-icon"></div>
-          About Us
-        </div>
+        <?php if ( $sub_title = get_sub_field( 'sub_title' ) ) : ?>
+          <div class="sub_title">
+            <div class="octagon-icon"></div>
+            <?php echo $sub_title; ?>
+          </div>
+        <?php endif; ?>
       </div>
-      <div class="section_title section_title_max_w">We're different and our approach is simple.</div>
-      <div class="section_sub_title">Our distinctiveness lies in our unique and straightforward approach:</div>
+
+      <?php if ( $title = get_sub_field( 'title' ) ) : ?>
+        <div class="section_title section_title_max_w"><?php echo $title; ?></div>
+      <?php endif; ?>
+
+      <?php if ( $under_title = get_sub_field( 'under_title' ) ) : ?>
+        <div class="section_sub_title"><?php echo $under_title; ?></div>
+      <?php endif; ?>
 
       <?php if( have_rows('card') ): ?>
         <div class="section_home_cards_wrap">
