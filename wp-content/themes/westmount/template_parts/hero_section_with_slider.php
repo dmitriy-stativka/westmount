@@ -1,4 +1,7 @@
-<?php if(!get_field('hide', $page_id)): ?>
+<?php if(!get_sub_field('hide_block', $page_id)): ?>
+
+
+  
   
   <?php if( have_rows('slider') ): ?>
     <section class="section_hero_slider">
@@ -12,34 +15,42 @@
                 $color_bg2 = $slide['color_background_end'];
                 $img1 = $slide['background_image_top'];
                 $img2 = $slide['background_image_bottom'];
+                $video_bg = $slide['video_bg']; 
+                $image_video_bg = $slide['image_video_bg']; 
                 ?>
 
                 <?php if(!get_sub_field('hide_slide', $page_id)): ?> 
 
                   <div div class="swiper-slide">
                     <div class="gradient_bg" style="background: linear-gradient(180deg, <?php echo $color_bg1; ?> 0%, <?php echo $color_bg2; ?> 100%);">
-                      <?php if($img1): ?> 
-                        <div class="hero_bg_logo">
-                          <img src="<?php echo $img1['sizes']['1440']; ?>" alt="hero_bg_logo" loading="lazy" />
-                        </div>
-                      <?php endif; ?>
-                      <?php if($img2): ?> 
-                        <div class="hero_bg_building">
-                          <img src="<?php echo $img2['sizes']['1440']; ?>" alt="background_image_bottom" loading="lazy" />
-                        </div>
-                      <?php endif; ?>
+                      
+                      <?php if ( $image_video_bg == 0 ) { ?>
+
+                          <?php if($img1): ?> 
+                            <div class="hero_bg_logo">
+                              <img src="<?php echo $img1['sizes']['1440']; ?>" alt="hero_bg_logo" loading="lazy" />
+                            </div>
+                          <?php endif; ?>
+                          <?php if($img2): ?> 
+                            <div class="hero_bg_building">
+                              <img src="<?php echo $img2['sizes']['1440']; ?>" alt="background_image_bottom" loading="lazy" />
+                            </div>
+                          <?php endif; ?>
+
+                      <?php }else{ ?>
+                          <div class="hero_bg_video">
+                            <video autoplay muted loop src="<?php echo $video_bg; ?>"></video>
+                          </div>
+                      <?php } ?>
+
                       <div class="container">
                         <div class="h2hero_wrap">
                           <div class="h2hero_bottom_wrap">
                             <div class="h2hero_bottom_menu_wrap">
                               <div class="h2hero_overflow">
-
                                 <?php if($title): ?> 
-
                                   <h2 class="h2hero"><?php echo $title; ?></h2>
-
                                 <?php endif; ?>
-
                               </div>
                             </div>
                             <div class="h2hero_bottom_line"></div>
@@ -49,7 +60,6 @@
                     </div>
                   </div>
              
-
                 <?php endif; ?>
               <?php endwhile; ?>
 

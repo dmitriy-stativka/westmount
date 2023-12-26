@@ -1,4 +1,4 @@
-<?php if(!get_field('hide_block', $page_id)): ?>
+<?php if(!get_sub_field('hide_block', $page_id)): ?>
   <?php $bg_image = get_sub_field('background_image'); ?> 
 
   <section class="section_home_cards"

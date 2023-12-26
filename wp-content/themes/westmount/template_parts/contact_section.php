@@ -1,3 +1,4 @@
+<?php if(!get_sub_field('hide_block', $page_id)): ?>
 <?php $build_folder = get_template_directory_uri() . '/assets/'?>
 
 <section class="contact-section">
@@ -93,3 +94,4 @@
         </div>
     </div>
 </section>
+<?php endif; ?>

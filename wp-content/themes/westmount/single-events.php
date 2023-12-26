@@ -35,7 +35,7 @@ $build_folder = get_template_directory_uri() . '/assets/';
 					   echo $video_url ?>">
                         <span class="video-box__link-wrapper">
                             <?php
-                                $image_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'custom-size');
+                                $image_url = wp_get_attachment_image_src(get_post_thumbnail_id(), '1440');
                                 if ($image_url) {
                                     $image_url = $image_url[0]; ?>
                                     <img
@@ -95,7 +95,7 @@ $build_folder = get_template_directory_uri() . '/assets/';
 
                                         <div class="other-event__image">
                                             <?php if (has_post_thumbnail()) : ?>
-                                                <?php the_post_thumbnail('full'); ?>
+                                                <?php the_post_thumbnail('1440'); ?>
                                             <?php endif; ?>
                                         </div>
 
@@ -205,7 +205,7 @@ $build_folder = get_template_directory_uri() . '/assets/';
 
                                                 <div class="event-card__image">
                                                     <?php if (has_post_thumbnail()) : ?>
-                                                        <?php the_post_thumbnail('full'); ?>
+                                                        <?php the_post_thumbnail('1440'); ?>
                                                     <?php endif; ?>
                                                 </div>
                                             </div>

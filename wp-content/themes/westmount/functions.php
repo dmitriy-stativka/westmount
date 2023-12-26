@@ -333,7 +333,7 @@ function filter_events_callback() {
 
                     <div class="event-card__image">
                         <?php if (has_post_thumbnail()): ?>
-                            <?php the_post_thumbnail('custom-size', array('class' => 'event-card__image', 'width' => 445, 'height' => 256)); ?>
+                            <?php the_post_thumbnail('custom-size', array('class' => 'event-card__image', 'width' => 445, 'height' => 256, 'size' => '1440')); ?>
                         <?php endif; ?>
                     </div>
                 </div>

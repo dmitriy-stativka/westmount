@@ -1,3 +1,4 @@
+<?php if(!get_sub_field('hide_block', $page_id)): ?>
 <section class="article-content">
     <div class="container">
         <div class="article-content__inner" data-tabs-init>
@@ -44,3 +45,4 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
