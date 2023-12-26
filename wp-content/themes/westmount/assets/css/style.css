@@ -2152,6 +2152,7 @@ fieldset {
 .events-label svg {
   width: 0.6875rem;
   height: 0.6875rem;
+  fill: currentColor;
 }
 
 .action_btn {
