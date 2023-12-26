@@ -40,7 +40,7 @@
 
                             <li class="team-list__item">
                                 <div class="team-card">
-                                    <a href="<?php echo get_permalink();?>" class="team-card__image">
+                                    <a href="/team/#<?php echo esc_attr($team_member_slug); ?>" class="team-card__image">
                                         <?php
                                             if ( has_post_thumbnail() ) {
                                                 the_post_thumbnail('1440');

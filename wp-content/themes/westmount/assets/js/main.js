@@ -929,10 +929,17 @@ function team_slider() {
         watchState: true
       },
       on: {
+        slideChange: function () {
+          const hash = this.slides[this.activeIndex].dataset.hash;
+          if (hash && this.hashNavigation.replaceState) {
+            history.replaceState(null, null, '#' + hash);
+          }
+        },
         click: function (swiper, event) {
           const clickedSlide = event.target.closest('.swiper-slide');
           if (clickedSlide) {
             console.log(clickedSlide.dataset.hash);
+            history.replaceState(null, null, '#' + clickedSlide.dataset.hash);
             const clickedSlideIndex = this.slides.indexOf(clickedSlide);
             if (clickedSlideIndex !== -1) {
               this.slideTo(clickedSlideIndex);
@@ -958,6 +965,7 @@ function team_slider() {
           slidesPerView: 4.5
         },
         1201: {
+          allowTouchMove: true,
           slidesPerView: 'auto',
           direction: 'vertical'
         }
