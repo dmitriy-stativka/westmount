@@ -1,3 +1,4 @@
+<?php if(!get_sub_field('hide_block', $page_id)): ?>
 <?php $build_folder = get_template_directory_uri() . '/assets/'?>
 
 <section class="article-hero" >
@@ -16,7 +17,7 @@
 				<?php endif; ?>
 
 				<?php if ( $title = get_sub_field( 'title' ) ) : ?>
-					<h2 class="main-top__title"><?php echo esc_html( $title ); ?></h2>
+					<h2 class="main-top__title"><?php echo $title; ?></h2>
 				<?php endif; ?>
 			</div>
 
@@ -26,3 +27,4 @@
 		</div>
 	</div>
 </section>
+<?php endif; ?>
