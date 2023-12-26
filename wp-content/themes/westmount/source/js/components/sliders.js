@@ -106,7 +106,7 @@ function getInitialSlideIndex() {
   const hash = window.location.hash.substring(1);
   const slides = document.querySelectorAll('.team-single__nav .swiper-slide');
   for (let i = 0; i < slides.length; i++) {
-    if (slides[i].getAttribute('data-id') === hash) {
+    if (slides[i].getAttribute('data-hash') === hash) {
       return i;
     }
   }
@@ -124,15 +124,36 @@ function team_slider() {
     const sliderThumb = new Swiper(navSlider, {
       spaceBetween: 0,
       slidesPerView: 'auto',
-      loop: false,
-      slideToClickedSlide: true,
-      watchSlidesProgress: true,
-      allowTouchMove: true,
-      initialSlide: initialSlideIndex, // Установим начальный слайд
-      on: {
-        slideChange: updateURL,
-        click: updateURL
+      loop: true,
+      // slideToClickedSlide: true,
+      // watchSlidesProgress: true,
+      allowTouchMove: false,
+      history: false,
+      initialSlide: initialSlideIndex,
+      hashNavigation: {
+        replaceState: true,
+        watchState: true,
       },
+
+      on: {
+        click: function (swiper, event) {
+          const clickedSlide = event.target.closest('.swiper-slide');
+          if (clickedSlide) {
+
+            console.log(clickedSlide.dataset.hash)
+
+            const clickedSlideIndex = this.slides.indexOf(clickedSlide);
+            if (clickedSlideIndex !== -1) {
+              this.slideTo(clickedSlideIndex);
+              const hash = clickedSlide.dataset.hash
+              if (hash && this.hashNavigation.replaceState) {
+                history.replaceState(null, null, '#' + hash);
+              }
+            }
+          }
+        }
+      },
+
       breakpoints: {
         320: {
           slidesPerView: 2.2,
@@ -155,7 +176,7 @@ function team_slider() {
 
     const mainSwiper = new Swiper(teamSlider, {
       spaceBetween: 0,
-      loop: false,
+      loop: true,
       thumbs: {
         swiper: sliderThumb
       },
@@ -171,11 +192,11 @@ function team_slider() {
     });
 
     // Функция для обновления URL
-    function updateURL(swiper) {
-      const activeSlideId = swiper.slides[swiper.activeIndex].getAttribute('data-id');
-      if (activeSlideId) {
-        history.pushState(null, null, '#' + activeSlideId);
-      }
-    }
+    // function updateURL(swiper) {
+    //   const activeSlideId = swiper.slides[swiper.activeIndex].getAttribute('data-id');
+    //   if (activeSlideId) {
+    //     history.pushState(null, null, '#' + activeSlideId);
+    //   }
+    // }
   });
 }

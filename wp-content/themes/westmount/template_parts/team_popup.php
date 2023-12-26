@@ -37,7 +37,7 @@
                                 $thumbnail = get_the_post_thumbnail_url(get_the_ID(), '1440');
                                 $post_slug = get_post_field('post_name', get_the_ID()); // Получаем слаг поста
                                 ?>
-                                <li class="swiper-slide" data-id="<?php echo esc_attr($post_slug); ?>"> <!-- Добавляем data-id -->
+                                <li class="swiper-slide" data-hash="<?php echo esc_attr($post_slug); ?>"> <!-- Добавляем data-id -->
                                     <img src="<?php echo esc_url($thumbnail); ?>" alt="<?php the_title(); ?>">
                                 </li>
                             <?php endwhile;

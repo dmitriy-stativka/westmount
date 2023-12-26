@@ -83,7 +83,7 @@
                                             <?php }?>
 
                                         
-                                            <a href="/team#<?php echo esc_attr($team_member_slug); ?>" class="team-card__link article-link">
+                                            <a href="/team/#<?php echo esc_attr($team_member_slug); ?>" class="team-card__link article-link">
                                                 <svg width="14" height="11">
                                                     <use href="<?php echo $build_folder ?>img/sprite/sprite.svg#arrow-r"></use>
                                                 </svg>

@@ -163,10 +163,10 @@ function checkWindowSize() {
 	}
 }
 
-// Проверить размер окна при загрузке страницы
+
 checkWindowSize();
 
-// Отслеживать изменение размера окна
+
 window.addEventListener('resize', checkWindowSize);
 
 
