@@ -52,15 +52,25 @@
           <?php endwhile; ?>
         </div>
       <?php endif; ?>
-      <div class="action_btn mt_action_btn">
-        <div class="action_btn_text">Explore</div>
-        <div class="square">
-        <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9.2816 0L8.16406 1.11753L11.7299 4.7341V6.30379L8.16406 9.93256L9.23086 11L13.3375 6.89403V4.05588L9.2816 0Z" fill="#F9FAFE"/>
-          <path d="M9.86962 4.73438H0V6.30406H9.86962V4.73438Z" fill="#F9FAFE"/>
-        </svg>
-        </div>
-      </div>
+
+      <?php
+        $link = get_sub_field( 'action_button' );
+        if ( $link ) :
+          $link_url = $link['url'];
+          $link_title = $link['title'];
+          $link_target = $link['target'] ? $link['target'] : '_self';
+          ?>
+
+          <a class="action_btn mt_action_btn" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>">
+              <div class="action_btn_text"><?php echo esc_html( $link_title ); ?></div>
+              <div class="square">
+                  <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.2816 0L8.16406 1.11753L11.7299 4.7341V6.30379L8.16406 9.93256L9.23086 11L13.3375 6.89403V4.05588L9.2816 0Z" fill="#F9FAFE"/>
+                    <path d="M9.86962 4.73438H0V6.30406H9.86962V4.73438Z" fill="#F9FAFE"/>
+                  </svg>
+              </div>
+          </a>
+        <?php endif; ?>
     </div>
   </section>
 
